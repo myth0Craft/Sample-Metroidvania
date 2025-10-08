@@ -5,39 +5,54 @@ using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     private Rigidbody2D body;
-
-    private bool doubleJumpUsed = false;
-    private int dashCooldown = 0;
-
     [SerializeField] private LayerMask groundLayer;
     private BoxCollider2D boxCollider;
+    
+
 
     //movement values
-    public float speed = 5f;
-    public float jumpStrength = 10f;
-   
+    private float speed = 5f;
+    private float jumpStrength = 10f;
 
-    public int baseGravity = 10;
-    public int lowJumpGravity = 16;
-    public int fallGravity = 20;
+    private int baseGravity = 5;
+    private int lowJumpGravity = 7;
+    private int fallGravity = 9;
+
+    //ability usage/cooldown trackers
+    private bool doubleJumpUsed = false;
+    private bool dashUsed = false;
+    private int dashCooldown = 0;
+
+    //movement fine-tuning values
+    private int maxJumpHoldFrames = 20;
+    private int jumpHoldCounter = 0;
+
+    private float jumpBufferTime = 0.1f;
+    private float jumpBufferTimer = 0f;
+
+    private float groundedRememberTime = 0.1f;
+    private float groundedRememberTimer = 0f;
+
 
     //inputs
-
     private PlayerControls controls;
     private float horizontalMovement;
     private bool jumpPressed;
     private bool dashPressed;
     private bool jumpHeld;
 
+
+
     void Awake()
     {
+        //gets values from unity
         body = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         controls = new PlayerControls();
         
 
+        //maps controls
         controls.Player.Move.performed += ctx => horizontalMovement = ctx.ReadValue<Vector2>().x;
         controls.Player.Move.canceled += ctx => horizontalMovement = 0f;
 
@@ -58,30 +73,53 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Disable();
     }
 
+    
     private void Update()
     {
-        if (IsGrounded())
+        //resets double jump if player is on ground
+        if (IsGroundedBuffered())
         {
             doubleJumpUsed = false;
+            dashUsed = false;
         }
     }
 
     private void FixedUpdate()
     {
+        Time.timeScale = 0.8f;
+        //base left/right movement
         MoveHorizontal(horizontalMovement);
+
+
+        //jumping
+
         if (jumpPressed)
         {
-            if (StuckToWall())
-            {
+            jumpBufferTimer = jumpBufferTime;
+            jumpPressed = false;
+        }
+        else
+        {
+            jumpBufferTimer -= Time.fixedDeltaTime;
+        }
+
+
+        if (jumpBufferTimer > 0f)
+        {
+            if (StuckToWall()) { 
                 ExecuteWallJump();
+                jumpBufferTimer = 0f;
             }
             else
             {
                 Jump();
+                jumpBufferTimer = 0f;
             }
-            jumpPressed = false;
         }
 
+        ApplyJumpHold();
+
+        //dashing
         if (dashPressed)
         {
             Dash();
@@ -90,19 +128,27 @@ public class PlayerMovement : MonoBehaviour
         if (dashCooldown > 0)
         {
             dashCooldown--;
+            
         }
 
+        //apply current gravity
         body.gravityScale = getGravity();
         
     }
 
 
-
+    //moves the player left or right
     private void MoveHorizontal(float input)
     {
-        body.linearVelocity = new Vector2(input * speed, body.linearVelocity.y);
+        /*float targetSpeed = input * speed;
+        body.linearVelocity = new Vector2(targetSpeed, body.linearVelocity.y);*/
+
+        float accel = IsGroundedBuffered() ? 60f : 50f;
+        float newVelX = Mathf.MoveTowards(body.linearVelocity.x, input * speed, accel * Time.fixedDeltaTime);
+        body.linearVelocity = new Vector2(newVelX, body.linearVelocity.y);
     }
 
+    //returns the current gravity
     private float getGravity()
     {
         if (body.linearVelocity.y > 0 && !jumpHeld)
@@ -112,6 +158,7 @@ public class PlayerMovement : MonoBehaviour
         return baseGravity;
     }
 
+    //checks if player is on ground
     private bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.BoxCast(
@@ -126,37 +173,64 @@ public class PlayerMovement : MonoBehaviour
         return hit.collider != null;
     }
 
+    //checks if player was on ground in last 0.1s
+    private bool IsGroundedBuffered()
+    {
+        if (IsGrounded())
+            groundedRememberTimer = groundedRememberTime;
+        else
+            groundedRememberTimer -= Time.deltaTime;
+
+        return groundedRememberTimer > 0f;
+    }
+
+    //checks if player is attached to a wall
     private bool StuckToWall()
     {
         return false;
     }
 
+    //applies upwards jump motion for jumps and double jumps
     private void Jump()
     {
-        
-        if (IsGrounded())
+        if (IsGroundedBuffered())
+        {
+            //jump logic
+            body.linearVelocity = new Vector2(body.linearVelocity.x, jumpStrength);
+            jumpHoldCounter = maxJumpHoldFrames;
+            
+        } else if (!doubleJumpUsed)
         {
             body.linearVelocity = new Vector2(body.linearVelocity.x, jumpStrength);
-        }
-        else if (!doubleJumpUsed)
-        {
-            body.linearVelocity = new Vector2(body.linearVelocity.x, jumpStrength);
+            jumpHoldCounter = maxJumpHoldFrames;
             doubleJumpUsed = true;
         }
     }
 
-
-
-    private void Dash()
+    private void ApplyJumpHold()
     {
-        print("dashed");
-        if (dashCooldown <= 0)
+        if (jumpHeld && jumpHoldCounter > 0)
         {
-            dashCooldown = 200;
-            body.linearVelocity = new Vector2(horizontalMovement * speed * 30, 0);
+            body.linearVelocity += Vector2.up * jumpStrength * Time.fixedDeltaTime * 3;
+            //body.linearVelocity = new Vector2(body.linearVelocity.x, jumpStrength);
+            jumpHoldCounter--;
         }
     }
 
+
+    //applies sideways motion for dashing
+    private void Dash()
+    {
+        
+        if (dashCooldown <= 0 && !dashUsed)
+        {
+            dashCooldown = 200;
+            body.linearVelocity = new Vector2(horizontalMovement * speed * 30, 0);
+            dashUsed = true;
+        }
+    }
+
+    //makes the player jump off of a wall
     private void ExecuteWallJump()
     {
 
