@@ -6,14 +6,14 @@ using UnityEngine.UIElements;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D body;
-    [SerializeField] private LayerMask groundLayer;
+    private LayerMask groundLayer;
     private BoxCollider2D boxCollider;
     
 
 
     //movement values
-    private float speed = 5f;
-    private float jumpStrength = 10f;
+    private float speed = 4f;
+    private float jumpStrength = 8f;
 
     private int baseGravity = 5;
     private int lowJumpGravity = 7;
@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float groundedRememberTime = 0.1f;
     private float groundedRememberTimer = 0f;
+    private float playerTimeScale = 0.8f;
 
 
     //inputs
@@ -50,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         controls = new PlayerControls();
+        groundLayer = LayerMask.GetMask("Ground");
         
 
         //maps controls
@@ -86,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Time.timeScale = 0.8f;
+        //Time.timeScale = 0.8f;
         //base left/right movement
         MoveHorizontal(horizontalMovement);
 
@@ -132,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //apply current gravity
-        body.gravityScale = getGravity();
+        body.gravityScale = getGravity() * playerTimeScale;
         
     }
 
