@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     private LayerMask groundLayer;
     private BoxCollider2D boxCollider;
+    private Vector3 sizeScale;
     
 
 
@@ -15,9 +16,9 @@ public class PlayerMovement : MonoBehaviour
     private float speed = 4f;
     private float jumpStrength = 8f;
 
-    private int baseGravity = 5;
-    private int lowJumpGravity = 7;
-    private int fallGravity = 9;
+    private float baseGravity = 5f;
+    private float lowJumpGravity = 7f;
+    private float fallGravity = 10f;
 
     //ability usage/cooldown trackers
     private bool doubleJumpUsed = false;
@@ -25,7 +26,8 @@ public class PlayerMovement : MonoBehaviour
     private int dashCooldown = 0;
 
     //movement fine-tuning values
-    private int maxJumpHoldFrames = 20;
+    private int maxJumpHoldFrames = 15;
+    private float jumpIncreasePerFrameHeld = 0.5f;
     private int jumpHoldCounter = 0;
 
     private float jumpBufferTime = 0.1f;
@@ -33,15 +35,19 @@ public class PlayerMovement : MonoBehaviour
 
     private float groundedRememberTime = 0.1f;
     private float groundedRememberTimer = 0f;
-    private float playerTimeScale = 0.8f;
+    private float gravityMultiplier = 0.4f;
+    private float accelGrounded = 40f;
+    private float accelInAir = 30f;
 
 
     //inputs
     private PlayerControls controls;
     private float horizontalMovement;
+    private float previousHorizontalMovement = 0;
     private bool jumpPressed;
     private bool dashPressed;
     private bool jumpHeld;
+    private bool wasJumpHeld;
 
 
 
@@ -51,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         controls = new PlayerControls();
+        sizeScale = transform.localScale;
         groundLayer = LayerMask.GetMask("Ground");
         
 
@@ -90,7 +97,10 @@ public class PlayerMovement : MonoBehaviour
     {
         //Time.timeScale = 0.8f;
         //base left/right movement
-        MoveHorizontal(horizontalMovement);
+        MoveHorizontal();
+
+        previousHorizontalMovement = horizontalMovement;
+
 
 
         //jumping
@@ -121,8 +131,15 @@ public class PlayerMovement : MonoBehaviour
 
         ApplyJumpHold();
 
+        if (wasJumpHeld && !jumpHeld)
+        {
+            OnJumpReleased();
+        }
+
+        wasJumpHeld = jumpHeld;
+
         //dashing
-        if (dashPressed)
+        /*if (dashPressed)
         {
             Dash();
             dashPressed = false;
@@ -131,23 +148,34 @@ public class PlayerMovement : MonoBehaviour
         {
             dashCooldown--;
             
-        }
+        }*/
 
         //apply current gravity
-        body.gravityScale = getGravity() * playerTimeScale;
+        body.gravityScale = getGravity() * gravityMultiplier;
         
     }
 
 
     //moves the player left or right
-    private void MoveHorizontal(float input)
+    private void MoveHorizontal()
     {
         /*float targetSpeed = input * speed;
         body.linearVelocity = new Vector2(targetSpeed, body.linearVelocity.y);*/
 
-        float accel = IsGroundedBuffered() ? 60f : 50f;
-        float newVelX = Mathf.MoveTowards(body.linearVelocity.x, input * speed, accel * Time.fixedDeltaTime);
+        float accel = IsGroundedBuffered() ? accelGrounded : accelInAir;
+        float newVelX = Mathf.MoveTowards(body.linearVelocity.x, horizontalMovement * speed, accel * Time.fixedDeltaTime);
         body.linearVelocity = new Vector2(newVelX, body.linearVelocity.y);
+        if (Mathf.Abs(horizontalMovement) > 0.01f)
+            TurnSprite(horizontalMovement > 0);
+    }
+
+    private void TurnSprite(bool facingRight)
+    {
+        Vector3 scale = transform.localScale;
+        scale.x = facingRight ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+        //scale.y = facingRight ? 0f : 180f;
+        transform.localScale = scale;
+
     }
 
     //returns the current gravity
@@ -199,11 +227,13 @@ public class PlayerMovement : MonoBehaviour
         {
             //jump logic
             body.linearVelocity = new Vector2(body.linearVelocity.x, jumpStrength);
+            //body.AddForce(Vector2.up * jumpStrength, ForceMode2D.Impulse);
             jumpHoldCounter = maxJumpHoldFrames;
             
         } else if (!doubleJumpUsed)
         {
             body.linearVelocity = new Vector2(body.linearVelocity.x, jumpStrength);
+            //body.AddForce(Vector2.up * jumpStrength, ForceMode2D.Impulse);
             jumpHoldCounter = maxJumpHoldFrames;
             doubleJumpUsed = true;
         }
@@ -213,9 +243,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if (jumpHeld && jumpHoldCounter > 0)
         {
-            body.linearVelocity += Vector2.up * jumpStrength * Time.fixedDeltaTime * 3;
+            body.linearVelocity += Vector2.up * (jumpStrength * jumpIncreasePerFrameHeld) * Time.fixedDeltaTime;
             //body.linearVelocity = new Vector2(body.linearVelocity.x, jumpStrength);
             jumpHoldCounter--;
+        }
+    }
+
+    private void OnJumpReleased()
+    {
+        if (body.linearVelocity.y > 0)
+        {
+            body.linearVelocity = new Vector2(body.linearVelocity.x, body.linearVelocity.y * 0.4f);
         }
     }
 
