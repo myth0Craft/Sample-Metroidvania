@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private float fallGravity = 10f;
 
     //ability usage/cooldown trackers
+    private bool facingRight = true;
     private bool doubleJumpUsed = false;
     private bool dashUsed = false;
     private int dashCooldown = 0;
@@ -49,6 +50,9 @@ public class PlayerMovement : MonoBehaviour
     private bool jumpHeld;
     private bool wasJumpHeld;
 
+    //camera
+    private CameraFollowObject cameraFollowObject;
+    [SerializeField] private GameObject cameraFollowGO;
 
 
     void Awake()
@@ -59,7 +63,8 @@ public class PlayerMovement : MonoBehaviour
         controls = new PlayerControls();
         sizeScale = transform.localScale;
         groundLayer = LayerMask.GetMask("Ground");
-        
+        cameraFollowObject = cameraFollowGO.GetComponent<CameraFollowObject>();
+
 
         //maps controls
         controls.Player.Move.performed += ctx => horizontalMovement = ctx.ReadValue<Vector2>().x;
@@ -166,15 +171,43 @@ public class PlayerMovement : MonoBehaviour
         float newVelX = Mathf.MoveTowards(body.linearVelocity.x, horizontalMovement * speed, accel * Time.fixedDeltaTime);
         body.linearVelocity = new Vector2(newVelX, body.linearVelocity.y);
         if (Mathf.Abs(horizontalMovement) > 0.01f)
-            TurnSprite(horizontalMovement > 0);
+            TurnSprite();
     }
 
-    private void TurnSprite(bool facingRight)
+    public bool getFacingDirection()
     {
-        Vector3 scale = transform.localScale;
-        scale.x = facingRight ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
-        //scale.y = facingRight ? 0f : 180f;
-        transform.localScale = scale;
+        return facingRight;
+    }
+
+    private void TurnSprite()
+    {
+        //Vector3 scale = transform.localScale;
+        //scale.x = horizontalMovement > 0 ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+        //scale.y = horizontalMovement > 0 ? 0f : 180f;
+        //transform.localScale = scale;
+
+        /*if (horizontalMovement > 0)
+        {
+            Vector3 rotator = new Vector3(transform.rotation.x, 0f, transform.rotation.z);
+            transform.rotation = Quaternion.Euler(rotator);
+            facingRight = true;
+        }else
+        {
+            Vector3 rotator = new Vector3(transform.rotation.x, 180f, transform.rotation.z);
+            transform.rotation = Quaternion.Euler(rotator);
+            facingRight = false;
+        }*/
+
+        bool shouldFaceRight = horizontalMovement > 0;
+        if (shouldFaceRight != facingRight)
+        {
+            Vector3 rot = transform.rotation.eulerAngles;
+            rot.y = shouldFaceRight ? 0f : 180f;
+            transform.rotation = Quaternion.Euler(rot);
+            facingRight = shouldFaceRight;
+            cameraFollowObject.CallTurn();
+        }
+        
 
     }
 
@@ -204,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //checks if player was on ground in last 0.1s
-    private bool IsGroundedBuffered()
+    public bool IsGroundedBuffered()
     {
         if (IsGrounded())
             groundedRememberTimer = groundedRememberTime;
