@@ -229,7 +229,6 @@ public class PlayerMovement : MonoBehaviour
             rot.y = shouldFaceRight ? 0f : 180f;
             transform.rotation = Quaternion.Euler(rot);
             facingRight = shouldFaceRight;
-            cameraFollowObject.CallTurn();
         }
         
 
@@ -246,7 +245,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //checks if player is on ground
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.BoxCast(
         boxCollider.bounds.center,
