@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     //camera
     private CameraFollowObject cameraFollowObject;
     [SerializeField] private GameObject cameraFollowGO;
+    private float fallSpeedYDampingChangeThreshold;
 
 
     void Awake()
@@ -64,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
         sizeScale = transform.localScale;
         groundLayer = LayerMask.GetMask("Ground");
         cameraFollowObject = cameraFollowGO.GetComponent<CameraFollowObject>();
+        
 
 
         //maps controls
@@ -75,6 +77,11 @@ public class PlayerMovement : MonoBehaviour
 
         controls.Player.Jump.canceled += ctx => jumpHeld = false;
         controls.Player.Jump.started += ctx => jumpHeld = true;
+    }
+
+    private void Start()
+    {
+        //fallSpeedYDampingChangeThreshold = CameraManager.instance.fallSpeedYDampingChangeThreshold;
     }
 
     void OnEnable()
@@ -96,7 +103,19 @@ public class PlayerMovement : MonoBehaviour
             doubleJumpUsed = false;
             dashUsed = false;
         }
+
+        /*if (body.linearVelocity.y < fallSpeedYDampingChangeThreshold && CameraManager.instance.isLerpingYDamping && CameraManager.instance.LerpedFromPlayerFalling)
+        {
+            CameraManager.instance.LerpYDamping(true);
+        }
+
+        if (body.linearVelocity.y >= 0f && !CameraManager.instance.isLerpingYDamping && CameraManager.instance.LerpedFromPlayerFalling)
+        {
+            CameraManager.instance.LerpedFromPlayerFalling = false;
+            CameraManager.instance.LerpYDamping(false);
+        }*/
     }
+
 
     private void FixedUpdate()
     {
@@ -172,6 +191,11 @@ public class PlayerMovement : MonoBehaviour
         body.linearVelocity = new Vector2(newVelX, body.linearVelocity.y);
         if (Mathf.Abs(horizontalMovement) > 0.01f)
             TurnSprite();
+    }
+
+    public Vector3 getLinearVelocity()
+    {
+        return body.linearVelocity;
     }
 
     public bool getFacingDirection()
