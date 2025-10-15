@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
-    [SerializeField] float maxHealth;
-    public float currentHealth { get; private set; }
-    [SerializeField] private float iFrameDuration = 0.5f;
-    private float iFrameTimer = 0;
+    [SerializeField] protected int maxHealth;
+    public int currentHealth { get; protected set; }
+    protected float iFrameDuration = 0.5f;
+    protected float iFrameTimer = 0;
 
     private void Awake()
     {
@@ -13,20 +13,20 @@ public class HealthManager : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (iFrameTimer > 0)
         {
-            iFrameTimer -= Time.fixedDeltaTime;
+            iFrameTimer = Mathf.Max(0f, iFrameTimer - Time.deltaTime);
         }
     }
 
-    public float getMaxHealth()
+    public virtual float getMaxHealth()
     {
         return maxHealth;
     }
 
-    public void ApplyDamageIgnoreIFrames(float amount)
+    public virtual void ApplyDamageIgnoreIFrames(int amount)
     {
         currentHealth -= Mathf.Max(amount, 0);
         if (currentHealth <= 0)
@@ -35,7 +35,7 @@ public class HealthManager : MonoBehaviour
         }
     }
 
-    public void ApplyDamage(float amount)
+    public void ApplyDamage(int amount)
     {
         if (iFrameTimer <= 0)
         {
@@ -54,7 +54,7 @@ public class HealthManager : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void Heal(float amount)
+    public void Heal(int amount)
     {
         currentHealth += Mathf.Max(amount, 0);
     }
@@ -69,7 +69,7 @@ public class HealthManager : MonoBehaviour
         ApplyDamage(maxHealth);
     }
 
-    public void Die()
+    public virtual void Die()
     {
         print("died");
     }

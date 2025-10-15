@@ -176,7 +176,8 @@ public class PlayerMovement : MonoBehaviour
 
         //apply current gravity
         body.gravityScale = getGravity() * gravityMultiplier;
-        
+        body.linearVelocity = new Vector2(body.linearVelocity.x, Mathf.Max(body.linearVelocity.y, -20f));
+
     }
 
 

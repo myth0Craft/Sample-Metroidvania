@@ -19,9 +19,8 @@ public class ConinuousDamageObject : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            HealthManager health = other.GetComponent<HealthManager>();
+            PlayerHealthManager health = other.GetComponent<PlayerHealthManager>();
             health.ApplyDamage();
-            print(health.currentHealth + "/" + health.getMaxHealth());
         }
     }
 }
