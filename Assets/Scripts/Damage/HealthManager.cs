@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class HealthManager : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class HealthManager : MonoBehaviour
     public int currentHealth { get; protected set; }
     protected float iFrameDuration = 0.5f;
     protected float iFrameTimer = 0;
+    public event Action OnHealthChanged;
 
     private void Awake()
     {
@@ -21,6 +23,13 @@ public class HealthManager : MonoBehaviour
         }
     }
 
+    
+
+    protected void HealthChanged()
+    {
+        OnHealthChanged?.Invoke();
+    }
+
     public virtual float getMaxHealth()
     {
         return maxHealth;
@@ -29,6 +38,7 @@ public class HealthManager : MonoBehaviour
     public virtual void ApplyDamageIgnoreIFrames(int amount)
     {
         currentHealth -= Mathf.Max(amount, 0);
+        HealthChanged();
         if (currentHealth <= 0)
         {
             Die();
@@ -52,11 +62,13 @@ public class HealthManager : MonoBehaviour
     public void RestoreAllHealth()
     {
         currentHealth = maxHealth;
+        HealthChanged();
     }
 
     public void Heal(int amount)
     {
         currentHealth += Mathf.Max(amount, 0);
+        HealthChanged();
     }
 
     public void Heal()

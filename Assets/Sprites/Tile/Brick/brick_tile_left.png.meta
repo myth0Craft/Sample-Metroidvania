@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d70a187459cc84d45913252def608063
+guid: 03063af84edc8884698214726fabaa98
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -511133062249068954
-    second: heart_empty_0
+      213: 7168372537949711586
+    second: brick_tile_left_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: heart_empty_0
+      name: brick_tile_left_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 666cfaf103718e8f0800000000000000
-      internalID: -511133062249068954
+      spriteID: 2ec6826f7dc2b7360800000000000000
+      internalID: 7168372537949711586
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      heart_empty_0: -511133062249068954
+      brick_tile_left_0: 7168372537949711586
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
