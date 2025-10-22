@@ -11,7 +11,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     private float attackTimer = 0;
     private float attackCooldownDurationSeconds = 0.2f;
     private float attackCooldownTimer = 0;
-    BoxCollider2D playerBox;
+    //BoxCollider2D playerBox;
     [SerializeField] private GameObject attackHitbox;
     private BoxCollider2D attackCollider;
     private bool oldFacingRight;
@@ -19,7 +19,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     private void Awake()
     {
         playerMovement = GetComponentInParent<PlayerMovement>();
-        playerBox = GetComponentInParent<BoxCollider2D>();
+        //playerBox = GetComponentInParent<BoxCollider2D>();
         attackCollider = attackHitbox.GetComponent<BoxCollider2D>();
         controls = new PlayerControls();
         controls.Player.Attack.performed += ctx => attackPressed = true;

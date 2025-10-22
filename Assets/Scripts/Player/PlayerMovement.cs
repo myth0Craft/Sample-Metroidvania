@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D body;
     private LayerMask groundLayer;
-    private BoxCollider2D boxCollider;
+    private CapsuleCollider2D boxCollider;
     private Vector3 sizeScale;
     
 
@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //gets values from unity
         body = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        boxCollider = GetComponent<CapsuleCollider2D>();
         controls = new PlayerControls();
         sizeScale = transform.localScale;
         groundLayer = LayerMask.GetMask("Ground");

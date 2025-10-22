@@ -6,7 +6,7 @@ public class PlayerAttackDamageObject : MonoBehaviour
     {
         /*if (other.CompareTag("BreakableObj"))
         {*/
-            BreakableObject health = other.GetComponent<BreakableObject>();
+        BreakableObject health = other.GetComponent<BreakableObject>();
         if (health != null)
         {
             health.ApplyDamage();
