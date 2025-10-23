@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
 
     private float groundedRememberTime = 0.1f;
     private float groundedRememberTimer = 0f;
+    private float wallRememberTime = 0.1f;
+    private float wallRememberTimer = 0f;
     private float gravityMultiplier = 0.4f;
     private float accelGrounded = 40f;
     private float accelInAir = 25f;
@@ -97,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         //resets double jump if player is on ground
-        if (IsGroundedBuffered() || StuckToWall())
+        if (IsGroundedBuffered() || StuckToWallBuffered())
         {
             doubleJumpUsed = false;
             dashUsed = false;
@@ -141,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (jumpBufferTimer > 0f)
         {
-            if (StuckToWall() && !IsGroundedBuffered()) { 
+            if (StuckToWallBuffered() && !IsGroundedBuffered()) { 
                 ExecuteWallJump();
                 jumpBufferTimer = 0f;
             }
@@ -175,7 +177,7 @@ public class PlayerMovement : MonoBehaviour
 
         //apply current gravity
         body.gravityScale = getGravity() * gravityMultiplier;
-        if (StuckToWall())
+        if (StuckToWallBuffered())
         {
             body.linearVelocity = new Vector2(body.linearVelocity.x, Mathf.Max(body.linearVelocity.y, -5f));
         } else
@@ -189,11 +191,11 @@ public class PlayerMovement : MonoBehaviour
     {
         /*float targetSpeed = input * speed;
         body.linearVelocity = new Vector2(targetSpeed, body.linearVelocity.y);*/
-        if (!StuckToWall()) {
+
             float accel = IsGroundedBuffered() ? accelGrounded : accelInAir;
             float newVelX = Mathf.MoveTowards(body.linearVelocity.x, horizontalMovement * speed, accel * Time.fixedDeltaTime);
             body.linearVelocity = new Vector2(newVelX, body.linearVelocity.y);
-        }
+        
         if (Mathf.Abs(horizontalMovement) > 0.01f)
             TurnSprite();
     }
@@ -250,7 +252,7 @@ public class PlayerMovement : MonoBehaviour
         else
             finalGravity = baseGravity;
 
-        if (StuckToWall() && body.linearVelocityY <= 0f)
+        if (StuckToWallBuffered() && body.linearVelocityY <= 0f)
         {
             finalGravity *= 0.1f;
         }
@@ -303,12 +305,17 @@ public class PlayerMovement : MonoBehaviour
         );*/
 
         //return hit.collider != null
-        return isTouchingWall && body.linearVelocityY < 0.01f;
+        return isTouchingWall && body.linearVelocityY <= 0.1;
     }
 
     private bool StuckToWallBuffered()
     {
-        return false;
+        if (StuckToWall())
+            wallRememberTimer = wallRememberTime;
+        else
+            wallRememberTimer -= Time.deltaTime;
+
+        return wallRememberTimer > 0f;
     }
 
     //applies upwards jump motion for jumps and double jumps
