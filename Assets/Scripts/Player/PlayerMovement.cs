@@ -1,12 +1,14 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.UI.Image;
 
 
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D body;
     private LayerMask groundLayer;
-    private CapsuleCollider2D boxCollider;
+    private BoxCollider2D boxCollider;
     private Vector3 sizeScale;
     
 
@@ -37,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private float groundedRememberTimer = 0f;
     private float gravityMultiplier = 0.4f;
     private float accelGrounded = 40f;
-    private float accelInAir = 30f;
+    private float accelInAir = 25f;
 
 
     //inputs
@@ -51,7 +53,6 @@ public class PlayerMovement : MonoBehaviour
 
     //camera
     private CameraFollowObject cameraFollowObject;
-    [SerializeField] private GameObject cameraFollowGO;
     private float fallSpeedYDampingChangeThreshold;
 
 
@@ -59,11 +60,10 @@ public class PlayerMovement : MonoBehaviour
     {
         //gets values from unity
         body = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<CapsuleCollider2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
         controls = new PlayerControls();
         sizeScale = transform.localScale;
         groundLayer = LayerMask.GetMask("Ground");
-        cameraFollowObject = cameraFollowGO.GetComponent<CameraFollowObject>();
         
 
 
@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         //resets double jump if player is on ground
-        if (IsGroundedBuffered())
+        if (IsGroundedBuffered() || StuckToWall())
         {
             doubleJumpUsed = false;
             dashUsed = false;
@@ -119,7 +119,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Time.timeScale = 0.8f;
         //base left/right movement
         MoveHorizontal();
 
@@ -142,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (jumpBufferTimer > 0f)
         {
-            if (StuckToWall()) { 
+            if (StuckToWall() && !IsGroundedBuffered()) { 
                 ExecuteWallJump();
                 jumpBufferTimer = 0f;
             }
@@ -176,7 +175,11 @@ public class PlayerMovement : MonoBehaviour
 
         //apply current gravity
         body.gravityScale = getGravity() * gravityMultiplier;
-        body.linearVelocity = new Vector2(body.linearVelocity.x, Mathf.Max(body.linearVelocity.y, -20f));
+        if (StuckToWall())
+        {
+            body.linearVelocity = new Vector2(body.linearVelocity.x, Mathf.Max(body.linearVelocity.y, -5f));
+        } else
+            body.linearVelocity = new Vector2(body.linearVelocity.x, Mathf.Max(body.linearVelocity.y, -15f));
 
     }
 
@@ -186,10 +189,11 @@ public class PlayerMovement : MonoBehaviour
     {
         /*float targetSpeed = input * speed;
         body.linearVelocity = new Vector2(targetSpeed, body.linearVelocity.y);*/
-
-        float accel = IsGroundedBuffered() ? accelGrounded : accelInAir;
-        float newVelX = Mathf.MoveTowards(body.linearVelocity.x, horizontalMovement * speed, accel * Time.fixedDeltaTime);
-        body.linearVelocity = new Vector2(newVelX, body.linearVelocity.y);
+        if (!StuckToWall()) {
+            float accel = IsGroundedBuffered() ? accelGrounded : accelInAir;
+            float newVelX = Mathf.MoveTowards(body.linearVelocity.x, horizontalMovement * speed, accel * Time.fixedDeltaTime);
+            body.linearVelocity = new Vector2(newVelX, body.linearVelocity.y);
+        }
         if (Mathf.Abs(horizontalMovement) > 0.01f)
             TurnSprite();
     }
@@ -238,11 +242,22 @@ public class PlayerMovement : MonoBehaviour
     //returns the current gravity
     private float getGravity()
     {
+        float finalGravity;
         if (body.linearVelocity.y > 0 && !jumpHeld)
-            return lowJumpGravity;
+            finalGravity = lowJumpGravity;
         if (body.linearVelocity.y < 0)
-            return fallGravity;
-        return baseGravity;
+            finalGravity = fallGravity;
+        else
+            finalGravity = baseGravity;
+
+        if (StuckToWall() && body.linearVelocityY <= 0f)
+        {
+            finalGravity *= 0.1f;
+        }
+
+        return finalGravity;
+
+
     }
 
     //checks if player is on ground
@@ -273,6 +288,25 @@ public class PlayerMovement : MonoBehaviour
 
     //checks if player is attached to a wall
     private bool StuckToWall()
+    {
+        Vector2 direction = getFacingDirection() ? Vector2.right : Vector2.left;
+
+        bool isTouchingWall = Physics2D.Raycast(boxCollider.bounds.center, direction, boxCollider.bounds.size.x - 0.15f, groundLayer);
+
+        /*RaycastHit2D hit = Physics2D.BoxCast(
+            boxCollider.bounds.center,
+            boxCollider.bounds.size,
+            0f,
+            direction,
+            0.1f,
+            groundLayer
+        );*/
+
+        //return hit.collider != null
+        return isTouchingWall && body.linearVelocityY < 0.01f;
+    }
+
+    private bool StuckToWallBuffered()
     {
         return false;
     }
@@ -330,6 +364,16 @@ public class PlayerMovement : MonoBehaviour
     //makes the player jump off of a wall
     private void ExecuteWallJump()
     {
+        /*float accel = IsGroundedBuffered() ? accelGrounded : accelInAir;
+        float newVelX = Mathf.MoveTowards(body.linearVelocity.x, -horizontalMovement * speed, accel * Time.fixedDeltaTime);*/
+        
+
+        if (getFacingDirection())
+            body.AddForce(new Vector2(-500f, 0));
+        else
+            body.AddForce(new Vector2(500f, 0));
+
+        body.linearVelocity = new Vector2(body.linearVelocityX, jumpStrength * 1.2f);
 
     }
 }
