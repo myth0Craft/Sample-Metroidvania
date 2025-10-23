@@ -247,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
         float finalGravity;
         if (body.linearVelocity.y > 0 && !jumpHeld)
             finalGravity = lowJumpGravity;
-        if (body.linearVelocity.y < 0)
+        else if (body.linearVelocity.y < 0)
             finalGravity = fallGravity;
         else
             finalGravity = baseGravity;
@@ -373,14 +373,12 @@ public class PlayerMovement : MonoBehaviour
     {
         /*float accel = IsGroundedBuffered() ? accelGrounded : accelInAir;
         float newVelX = Mathf.MoveTowards(body.linearVelocity.x, -horizontalMovement * speed, accel * Time.fixedDeltaTime);*/
-        
 
-        if (getFacingDirection())
-            body.AddForce(new Vector2(-500f, 0));
-        else
-            body.AddForce(new Vector2(500f, 0));
 
-        body.linearVelocity = new Vector2(body.linearVelocityX, jumpStrength * 1.2f);
+        float wallJumpHorizontalForce = facingRight ? -5f : 5f;
+        body.linearVelocity = new Vector2(wallJumpHorizontalForce, jumpStrength * 1.3f);
+
+        //body.linearVelocity = new Vector2(body.linearVelocityX, jumpStrength * 1.2f);
 
     }
 }
