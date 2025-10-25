@@ -293,7 +293,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 direction = getFacingDirection() ? Vector2.right : Vector2.left;
 
-        bool isTouchingWall = Physics2D.Raycast(boxCollider.bounds.center, direction, boxCollider.bounds.size.x - 0.15f, groundLayer);
+        bool isTouchingWall = Physics2D.Raycast(boxCollider.bounds.center, direction, boxCollider.bounds.size.x - 0.05f, groundLayer);
 
         /*RaycastHit2D hit = Physics2D.BoxCast(
             boxCollider.bounds.center,
@@ -375,7 +375,7 @@ public class PlayerMovement : MonoBehaviour
         float newVelX = Mathf.MoveTowards(body.linearVelocity.x, -horizontalMovement * speed, accel * Time.fixedDeltaTime);*/
 
 
-        float wallJumpHorizontalForce = facingRight ? -5f : 5f;
+        float wallJumpHorizontalForce = facingRight ? -5.5f : 5.5f;
         body.linearVelocity = new Vector2(wallJumpHorizontalForce, jumpStrength * 1.3f);
 
         //body.linearVelocity = new Vector2(body.linearVelocityX, jumpStrength * 1.2f);

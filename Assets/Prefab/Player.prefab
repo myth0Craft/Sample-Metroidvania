@@ -131,7 +131,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2256120140375322299, guid: 024f13788792e614d891bbb8610ac6b0, type: 3}
+  m_Sprite: {fileID: 7008568585066417751, guid: 279f1f3c0089bf5458c64a9e019a67f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -181,7 +181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469964ad73f9bc343a8a7f014a85de79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  cameraFollowGO: {fileID: 2183215234867822228}
 --- !u!114 &4839901651880856055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,17 +241,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.04985249, y: -0.19916642}
+  m_Offset: {x: 0.0030527115, y: -0.20426059}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.53, y: 4.36}
+    oldSize: {x: 2.36, y: 4.04}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.268631, y: 3.898772}
+  m_Size: {x: 1.0781715, y: 3.4933}
   m_EdgeRadius: 0
 --- !u!1 &9217998083109764275
 GameObject:
