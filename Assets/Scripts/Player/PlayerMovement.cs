@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     private LayerMask groundLayer;
     private BoxCollider2D boxCollider;
+    private Animator anim;
     private Vector3 sizeScale;
     
 
@@ -63,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         //gets values from unity
         body = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+        anim = GetComponent<Animator>();
         controls = new PlayerControls();
         sizeScale = transform.localScale;
         groundLayer = LayerMask.GetMask("Ground");
@@ -115,6 +117,7 @@ public class PlayerMovement : MonoBehaviour
             CameraManager.instance.LerpedFromPlayerFalling = false;
             CameraManager.instance.LerpYDamping(false);
         }*/
+        anim.SetBool("run", horizontalMovement > 0 && IsGroundedBuffered());
         
     }
 
