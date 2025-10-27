@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
             CameraManager.instance.LerpedFromPlayerFalling = false;
             CameraManager.instance.LerpYDamping(false);
         }*/
-        anim.SetBool("run", horizontalMovement > 0 && IsGroundedBuffered());
+        anim.SetBool("run", horizontalMovement != 0 && (body.linearVelocity.x > 0.1f || body.linearVelocity.x < -0.1f) && IsGroundedBuffered());
         
     }
 
