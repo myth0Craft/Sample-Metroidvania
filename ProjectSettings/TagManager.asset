@@ -45,5 +45,11 @@ TagManager:
   - name: CameraSortingLayer
     uniqueID: 2902473517
     locked: 0
+  - name: Ground
+    uniqueID: 4159607181
+    locked: 0
+  - name: Player
+    uniqueID: 3345080935
+    locked: 0
   m_RenderingLayers:
   - Default

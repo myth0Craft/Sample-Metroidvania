@@ -10,6 +10,12 @@ public class PlayerMovement : MonoBehaviour
     private LayerMask groundLayer;
     private BoxCollider2D boxCollider;
     private Animator anim;
+
+    [SerializeField] private Animator capeAnim;
+    [SerializeField] private Animator armsAnim;
+    [SerializeField] private Animator bodyAnim;
+    [SerializeField] private Animator weaponsAnim;
+
     private Vector3 sizeScale;
     
 
@@ -118,7 +124,12 @@ public class PlayerMovement : MonoBehaviour
             CameraManager.instance.LerpYDamping(false);
         }*/
         anim.SetBool("run", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
+        weaponsAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
+        capeAnim.SetBool("moving", (body.linearVelocity.x < -3f || body.linearVelocity.x > 3f) && !StuckToWallBuffered());
+        bodyAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
+        armsAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
         
+
     }
 
 
