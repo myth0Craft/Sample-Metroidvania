@@ -13,6 +13,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     private float attackCooldownTimer = 0;
     //BoxCollider2D playerBox;
     [SerializeField] private GameObject attackHitbox;
+    [SerializeField] private Animator attackAnimator;
     private BoxCollider2D attackCollider;
     private bool oldFacingRight;
 
@@ -88,6 +89,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     {
         attackHitbox.SetActive(true);
         attackTimer = attackDurationSeconds;
+        attackAnimator.SetTrigger("SwingSword");
         
     }
 }
