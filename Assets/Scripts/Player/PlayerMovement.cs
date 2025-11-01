@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator armsAnim;
     [SerializeField] private Animator bodyAnim;
     [SerializeField] private Animator weaponsAnim;
+    [SerializeField] private GameObject visual;
 
     private Vector3 sizeScale;
     
@@ -246,9 +247,11 @@ public class PlayerMovement : MonoBehaviour
         bool shouldFaceRight = horizontalMovement > 0;
         if (shouldFaceRight != facingRight)
         {
-            Vector3 rot = transform.rotation.eulerAngles;
+            Vector3 rot = visual.transform.rotation.eulerAngles;
             rot.y = shouldFaceRight ? 0f : 180f;
-            transform.rotation = Quaternion.Euler(rot);
+            visual.transform.rotation = Quaternion.Euler(rot);
+            //body.transform.localScale = new Vector3(shouldFaceRight ? 1 : -1, 1, 1);
+
             facingRight = shouldFaceRight;
         }
         
@@ -328,7 +331,6 @@ public class PlayerMovement : MonoBehaviour
             wallRememberTimer = wallRememberTime;
         else
             wallRememberTimer -= Time.deltaTime;
-
         return wallRememberTimer > 0f;
     }
 
@@ -391,7 +393,6 @@ public class PlayerMovement : MonoBehaviour
 
         float wallJumpHorizontalForce = facingRight ? -5.5f : 5.5f;
         body.linearVelocity = new Vector2(wallJumpHorizontalForce, jumpStrength * 1.3f);
-
         //body.linearVelocity = new Vector2(body.linearVelocityX, jumpStrength * 1.2f);
 
     }
