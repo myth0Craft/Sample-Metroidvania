@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator armsAnim;
     [SerializeField] private Animator bodyAnim;
     [SerializeField] private Animator weaponsAnim;
+    [SerializeField] private Animator legsAnim;
     [SerializeField] private GameObject visual;
 
     private Vector3 sizeScale;
@@ -129,7 +130,8 @@ public class PlayerMovement : MonoBehaviour
         capeAnim.SetBool("moving", (body.linearVelocity.x < -3f || body.linearVelocity.x > 3f) && !StuckToWallBuffered());
         bodyAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
         armsAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
-        
+        legsAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
+
 
     }
 
