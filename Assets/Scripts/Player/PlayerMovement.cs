@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator bodyAnim;
     [SerializeField] private Animator weaponsAnim;
     [SerializeField] private Animator legsAnim;
+    [SerializeField] private Animator swordAnim;
+    [SerializeField] private Animator shieldAnim;
     [SerializeField] private GameObject visual;
 
     private Vector3 sizeScale;
@@ -131,6 +133,8 @@ public class PlayerMovement : MonoBehaviour
         bodyAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
         armsAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
         legsAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
+        shieldAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
+        swordAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
 
 
     }
@@ -201,6 +205,27 @@ public class PlayerMovement : MonoBehaviour
             body.linearVelocity = new Vector2(body.linearVelocity.x, Mathf.Max(body.linearVelocity.y, -15f));
 
     }
+
+    public void enableSword()
+    {
+        swordAnim.SetBool("hasSword", true);
+    }
+
+    public void disableSword()
+    {
+        swordAnim.SetBool("hasSword", false);
+    }
+
+    public void enableShield()
+    {
+        shieldAnim.SetBool("hasShield", true);
+    }
+
+    public void disableShield()
+    {
+        shieldAnim.SetBool("hasShield", false);
+    }
+
 
 
     //moves the player left or right

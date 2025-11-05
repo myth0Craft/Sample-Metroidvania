@@ -26,6 +26,8 @@ public class PlayerMeleeAttack : MonoBehaviour
         controls.Player.Attack.performed += ctx => attackPressed = true;
         oldFacingRight = playerMovement.getFacingDirection();
         attackHitbox.SetActive(false);
+        playerMovement.enableSword();
+        playerMovement.enableShield();
     }
 
     private void Update()
@@ -54,6 +56,7 @@ public class PlayerMeleeAttack : MonoBehaviour
             {
                 attackHitbox.SetActive(false);
                 attackCooldownTimer = attackCooldownDurationSeconds;
+                //playerMovement.enableSword();
             }
         }
 
@@ -90,6 +93,7 @@ public class PlayerMeleeAttack : MonoBehaviour
         attackHitbox.SetActive(true);
         attackTimer = attackDurationSeconds;
         attackAnimator.SetTrigger("SwingSword");
+        playerMovement.disableSword();
         
     }
 }
