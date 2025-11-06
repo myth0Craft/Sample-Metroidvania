@@ -131,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
         weaponsAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
         capeAnim.SetBool("moving", (body.linearVelocity.x < -3f || body.linearVelocity.x > 3f) && !StuckToWallBuffered());
         bodyAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
-        armsAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
+        //armsAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
         legsAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
         shieldAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
         swordAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
@@ -224,6 +224,11 @@ public class PlayerMovement : MonoBehaviour
     public void disableShield()
     {
         shieldAnim.SetBool("hasShield", false);
+    }
+
+    public void bodyDrawSword()
+    {
+        bodyAnim.SetTrigger("drawSword");
     }
 
 

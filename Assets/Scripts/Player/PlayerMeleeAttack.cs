@@ -94,6 +94,7 @@ public class PlayerMeleeAttack : MonoBehaviour
         attackTimer = attackDurationSeconds;
         attackAnimator.SetTrigger("SwingSword");
         playerMovement.disableSword();
+        playerMovement.bodyDrawSword();
         
     }
 }
