@@ -6,6 +6,9 @@ public class PlayerAnimationEvent : MonoBehaviour
     [SerializeField] private Animator swordAnim;
 
     [SerializeField] private PlayerMovement playerMovement;
+
+    [SerializeField] private PlayerMeleeAttack playerAttack;
+
     private CinemachineImpulseSource impulseSource;
 
     void Awake()
@@ -29,6 +32,8 @@ public class PlayerAnimationEvent : MonoBehaviour
 
 
         impulseSource.GenerateImpulse(force);
+
+        playerAttack.ApplyDamage();
     }
 
 }

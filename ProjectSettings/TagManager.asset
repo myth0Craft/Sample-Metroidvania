@@ -17,7 +17,7 @@ TagManager:
   - CameraBounds
   - Background1
   - Breakable
-  - 
+  - Foreground
   - 
   - 
   - 
@@ -50,6 +50,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3345080935
+    locked: 0
+  - name: Foreground
+    uniqueID: 25192681
     locked: 0
   m_RenderingLayers:
   - Default

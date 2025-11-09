@@ -7,15 +7,16 @@ public class PlayerMeleeAttack : MonoBehaviour
     private PlayerControls controls;
     private PlayerMovement playerMovement;
     private bool attackPressed;
-    private float attackDurationSeconds = 0.2f;
+    private float attackDurationSeconds = 0.12f;
     private float attackTimer = 0;
-    private float attackCooldownDurationSeconds = 0.2f;
+    private float attackCooldownDurationSeconds = 0.0f;
     private float attackCooldownTimer = 0;
     //BoxCollider2D playerBox;
     [SerializeField] private GameObject attackHitbox;
     [SerializeField] private Animator attackAnimator;
     private BoxCollider2D attackCollider;
     private bool oldFacingRight;
+    public bool isMidAttack = false;
 
     private void Awake()
     {
@@ -34,7 +35,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     {
         //set the attack hitbox direction
         Vector3 playerPos = playerMovement.transform.position;
-        Vector3 offsetVector = playerMovement.getFacingDirection() ? new Vector3(0.5f, 0.25f, 0) : new Vector3(-0.5f, 0.25f, 0);
+        Vector3 offsetVector = playerMovement.getFacingDirection() ? new Vector3(0.5f, 0, 0) : new Vector3(-0.5f, 0, 0);
         attackHitbox.transform.position = playerPos += offsetVector;
 
 
@@ -87,14 +88,24 @@ public class PlayerMeleeAttack : MonoBehaviour
     {
         controls.Player.Disable();
     }
-
+    
     public void StartAttack()
     {
-        attackHitbox.SetActive(true);
-        attackTimer = attackDurationSeconds;
-        attackAnimator.SetTrigger("SwingSword");
-        playerMovement.disableSword();
-        playerMovement.bodyDrawSword();
+        if (!isMidAttack) {
+            attackAnimator.SetTrigger("SwingSword");
+            playerMovement.disableSword();
+            playerMovement.bodyDrawSword();
+            isMidAttack = true;
+        }
         
+        
+
+    }
+
+    public void ApplyDamage()
+    {
+        attackTimer = attackDurationSeconds;
+        attackHitbox.SetActive(true);
+        isMidAttack = false;
     }
 }
