@@ -1,40 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5175326485259581987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 392ff5a0de9755b4b8e24d4ccb18ecdc, type: 3}
-  m_Name: MaskRenderFeature
-  m_EditorClassIdentifier: Assembly-CSharp::MaskRenderFeature
-  m_Active: 1
-  settings:
-    layers:
-      serializedVersion: 2
-      m_Bits: 512
-    material: {fileID: 2100000, guid: 59572ffb45abb50408e87536e64ec6eb, type: 2}
---- !u!114 &-229329796536791659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06941618248ec364fa3e8ac7c6133128, type: 3}
-  m_Name: CustomMaskRenderFeature
-  m_EditorClassIdentifier: Assembly-CSharp::CustomMaskRenderFeature
-  m_Active: 1
-  settings:
-    material: {fileID: 2100000, guid: fe3eb0bf5d9e72f4ab8a8c0dec7066bf, type: 2}
-    tex: {fileID: 8600000, guid: 3fafa6867e407d648b9f1f614c809d5a, type: 2}
-  pass: 250
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11145981673336645838492a2d98e247, type: 3}
-  m_Name: Renderer2D
+  m_Name: BlurRender
   m_EditorClassIdentifier: 
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
@@ -59,10 +24,8 @@ MonoBehaviour:
     probeSamplingDebugMesh: {fileID: -3555484719484374845, guid: 57d7c4c16e2765b47a4d2069b311bffe, type: 3}
     probeSamplingDebugTexture: {fileID: 2800000, guid: 24ec0e140fb444a44ab96ee80844e18e, type: 3}
     probeVolumeBlendStatesCS: {fileID: 0}
-  m_RendererFeatures:
-  - {fileID: -229329796536791659}
-  - {fileID: 4024492890531530637}
-  m_RendererFeatureMap: 950d03ddc341d1fc8d873715f6ded937
+  m_RendererFeatures: []
+  m_RendererFeatureMap: 
   m_UseNativeRenderPass: 0
   m_LayerMask:
     serializedVersion: 2
@@ -111,40 +74,6 @@ MonoBehaviour:
     layersToBlur:
       serializedVersion: 2
       m_Bits: 4294967295
---- !u!114 &3463837079115857520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06941618248ec364fa3e8ac7c6133128, type: 3}
-  m_Name: CustomMaskRenderFeature
-  m_EditorClassIdentifier: Assembly-CSharp::CustomMaskRenderFeature
-  m_Active: 1
-  settings:
-    material: {fileID: -876546973899608171, guid: bedc0cfbd7060984abe7c35100d113a0, type: 3}
-    tex: {fileID: 8600000, guid: 3fafa6867e407d648b9f1f614c809d5a, type: 2}
-  pass: 0
---- !u!114 &4024492890531530637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06941618248ec364fa3e8ac7c6133128, type: 3}
-  m_Name: CustomMaskRenderFeature
-  m_EditorClassIdentifier: Assembly-CSharp::CustomMaskRenderFeature
-  m_Active: 1
-  settings:
-    material: {fileID: 2100000, guid: fe3eb0bf5d9e72f4ab8a8c0dec7066bf, type: 2}
-    tex: {fileID: 8600000, guid: 094820b2dcfabf04e91e447630762365, type: 2}
-  pass: 500
 --- !u!114 &8389911850138563732
 MonoBehaviour:
   m_ObjectHideFlags: 0

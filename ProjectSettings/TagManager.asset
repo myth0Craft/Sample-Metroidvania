@@ -42,9 +42,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: CameraSortingLayer
-    uniqueID: 2902473517
-    locked: 0
   - name: Ground
     uniqueID: 4159607181
     locked: 0
@@ -53,6 +50,12 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 25192681
+    locked: 0
+  - name: BackgroundBlur
+    uniqueID: 2041769115
+    locked: 0
+  - name: CameraSortingLayer
+    uniqueID: 2902473517
     locked: 0
   m_RenderingLayers:
   - Default
