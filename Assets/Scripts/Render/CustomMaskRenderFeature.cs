@@ -15,9 +15,15 @@ public class CustomMaskRenderFeature : ScriptableRendererFeature
     /// <inheritdoc/>
     public override void Create()
     {
-        handle = RTHandles.Alloc(
-        settings.tex
-        );
+        if (settings.tex != null)
+        {
+            handle = RTHandles.Alloc(settings.tex);
+        }
+        else
+        {
+            handle = null;
+        }
+        //settings.material = new Material(settings.material);
 
         m_ScriptablePass = new CustomMaskRenderFeaturePass(settings, handle);
 
@@ -46,13 +52,13 @@ public class CustomMaskRenderFeature : ScriptableRendererFeature
 
     class CustomMaskRenderFeaturePass : ScriptableRenderPass
     {
-        private readonly RTHandle handle;
+        private readonly RTHandle rt;
         readonly CustomMaskRenderFeatureSettings settings;
 
         public CustomMaskRenderFeaturePass(CustomMaskRenderFeatureSettings settings, RTHandle handle)
         {
             this.settings = settings;
-            this.handle = handle;
+            this.rt = handle;
         }
 
         class PassData
@@ -66,15 +72,16 @@ public class CustomMaskRenderFeature : ScriptableRendererFeature
 
         public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData)
         {
-
+            
             var camData = frameData.Get<UniversalCameraData>();
+            Debug.Log($"Feature {this.GetHashCode()} RecordRenderGraph for camera {camData.camera.name} tex={(settings.tex ? settings.tex.name : "null")}");
             if (camData.camera.cameraType != CameraType.Game)
                 return;
             var resourceData = frameData.Get<UniversalResourceData>();
             var cameraColor = resourceData.activeColorTexture;
-            RTHandle rt = RTHandles.Alloc(settings.tex);
-            TextureHandle sourceHandle = renderGraph.ImportTexture(handle);
-            using (var builder = renderGraph.AddRasterRenderPass<PassData>("Blur Blit Pass", out var passData))
+            //RTHandle rt = RTHandles.Alloc(settings.tex);
+            TextureHandle sourceHandle = renderGraph.ImportTexture(rt);
+            using (var builder = renderGraph.AddRasterRenderPass<PassData>(this.GetHashCode().ToString(), out var passData))
             {
                 builder.SetRenderAttachment(cameraColor, 0);
 
@@ -88,13 +95,11 @@ public class CustomMaskRenderFeature : ScriptableRendererFeature
 
                 builder.SetRenderFunc((PassData data, RasterGraphContext context) =>
                 {
-                    
                     data.blitMaterial.SetTexture("_MainTex", data.source);
                     data.blitMaterial.SetFloat("_BlurAmount", data.blurAmount);
                     Vector2 viewportScale = rt.useScaling ? new Vector2(rt.rtHandleProperties.rtHandleScale.x, rt.rtHandleProperties.rtHandleScale.y) : Vector2.one;
                     //Blitter.BlitTexture2D(context.cmd, data.source, viewportScale, 0, true);
                     Blitter.BlitTexture(context.cmd, data.source, viewportScale, data.blitMaterial, 0);
-
                 });
                 
             }

@@ -28,7 +28,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06941618248ec364fa3e8ac7c6133128, type: 3}
-  m_Name: CustomMaskRenderFeature
+  m_Name: BackgroundBlur
   m_EditorClassIdentifier: Assembly-CSharp::CustomMaskRenderFeature
   m_Active: 1
   settings:
@@ -141,13 +141,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06941618248ec364fa3e8ac7c6133128, type: 3}
-  m_Name: CustomMaskRenderFeature
+  m_Name: ForegroundBlur
   m_EditorClassIdentifier: Assembly-CSharp::CustomMaskRenderFeature
   m_Active: 1
   settings:
-    material: {fileID: 2100000, guid: fe3eb0bf5d9e72f4ab8a8c0dec7066bf, type: 2}
+    material: {fileID: 2100000, guid: ad69d7db89044ac44978e9b2c6c21afc, type: 2}
     tex: {fileID: 8600000, guid: 094820b2dcfabf04e91e447630762365, type: 2}
-    blurAmount: 0.004
+    blurAmount: 0.005
   pass: 500
 --- !u!114 &6799656299286175688
 MonoBehaviour:
@@ -159,13 +159,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06941618248ec364fa3e8ac7c6133128, type: 3}
-  m_Name: CustomMaskRenderFeature
+  m_Name: MidgroundBlur
   m_EditorClassIdentifier: Assembly-CSharp::CustomMaskRenderFeature
   m_Active: 1
   settings:
-    material: {fileID: 2100000, guid: fe3eb0bf5d9e72f4ab8a8c0dec7066bf, type: 2}
+    material: {fileID: 2100000, guid: f6841ac65bc696847930e5707396a221, type: 2}
     tex: {fileID: 8600000, guid: 6d89f95abe212d44e9d616f9b61a15af, type: 2}
-    blurAmount: 0.002
+    blurAmount: 0.003
   pass: 500
 --- !u!114 &8389911850138563732
 MonoBehaviour:
