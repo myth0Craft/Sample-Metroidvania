@@ -165,7 +165,7 @@ MonoBehaviour:
   settings:
     material: {fileID: 2100000, guid: f6841ac65bc696847930e5707396a221, type: 2}
     tex: {fileID: 8600000, guid: 6d89f95abe212d44e9d616f9b61a15af, type: 2}
-    blurAmount: 0.003
+    blurAmount: 0.002
   pass: 500
 --- !u!114 &8389911850138563732
 MonoBehaviour:

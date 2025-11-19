@@ -97,6 +97,7 @@ public class CustomMaskRenderFeature : ScriptableRendererFeature
                 {
                     data.blitMaterial.SetTexture("_MainTex", data.source);
                     data.blitMaterial.SetFloat("_BlurAmount", data.blurAmount);
+                    data.blitMaterial.SetVector("_Direction", new Vector2(1, 0));
                     Vector2 viewportScale = rt.useScaling ? new Vector2(rt.rtHandleProperties.rtHandleScale.x, rt.rtHandleProperties.rtHandleScale.y) : Vector2.one;
                     //Blitter.BlitTexture2D(context.cmd, data.source, viewportScale, 0, true);
                     Blitter.BlitTexture(context.cmd, data.source, viewportScale, data.blitMaterial, 0);
