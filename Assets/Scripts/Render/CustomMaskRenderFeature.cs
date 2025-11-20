@@ -72,16 +72,40 @@ public class CustomMaskRenderFeature : ScriptableRendererFeature
 
         public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData)
         {
-            
+
             var camData = frameData.Get<UniversalCameraData>();
-            Debug.Log($"Feature {this.GetHashCode()} RecordRenderGraph for camera {camData.camera.name} tex={(settings.tex ? settings.tex.name : "null")}");
             if (camData.camera.cameraType != CameraType.Game)
                 return;
             var resourceData = frameData.Get<UniversalResourceData>();
             var cameraColor = resourceData.activeColorTexture;
-            //RTHandle rt = RTHandles.Alloc(settings.tex);
-            TextureHandle sourceHandle = renderGraph.ImportTexture(rt);
-            using (var builder = renderGraph.AddRasterRenderPass<PassData>(this.GetHashCode().ToString(), out var passData))
+            //var depth = resourceData.activeDepthTexture;
+            TextureHandle sourceHandle;
+            if (rt != null)
+            {
+                sourceHandle = renderGraph.ImportTexture(rt);
+            }
+            else
+            {
+                sourceHandle = cameraColor;
+            }
+
+            TextureDesc desc = sourceHandle.GetDescriptor(renderGraph);
+            desc.name = "BlurTempA";
+            desc.clearBuffer = false;
+            desc.dimension = TextureDimension.Tex2D;
+            desc.useMipMap = false;
+            desc.enableRandomWrite = false;
+            TextureHandle tempA = renderGraph.CreateTexture(desc);
+            /*Debug.Log(sourceHandle.GetDescriptor(renderGraph).colorFormat);
+            
+            Debug.Log(tempA.GetDescriptor(renderGraph).colorFormat);
+
+            Debug.Log(tempA.GetDescriptor(renderGraph).width);
+            Debug.Log(sourceHandle.GetDescriptor(renderGraph).width);
+            Debug.Log(tempA.GetDescriptor(renderGraph).height);
+            Debug.Log(sourceHandle.GetDescriptor(renderGraph).height);*/
+
+            /*using (var builder = renderGraph.AddRasterRenderPass<PassData>(this.GetHashCode().ToString(), out var passData))
             {
                 builder.SetRenderAttachment(cameraColor, 0);
 
@@ -90,7 +114,7 @@ public class CustomMaskRenderFeature : ScriptableRendererFeature
                 passData.blurAmount = settings.blurAmount;
 
                 builder.UseTexture(passData.source);
-                
+
 
 
                 builder.SetRenderFunc((PassData data, RasterGraphContext context) =>
@@ -98,11 +122,61 @@ public class CustomMaskRenderFeature : ScriptableRendererFeature
                     data.blitMaterial.SetTexture("_MainTex", data.source);
                     data.blitMaterial.SetFloat("_BlurAmount", data.blurAmount);
                     data.blitMaterial.SetVector("_Direction", new Vector2(1, 0));
-                    Vector2 viewportScale = rt.useScaling ? new Vector2(rt.rtHandleProperties.rtHandleScale.x, rt.rtHandleProperties.rtHandleScale.y) : Vector2.one;
+                    //Vector2 viewportScale = rt.useScaling ? new Vector2(rt.rtHandleProperties.rtHandleScale.x, rt.rtHandleProperties.rtHandleScale.y) : Vector2.one;
                     //Blitter.BlitTexture2D(context.cmd, data.source, viewportScale, 0, true);
-                    Blitter.BlitTexture(context.cmd, data.source, viewportScale, data.blitMaterial, 0);
+                    Blitter.BlitTexture(context.cmd, data.source, Vector2.one, data.blitMaterial, 0);
                 });
-                
+
+            }*/
+
+
+            using (var builder = renderGraph.AddRasterRenderPass<PassData>("BlurPass1", out var passData))
+            {
+                builder.AllowPassCulling(false);
+
+                builder.SetRenderAttachment(tempA, 0, AccessFlags.Write);
+
+                passData.source = sourceHandle;
+                passData.blitMaterial = settings.material;
+                passData.blurAmount = settings.blurAmount;
+
+                builder.UseTexture(passData.source, AccessFlags.Read);
+
+
+                builder.SetRenderFunc((PassData data, RasterGraphContext context) =>
+                {
+                    //data.blitMaterial.SetTexture("_MainTex", data.source);
+                    data.blitMaterial.SetFloat("_BlurAmount", data.blurAmount);
+                    data.blitMaterial.SetVector("_Direction", new Vector2(1, 0));
+                    //Blitter.BlitTexture2D(context.cmd, data.source, viewportScale, 0, true);
+                    Blitter.BlitTexture(context.cmd, data.source, Vector2.one, data.blitMaterial, 0);
+                });
+
+            }
+
+
+            using (var builder = renderGraph.AddRasterRenderPass<PassData>("BlurPass2", out var passData))
+            {
+
+                builder.AllowPassCulling(false);
+                builder.SetRenderAttachment(cameraColor, 0, AccessFlags.Write);
+
+                passData.source = tempA;
+                passData.blitMaterial = settings.material;
+                passData.blurAmount = settings.blurAmount;
+
+                builder.UseTexture(passData.source, AccessFlags.Read);
+
+
+
+                builder.SetRenderFunc((PassData data, RasterGraphContext context) =>
+                {
+                    //data.blitMaterial.SetTexture("_MainTex", data.source);
+                    data.blitMaterial.SetFloat("_BlurAmount", data.blurAmount);
+                    data.blitMaterial.SetVector("_Direction", new Vector2(0, 1));
+                    Blitter.BlitTexture(context.cmd, data.source, Vector2.one, data.blitMaterial, 0);
+                });
+
             }
         }
     }

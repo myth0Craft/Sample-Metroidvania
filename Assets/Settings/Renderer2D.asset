@@ -32,7 +32,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CustomMaskRenderFeature
   m_Active: 1
   settings:
-    material: {fileID: 2100000, guid: fe3eb0bf5d9e72f4ab8a8c0dec7066bf, type: 2}
+    material: {fileID: 2100000, guid: ed4f4c2808b45d045858ec616e012d2c, type: 2}
     tex: {fileID: 8600000, guid: 3fafa6867e407d648b9f1f614c809d5a, type: 2}
     blurAmount: 0.002
   pass: 250
@@ -145,9 +145,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CustomMaskRenderFeature
   m_Active: 1
   settings:
-    material: {fileID: 2100000, guid: ad69d7db89044ac44978e9b2c6c21afc, type: 2}
+    material: {fileID: 2100000, guid: 6729ced3af4078940817644fd1f34c54, type: 2}
     tex: {fileID: 8600000, guid: 094820b2dcfabf04e91e447630762365, type: 2}
-    blurAmount: 0.005
+    blurAmount: 0.006
   pass: 500
 --- !u!114 &6799656299286175688
 MonoBehaviour:
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CustomMaskRenderFeature
   m_Active: 1
   settings:
-    material: {fileID: 2100000, guid: f6841ac65bc696847930e5707396a221, type: 2}
+    material: {fileID: 2100000, guid: 84774fd17d895e4499b699bbc0563f7e, type: 2}
     tex: {fileID: 8600000, guid: 6d89f95abe212d44e9d616f9b61a15af, type: 2}
     blurAmount: 0.002
   pass: 500
