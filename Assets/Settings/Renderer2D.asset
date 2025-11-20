@@ -33,6 +33,7 @@ MonoBehaviour:
   m_Active: 1
   settings:
     material: {fileID: 2100000, guid: ed4f4c2808b45d045858ec616e012d2c, type: 2}
+    mat2: {fileID: 2100000, guid: db2c1306610b0e74b93125965677eee3, type: 2}
     tex: {fileID: 8600000, guid: 3fafa6867e407d648b9f1f614c809d5a, type: 2}
     blurAmount: 0.002
   pass: 250
@@ -128,6 +129,7 @@ MonoBehaviour:
   m_Active: 1
   settings:
     material: {fileID: -876546973899608171, guid: bedc0cfbd7060984abe7c35100d113a0, type: 3}
+    mat2: {fileID: 0}
     tex: {fileID: 8600000, guid: 3fafa6867e407d648b9f1f614c809d5a, type: 2}
     blurAmount: 0
   pass: 0
@@ -146,8 +148,9 @@ MonoBehaviour:
   m_Active: 1
   settings:
     material: {fileID: 2100000, guid: 6729ced3af4078940817644fd1f34c54, type: 2}
+    mat2: {fileID: 2100000, guid: e89dc0d4340d3e044ad86c79b249589a, type: 2}
     tex: {fileID: 8600000, guid: 094820b2dcfabf04e91e447630762365, type: 2}
-    blurAmount: 0.006
+    blurAmount: 0.004
   pass: 500
 --- !u!114 &6799656299286175688
 MonoBehaviour:
@@ -164,8 +167,9 @@ MonoBehaviour:
   m_Active: 1
   settings:
     material: {fileID: 2100000, guid: 84774fd17d895e4499b699bbc0563f7e, type: 2}
+    mat2: {fileID: 2100000, guid: dca0bf5d829cc2d418de9b75c097b9aa, type: 2}
     tex: {fileID: 8600000, guid: 6d89f95abe212d44e9d616f9b61a15af, type: 2}
-    blurAmount: 0.002
+    blurAmount: 0.001
   pass: 500
 --- !u!114 &8389911850138563732
 MonoBehaviour:

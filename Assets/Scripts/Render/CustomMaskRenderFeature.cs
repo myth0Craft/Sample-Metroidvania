@@ -44,6 +44,7 @@ public class CustomMaskRenderFeature : ScriptableRendererFeature
     public class CustomMaskRenderFeatureSettings
     {
         public Material material;
+        public Material mat2;
         public RenderTexture tex;
         public float blurAmount;
         
@@ -65,6 +66,7 @@ public class CustomMaskRenderFeature : ScriptableRendererFeature
         {
             public TextureHandle source;
             public Material blitMaterial;
+            public Material mat2;
             public float blurAmount;
         }
 
@@ -96,6 +98,11 @@ public class CustomMaskRenderFeature : ScriptableRendererFeature
             desc.useMipMap = false;
             desc.enableRandomWrite = false;
             TextureHandle tempA = renderGraph.CreateTexture(desc);
+
+            var scale = rt.rtHandleProperties.rtHandleScale;
+            float texelSizeX = 1.0f / (rt.referenceSize.x * scale.x);
+            float texelSizeY = 1.0f / (rt.referenceSize.y * scale.y);
+
             /*Debug.Log(sourceHandle.GetDescriptor(renderGraph).colorFormat);
             
             Debug.Log(tempA.GetDescriptor(renderGraph).colorFormat);
@@ -138,6 +145,7 @@ public class CustomMaskRenderFeature : ScriptableRendererFeature
 
                 passData.source = sourceHandle;
                 passData.blitMaterial = settings.material;
+                passData.mat2 = settings.mat2;
                 passData.blurAmount = settings.blurAmount;
 
                 builder.UseTexture(passData.source, AccessFlags.Read);
@@ -148,6 +156,7 @@ public class CustomMaskRenderFeature : ScriptableRendererFeature
                     //data.blitMaterial.SetTexture("_MainTex", data.source);
                     data.blitMaterial.SetFloat("_BlurAmount", data.blurAmount);
                     data.blitMaterial.SetVector("_Direction", new Vector2(1, 0));
+                    //data.blitMaterial.SetVector("_CustomTexelSize", new Vector4(texelSizeX, texelSizeY, 0, 0));
                     //Blitter.BlitTexture2D(context.cmd, data.source, viewportScale, 0, true);
                     Blitter.BlitTexture(context.cmd, data.source, Vector2.one, data.blitMaterial, 0);
                 });
@@ -163,6 +172,7 @@ public class CustomMaskRenderFeature : ScriptableRendererFeature
 
                 passData.source = tempA;
                 passData.blitMaterial = settings.material;
+                passData.mat2 = settings.mat2;
                 passData.blurAmount = settings.blurAmount;
 
                 builder.UseTexture(passData.source, AccessFlags.Read);
@@ -172,9 +182,10 @@ public class CustomMaskRenderFeature : ScriptableRendererFeature
                 builder.SetRenderFunc((PassData data, RasterGraphContext context) =>
                 {
                     //data.blitMaterial.SetTexture("_MainTex", data.source);
-                    data.blitMaterial.SetFloat("_BlurAmount", data.blurAmount);
-                    data.blitMaterial.SetVector("_Direction", new Vector2(0, 1));
-                    Blitter.BlitTexture(context.cmd, data.source, Vector2.one, data.blitMaterial, 0);
+                    data.mat2.SetFloat("_BlurAmount", data.blurAmount);
+                    data.mat2.SetVector("_Direction", new Vector2(0, 1));
+                    //data.mat2.SetVector("_CustomTexelSize", new Vector4(texelSizeX, texelSizeY, 0, 0));
+                    Blitter.BlitTexture(context.cmd, data.source, Vector2.one, data.mat2, 0);
                 });
 
             }

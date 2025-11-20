@@ -45,8 +45,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BlurAmount: 0.006
+    - _BlurAmount: 0.004
+    - _CustomTexelSize: 1
+    - _TexelSize: 1
     m_Colors:
-    - _Direction: {r: 0, g: 1, b: 0, a: 0}
+    - _Direction: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
