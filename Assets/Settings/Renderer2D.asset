@@ -63,9 +63,10 @@ MonoBehaviour:
     probeVolumeBlendStatesCS: {fileID: 0}
   m_RendererFeatures:
   - {fileID: -229329796536791659}
+  - {fileID: 7309669608278836007}
   - {fileID: 6799656299286175688}
   - {fileID: 4024492890531530637}
-  m_RendererFeatureMap: 950d03ddc341d1fcc81fb3c9603b5d5e8d873715f6ded937
+  m_RendererFeatureMap: 950d03ddc341d1fc27c3edcac7297165c81fb3c9603b5d5e8d873715f6ded937
   m_UseNativeRenderPass: 0
   m_LayerMask:
     serializedVersion: 2
@@ -171,6 +172,25 @@ MonoBehaviour:
     tex: {fileID: 8600000, guid: 6d89f95abe212d44e9d616f9b61a15af, type: 2}
     blurAmount: 0.001
   pass: 500
+--- !u!114 &7309669608278836007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06941618248ec364fa3e8ac7c6133128, type: 3}
+  m_Name: MidBackgroundBlur
+  m_EditorClassIdentifier: Assembly-CSharp::CustomMaskRenderFeature
+  m_Active: 1
+  settings:
+    material: {fileID: 2100000, guid: c5ae0aa956c576a4a8917a5638775565, type: 2}
+    mat2: {fileID: 2100000, guid: 7cabb3799ae80a644b07a498d573aeb1, type: 2}
+    tex: {fileID: 8600000, guid: 171256079a8857048b6858c910115c3f, type: 2}
+    blurAmount: 0.002
+  pass: 250
 --- !u!114 &8389911850138563732
 MonoBehaviour:
   m_ObjectHideFlags: 0
