@@ -178,7 +178,6 @@ public class CustomMaskRenderFeature : ScriptableRendererFeature
                 builder.UseTexture(passData.source, AccessFlags.Read);
 
 
-
                 builder.SetRenderFunc((PassData data, RasterGraphContext context) =>
                 {
                     //data.blitMaterial.SetTexture("_MainTex", data.source);
