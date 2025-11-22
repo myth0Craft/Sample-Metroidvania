@@ -35,7 +35,7 @@ MonoBehaviour:
     material: {fileID: 2100000, guid: ed4f4c2808b45d045858ec616e012d2c, type: 2}
     mat2: {fileID: 2100000, guid: db2c1306610b0e74b93125965677eee3, type: 2}
     tex: {fileID: 8600000, guid: 3fafa6867e407d648b9f1f614c809d5a, type: 2}
-    blurAmount: 0.002
+    blurAmount: 0.0025
   pass: 250
 --- !u!114 &11400000
 MonoBehaviour:
@@ -189,7 +189,7 @@ MonoBehaviour:
     material: {fileID: 2100000, guid: c5ae0aa956c576a4a8917a5638775565, type: 2}
     mat2: {fileID: 2100000, guid: 7cabb3799ae80a644b07a498d573aeb1, type: 2}
     tex: {fileID: 8600000, guid: 171256079a8857048b6858c910115c3f, type: 2}
-    blurAmount: 0.002
+    blurAmount: 0.001
   pass: 250
 --- !u!114 &8389911850138563732
 MonoBehaviour:
