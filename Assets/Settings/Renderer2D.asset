@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06941618248ec364fa3e8ac7c6133128, type: 3}
   m_Name: MidgroundBlur
   m_EditorClassIdentifier: Assembly-CSharp::CustomMaskRenderFeature
-  m_Active: 1
+  m_Active: 0
   settings:
     material: {fileID: 2100000, guid: 84774fd17d895e4499b699bbc0563f7e, type: 2}
     mat2: {fileID: 2100000, guid: dca0bf5d829cc2d418de9b75c097b9aa, type: 2}
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06941618248ec364fa3e8ac7c6133128, type: 3}
   m_Name: MidBackgroundBlur
   m_EditorClassIdentifier: Assembly-CSharp::CustomMaskRenderFeature
-  m_Active: 1
+  m_Active: 0
   settings:
     material: {fileID: 2100000, guid: c5ae0aa956c576a4a8917a5638775565, type: 2}
     mat2: {fileID: 2100000, guid: 7cabb3799ae80a644b07a498d573aeb1, type: 2}
