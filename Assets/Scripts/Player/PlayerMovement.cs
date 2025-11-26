@@ -55,12 +55,17 @@ public class PlayerMovement : MonoBehaviour
     private float accelInAir = 25f;
 
 
+    private float dashFrames = 0f;
+    private float maxDashFrames = 15f;
+
+
     //inputs
     private PlayerControls controls;
     private float horizontalMovement;
     private float previousHorizontalMovement = 0;
     private bool jumpPressed;
     private bool dashPressed;
+    private bool dashHeld;
     private bool jumpHeld;
     private bool wasJumpHeld;
 
@@ -87,6 +92,9 @@ public class PlayerMovement : MonoBehaviour
 
         controls.Player.Jump.performed += ctx => jumpPressed = true;
         controls.Player.Dash.performed += ctx => dashPressed = true;
+        controls.Player.Dash.started += ctx => dashHeld = true;
+        controls.Player.Dash.canceled += ctx => dashHeld = false;
+
 
         controls.Player.Jump.canceled += ctx => jumpHeld = false;
         controls.Player.Jump.started += ctx => jumpHeld = true;
@@ -115,6 +123,11 @@ public class PlayerMovement : MonoBehaviour
         {
             doubleJumpUsed = false;
             dashUsed = false;
+        }
+
+        if (dashFrames > 0)
+        {
+            dashFrames--;
         }
 
         /*if (body.linearVelocity.y < fallSpeedYDampingChangeThreshold && CameraManager.instance.isLerpingYDamping && CameraManager.instance.LerpedFromPlayerFalling)
@@ -167,6 +180,9 @@ public class PlayerMovement : MonoBehaviour
             if (StuckToWallBuffered() && !IsGroundedBuffered()) { 
                 ExecuteWallJump();
                 jumpBufferTimer = 0f;
+
+                dashHeld = false;
+                dashPressed = false;
             }
             else
             {
@@ -185,22 +201,21 @@ public class PlayerMovement : MonoBehaviour
         wasJumpHeld = jumpHeld;
 
         //dashing
-        /*if (dashPressed)
+        if (dashPressed && !dashUsed)
         {
-            Dash();
+            dashFrames = maxDashFrames;
             dashPressed = false;
+            Dash();
         }
-        if (dashCooldown > 0)
-        {
-            dashCooldown--;
-            
-        }*/
+
+        
 
         //apply current gravity
         body.gravityScale = getGravity() * gravityMultiplier;
         if (StuckToWallBuffered())
         {
             body.linearVelocity = new Vector2(body.linearVelocity.x, Mathf.Max(body.linearVelocity.y, -5f));
+
         } else
             body.linearVelocity = new Vector2(body.linearVelocity.x, Mathf.Max(body.linearVelocity.y, -15f));
 
@@ -239,12 +254,37 @@ public class PlayerMovement : MonoBehaviour
         /*float targetSpeed = input * speed;
         body.linearVelocity = new Vector2(targetSpeed, body.linearVelocity.y);*/
 
+        if (dashFrames > 0)
+        {
+            dashUsed = true;
+            float xVel = getFacingDirection() ? 13 : -13;
+            body.linearVelocity = new Vector2(xVel, 0);
+        }
+        else
+        {
+            //TODO: FIX DASH WALL STICKING
+
+            float xMultiplier = dashHeld ? 1.70f : 1;
+            /* if (!dashUsed && dashFrames > 0)
+             {
+                 multiplier = 20;
+             print("dashed");
+             }*/
             float accel = IsGroundedBuffered() ? accelGrounded : accelInAir;
-            float newVelX = Mathf.MoveTowards(body.linearVelocity.x, horizontalMovement * speed, accel * Time.fixedDeltaTime);
+            float newVelX = Mathf.MoveTowards(body.linearVelocity.x, horizontalMovement * speed * xMultiplier, accel * Time.fixedDeltaTime);
             body.linearVelocity = new Vector2(newVelX, body.linearVelocity.y);
+            if (Mathf.Abs(horizontalMovement) > 0.01f)
+                TurnSprite();
+        }
         
-        if (Mathf.Abs(horizontalMovement) > 0.01f)
-            TurnSprite();
+        
+    }
+
+    //applies sideways motion for dashing
+    private void Dash()
+    {
+
+        
     }
 
     public Vector3 getLinearVelocity()
@@ -304,6 +344,16 @@ public class PlayerMovement : MonoBehaviour
         if (StuckToWallBuffered() && body.linearVelocityY <= 0f)
         {
             finalGravity *= 0.1f;
+        }
+
+        if (dashHeld && body.linearVelocity.y < 0)
+        {
+            finalGravity *= 0.5f;
+        }
+
+        if (dashFrames > 0f)
+        {
+            finalGravity = 0f;
         }
 
         return finalGravity;
@@ -404,17 +454,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    //applies sideways motion for dashing
-    private void Dash()
-    {
-        
-        if (dashCooldown <= 0 && !dashUsed)
-        {
-            dashCooldown = 200;
-            body.linearVelocity = new Vector2(horizontalMovement * speed * 30, 0);
-            dashUsed = true;
-        }
-    }
+    
 
     //makes the player jump off of a wall
     private void ExecuteWallJump()
