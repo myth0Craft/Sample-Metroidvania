@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     private bool facingRight = true;
     private bool doubleJumpUsed = false;
     private bool dashUsed = false;
-    private int dashCooldown = 0;
+    
 
     //movement fine-tuning values
     private int maxJumpHoldFrames = 15;
@@ -57,6 +57,12 @@ public class PlayerMovement : MonoBehaviour
 
     private float dashFrames = 0f;
     private float maxDashFrames = 15f;
+
+    private float dashCooldown = 0;
+
+
+    //TODO: FIX TIME
+    private float dashCooldownTime = 30f;
 
 
     //inputs
@@ -125,10 +131,7 @@ public class PlayerMovement : MonoBehaviour
             dashUsed = false;
         }
 
-        if (dashFrames > 0)
-        {
-            dashFrames--;
-        }
+        
 
         /*if (body.linearVelocity.y < fallSpeedYDampingChangeThreshold && CameraManager.instance.isLerpingYDamping && CameraManager.instance.LerpedFromPlayerFalling)
         {
@@ -155,13 +158,30 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        if (dashFrames > 0)
+        {
+            dashFrames--;
+        }
+
+        if (dashCooldown > 0)
+        {
+            dashCooldown--;
+        }
+
         //base left/right movement
         MoveHorizontal();
 
         previousHorizontalMovement = horizontalMovement;
 
 
-
+        if (StuckToWallBuffered())
+        {
+            dashHeld = false;
+            dashPressed = false;
+            dashFrames = 0;
+            dashCooldown = 15;
+        }
         //jumping
 
         if (jumpPressed)
@@ -175,14 +195,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+
         if (jumpBufferTimer > 0f)
         {
             if (StuckToWallBuffered() && !IsGroundedBuffered()) { 
                 ExecuteWallJump();
                 jumpBufferTimer = 0f;
 
-                dashHeld = false;
-                dashPressed = false;
+                
+                
             }
             else
             {
@@ -203,9 +224,16 @@ public class PlayerMovement : MonoBehaviour
         //dashing
         if (dashPressed && !dashUsed)
         {
-            dashFrames = maxDashFrames;
-            dashPressed = false;
-            Dash();
+            if (dashCooldown <= 0)
+            {
+                dashCooldown = dashCooldownTime;
+                dashFrames = maxDashFrames;
+                dashPressed = false;
+            }
+            if (IsGroundedBuffered())
+            {
+                dashPressed = false;
+            }
         }
 
         
@@ -254,15 +282,15 @@ public class PlayerMovement : MonoBehaviour
         /*float targetSpeed = input * speed;
         body.linearVelocity = new Vector2(targetSpeed, body.linearVelocity.y);*/
 
-        if (dashFrames > 0)
+        if (dashFrames > 0 && !StuckToWallBuffered())
         {
+           
             dashUsed = true;
-            float xVel = getFacingDirection() ? 13 : -13;
+            float xVel = getFacingDirection() ? 10 : -10;
             body.linearVelocity = new Vector2(xVel, 0);
         }
         else
         {
-            //TODO: FIX DASH WALL STICKING
 
             float xMultiplier = dashHeld ? 1.70f : 1;
             /* if (!dashUsed && dashFrames > 0)
@@ -348,10 +376,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (dashHeld && body.linearVelocity.y < 0)
         {
-            finalGravity *= 0.5f;
+            finalGravity *= 0.6f;
         }
 
-        if (dashFrames > 0f)
+        if (dashFrames > 0f && !StuckToWallBuffered())
         {
             finalGravity = 0f;
         }
