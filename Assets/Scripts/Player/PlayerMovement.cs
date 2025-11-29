@@ -253,6 +253,8 @@ public class PlayerMovement : MonoBehaviour
         } else
             body.linearVelocity = new Vector2(body.linearVelocity.x, Mathf.Max(body.linearVelocity.y, -15f));
 
+        capeAnim.SetBool("falling", (body.linearVelocity.y >= 0.1f || body.linearVelocity.y <= -0.1f) && !IsGroundedBuffered());
+
     }
 
     public void enableSword()
