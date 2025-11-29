@@ -37,6 +37,19 @@ public class PlayerMeleeAttack : MonoBehaviour
         Vector3 offsetVector = playerMovement.getFacingDirection() ? new Vector3(0.5f, 0, 0) : new Vector3(-0.5f, 0, 0);
         attackHitbox.transform.position = playerPos += offsetVector;
 
+        if (playerMovement.getDashFrames() > 0)
+        {
+            
+            attackTimer = 0f;
+            attackHitbox.SetActive(false);
+            playerMovement.enableSword();
+
+            if (isMidAttack)
+            {
+                attackPressed = true;
+            }
+            isMidAttack = false;
+        }
 
         //handle in-between attack cooldown
         if (attackCooldownTimer > 0)
@@ -63,12 +76,16 @@ public class PlayerMeleeAttack : MonoBehaviour
 
         if (attackPressed)
         {
+                if ((attackCooldownTimer == 0 || attackCooldownTimer < 0.03) && attackTimer == 0)
+                {
+                    StartAttack();
 
-            if ((attackCooldownTimer == 0 || attackCooldownTimer < 0.03) && attackTimer == 0) { 
-                StartAttack();
-                
+                }
+            if (playerMovement.getDashFrames() <= 0)
+            {
+                attackPressed = false;
             }
-            attackPressed = false;
+
         }
         
 
@@ -91,10 +108,13 @@ public class PlayerMeleeAttack : MonoBehaviour
     public void StartAttack()
     {
         if (!isMidAttack) {
-            attackAnimator.SetTrigger("SwingSword");
-            playerMovement.disableSword();
-            playerMovement.bodyDrawSword();
-            isMidAttack = true;
+            if (playerMovement.getDashFrames() <= 0)
+            {
+                attackAnimator.SetTrigger("SwingSword");
+                playerMovement.disableSword();
+                playerMovement.bodyDrawSword();
+                isMidAttack = true;
+            }
         }
         
         

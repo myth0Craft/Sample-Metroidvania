@@ -225,7 +225,13 @@ public class PlayerMovement : MonoBehaviour
         if (dashPressed && !dashUsed)
         {
             if (dashCooldown <= 0)
+
             {
+
+                capeAnim.SetTrigger("dash");
+                armsAnim.SetTrigger("dash");
+                bodyAnim.SetTrigger("dash");
+                legsAnim.SetTrigger("dash");
                 dashCooldown = dashCooldownTime;
                 dashFrames = maxDashFrames;
                 dashPressed = false;
@@ -272,6 +278,11 @@ public class PlayerMovement : MonoBehaviour
     public void bodyDrawSword()
     {
         bodyAnim.SetTrigger("drawSword");
+    }
+
+    public float getDashFrames()
+    {
+        return dashFrames;
     }
 
 
