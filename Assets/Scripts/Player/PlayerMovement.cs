@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -59,6 +60,8 @@ public class PlayerMovement : MonoBehaviour
     private float maxDashFrames = 15f;
 
     private float dashCooldown = 0;
+
+    private float fallTime = 0;
 
 
     //TODO: FIX TIME
@@ -253,7 +256,24 @@ public class PlayerMovement : MonoBehaviour
         } else
             body.linearVelocity = new Vector2(body.linearVelocity.x, Mathf.Max(body.linearVelocity.y, -15f));
 
-        capeAnim.SetBool("falling", (body.linearVelocity.y >= 0.1f || body.linearVelocity.y <= -0.1f) && !IsGroundedBuffered());
+        if (!IsGroundedBuffered() && !StuckToWallBuffered() && body.linearVelocity.y <= -0.1f)
+        {
+            fallTime++;
+        } else
+        {
+            fallTime = 0f;
+        }
+
+        float reqFallTime = Math.Abs(body.linearVelocity.x) > 0.1f ? 0f : 18f;
+
+        capeAnim.SetBool("falling", fallTime > reqFallTime && !IsGroundedBuffered() && !StuckToWallBuffered());
+        capeAnim.SetBool("grounded", IsGroundedBuffered());
+
+        if (body.linearVelocity.y > 0.1f && body.linearVelocity.y < 5f && !IsGroundedBuffered() && !StuckToWallBuffered())
+        {
+            capeAnim.SetTrigger("jump");
+        }
+        
 
     }
 
@@ -467,6 +487,7 @@ public class PlayerMovement : MonoBehaviour
             //body.AddForce(Vector2.up * jumpStrength, ForceMode2D.Impulse);
             jumpHoldCounter = maxJumpHoldFrames;
             
+            
         } else if (!doubleJumpUsed)
         {
             body.linearVelocity = new Vector2(body.linearVelocity.x, jumpStrength);
@@ -491,6 +512,7 @@ public class PlayerMovement : MonoBehaviour
         if (body.linearVelocity.y > 0)
         {
             body.linearVelocity = new Vector2(body.linearVelocity.x, body.linearVelocity.y * 0.4f);
+            capeAnim.SetTrigger("jump");
         }
     }
 
