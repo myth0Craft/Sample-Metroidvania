@@ -266,7 +266,8 @@ public class PlayerMovement : MonoBehaviour
 
         float reqFallTime = Math.Abs(body.linearVelocity.x) > 0.1f ? 0f : 18f;
 
-        capeAnim.SetBool("falling", fallTime > reqFallTime && !IsGroundedBuffered() && !StuckToWallBuffered());
+        //capeAnim.SetBool("falling", fallTime > reqFallTime && !IsGroundedBuffered() && !StuckToWallBuffered());
+        capeAnim.SetBool("falling", body.linearVelocity.y < -0.1f && !IsGroundedBuffered() && !StuckToWallBuffered());
         capeAnim.SetBool("grounded", IsGroundedBuffered());
 
         if (body.linearVelocity.y > 0.1f && body.linearVelocity.y < 5f && !IsGroundedBuffered() && !StuckToWallBuffered())
