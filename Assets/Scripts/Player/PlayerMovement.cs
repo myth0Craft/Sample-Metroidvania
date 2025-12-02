@@ -270,6 +270,10 @@ public class PlayerMovement : MonoBehaviour
         capeAnim.SetBool("falling", body.linearVelocity.y < -0.1f && !IsGroundedBuffered() && !StuckToWallBuffered());
         capeAnim.SetBool("grounded", IsGroundedBuffered());
 
+        
+        capeAnim.SetBool("stuckToWall", StuckToWallBuffered());
+        
+
         if (body.linearVelocity.y > 0.1f && body.linearVelocity.y < 5f && !IsGroundedBuffered() && !StuckToWallBuffered())
         {
             capeAnim.SetTrigger("jump");
