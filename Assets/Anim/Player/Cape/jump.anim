@@ -29,7 +29,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.4
-        value: {x: 0.055, y: 0.12, z: 0}
+        value: {x: 0.07, y: 0.15, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -47,7 +47,7 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: 21300000, guid: db835774774e6c9419cba82fc21a9871, type: 3}
-    - time: 0.13333334
+    - time: 0.2
       value: {fileID: 21300000, guid: 029b001c6a8dc5d47be5738c02dd592b, type: 3}
     attribute: m_Sprite
     path: 
@@ -118,7 +118,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.4
-        value: 0.055
+        value: 0.07
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -148,7 +148,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.4
-        value: 0.12
+        value: 0.15
         inSlope: 0
         outSlope: 0
         tangentMode: 136
