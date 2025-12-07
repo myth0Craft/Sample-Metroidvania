@@ -294,6 +294,8 @@ public class PlayerMovement : MonoBehaviour
         bodyAnim.SetBool("grounded", IsGroundedBuffered());
         bodyAnim.SetBool("stuckToWall", StuckToWallBuffered());
 
+        bodyAnim.SetBool("sprint", dashHeld);
+        legsAnim.SetBool("sprint", dashHeld);
 
         if (body.linearVelocity.y > 0.1f && body.linearVelocity.y < 5f && !IsGroundedBuffered() && !StuckToWallBuffered())
         {
