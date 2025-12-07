@@ -151,9 +151,9 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("run", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
         //weaponsAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
         capeAnim.SetBool("moving", (body.linearVelocity.x < -3f || body.linearVelocity.x > 3f) && !StuckToWallBuffered());
-        bodyAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
+        bodyAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f));
         //armsAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
-        legsAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
+        legsAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f));
         shieldAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
         swordAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
 
@@ -284,11 +284,22 @@ public class PlayerMovement : MonoBehaviour
 
         
         capeAnim.SetBool("stuckToWall", StuckToWallBuffered());
-        
+
+        legsAnim.SetFloat("jumpTime", jumpTime);
+        legsAnim.SetBool("falling", body.linearVelocity.y < -0.1f && !IsGroundedBuffered() && !StuckToWallBuffered());
+        legsAnim.SetBool("grounded", IsGroundedBuffered());
+        legsAnim.SetBool("stuckToWall", StuckToWallBuffered());
+
+        bodyAnim.SetBool("falling", body.linearVelocity.y < -0.1f && !IsGroundedBuffered() && !StuckToWallBuffered());
+        bodyAnim.SetBool("grounded", IsGroundedBuffered());
+        bodyAnim.SetBool("stuckToWall", StuckToWallBuffered());
+
 
         if (body.linearVelocity.y > 0.1f && body.linearVelocity.y < 5f && !IsGroundedBuffered() && !StuckToWallBuffered())
         {
             capeAnim.SetTrigger("jump");
+            legsAnim.SetTrigger("jump");
+            bodyAnim.SetTrigger("jump");
         }
         
 
