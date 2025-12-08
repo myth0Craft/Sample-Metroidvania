@@ -297,6 +297,9 @@ public class PlayerMovement : MonoBehaviour
         bodyAnim.SetBool("sprint", dashHeld);
         legsAnim.SetBool("sprint", dashHeld);
 
+        armsAnim.SetBool("sprint", dashHeld);
+        armsAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f));
+
         if (body.linearVelocity.y > 0.1f && body.linearVelocity.y < 5f && !IsGroundedBuffered() && !StuckToWallBuffered())
         {
             capeAnim.SetTrigger("jump");
