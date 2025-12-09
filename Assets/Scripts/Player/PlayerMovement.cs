@@ -300,6 +300,11 @@ public class PlayerMovement : MonoBehaviour
         armsAnim.SetBool("sprint", dashHeld);
         armsAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f));
 
+        capeAnim.SetBool("sprint", dashHeld);
+
+        swordAnim.SetBool("sprint", dashHeld);
+        shieldAnim.SetBool("sprint", dashHeld);
+
         if (body.linearVelocity.y > 0.1f && body.linearVelocity.y < 5f && !IsGroundedBuffered() && !StuckToWallBuffered())
         {
             capeAnim.SetTrigger("jump");
