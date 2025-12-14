@@ -41,10 +41,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _WindIntensity: 1
-    - _WindScale: 0.2
-    - _WindSpeed: 1.5
-    - _YMaskInfluence: 4
+    - _ExternalInfluence: 1
+    - _TimeOffset: 0
+    - _WindIntensity: 0
+    - _WindScale: 0
+    - _WindSpeed: 0
+    - _YMaskInfluence: 0
+    - _externalInfluence: 0
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
