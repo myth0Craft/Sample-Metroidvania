@@ -2893,6 +2893,7 @@ GameObject:
   - component: {fileID: 533715321}
   - component: {fileID: 533715320}
   - component: {fileID: 533715319}
+  - component: {fileID: 533715322}
   m_Layer: 0
   m_Name: Bush1 (2)
   m_TagString: Untagged
@@ -3031,6 +3032,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &533715322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533715317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac6c4f390ee79034abc331cb625437ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BreakableObject
+  maxHealth: 1
+  breakParticlesPrefab: {fileID: 3680454763949365995, guid: 4a6125f9cf121b6438795dd2399b5649, type: 3}
 --- !u!1 &541352148
 GameObject:
   m_ObjectHideFlags: 0
@@ -11881,9 +11896,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b462bc86de4765249b3c1e436a801758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrassSwayController
-  ExternalInfluenceStrength: 0.25
-  EaseInTime: 0.15
-  EaseOutTime: 0.15
+  ExternalInfluenceStrength: 0.15
+  EaseInTime: 0.1
+  EaseOutTime: 0.2
   VelocityThreshold: 0.2
 --- !u!1 &1155590293
 GameObject:
@@ -12586,6 +12601,7 @@ GameObject:
   - component: {fileID: 1330652161}
   - component: {fileID: 1330652160}
   - component: {fileID: 1330652159}
+  - component: {fileID: 1330652162}
   m_Layer: 0
   m_Name: Bush1 (1)
   m_TagString: Untagged
@@ -12724,6 +12740,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1330652162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330652157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac6c4f390ee79034abc331cb625437ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BreakableObject
+  maxHealth: 1
+  breakParticlesPrefab: {fileID: 3680454763949365995, guid: 4a6125f9cf121b6438795dd2399b5649, type: 3}
 --- !u!1 &1345037798
 GameObject:
   m_ObjectHideFlags: 0
@@ -14336,6 +14366,7 @@ GameObject:
   - component: {fileID: 1491811184}
   - component: {fileID: 1491811183}
   - component: {fileID: 1491811182}
+  - component: {fileID: 1491811185}
   m_Layer: 0
   m_Name: Bush1 (3)
   m_TagString: Untagged
@@ -14474,6 +14505,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1491811185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491811180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac6c4f390ee79034abc331cb625437ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BreakableObject
+  maxHealth: 1
+  breakParticlesPrefab: {fileID: 3680454763949365995, guid: 4a6125f9cf121b6438795dd2399b5649, type: 3}
 --- !u!1 &1501285022
 GameObject:
   m_ObjectHideFlags: 0
@@ -15003,6 +15048,7 @@ GameObject:
   - component: {fileID: 1596635054}
   - component: {fileID: 1596635056}
   - component: {fileID: 1596635055}
+  - component: {fileID: 1596635057}
   m_Layer: 0
   m_Name: Bush1
   m_TagString: Untagged
@@ -15141,6 +15187,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.4052608, y: 1.9029982}
   m_EdgeRadius: 0
+--- !u!114 &1596635057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596635052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac6c4f390ee79034abc331cb625437ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BreakableObject
+  maxHealth: 1
+  breakParticlesPrefab: {fileID: 3680454763949365995, guid: 4a6125f9cf121b6438795dd2399b5649, type: 3}
 --- !u!1 &1601530233
 GameObject:
   m_ObjectHideFlags: 0
