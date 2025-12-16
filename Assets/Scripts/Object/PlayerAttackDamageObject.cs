@@ -21,12 +21,12 @@ public class PlayerAttackDamageObject : MonoBehaviour
         if (health != null)
         {
             health.ApplyDamage();
-            float xForce = playerMovement.getFacingDirection() ? -0.015f : 0.015f;
+            float xForce = playerMovement.getFacingDirection() ? -0.02f : 0.02f;
             if (playerMovement.getLinearVelocity().x > 0.01f || playerMovement.getLinearVelocity().x < -0.01f)
             {
                 xForce *= 3;
             }
-            Vector3 force = new Vector3(xForce, 0.015f, 0);
+            Vector3 force = new Vector3(xForce, 0.02f, 0);
 
 
             impulseSource.GenerateImpulse(force);

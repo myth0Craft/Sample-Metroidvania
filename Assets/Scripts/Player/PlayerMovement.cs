@@ -84,6 +84,8 @@ public class PlayerMovement : MonoBehaviour
     private CameraFollowObject cameraFollowObject;
     private float fallSpeedYDampingChangeThreshold;
 
+    private ParticleSystem sprintParticles;
+
 
     void Awake()
     {
@@ -94,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
         controls = new PlayerControls();
         sizeScale = transform.localScale;
         groundLayer = LayerMask.GetMask("Ground");
+        sprintParticles = GetComponentInChildren<ParticleSystem>();
         
 
 
@@ -310,6 +313,14 @@ public class PlayerMovement : MonoBehaviour
             capeAnim.SetTrigger("jump");
             legsAnim.SetTrigger("jump");
             bodyAnim.SetTrigger("jump");
+        }
+
+        if (IsGroundedBuffered() && dashHeld)
+        {
+            sprintParticles.enableEmission = true;
+        } else
+        {
+            sprintParticles.enableEmission = false;
         }
         
 
