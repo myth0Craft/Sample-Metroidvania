@@ -1,7 +1,18 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class PlayerAttackDamageObject : MonoBehaviour
 {
+
+    [SerializeField] PlayerMovement playerMovement;
+
+    private CinemachineImpulseSource impulseSource;
+
+    void Awake()
+    {
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         /*if (other.CompareTag("BreakableObj"))
@@ -10,11 +21,15 @@ public class PlayerAttackDamageObject : MonoBehaviour
         if (health != null)
         {
             health.ApplyDamage();
-            print(health.currentHealth + "/" + health.getMaxHealth());
-            print("attacked breakable");
-        } else
-        {
-            print("health null");
+            float xForce = playerMovement.getFacingDirection() ? -0.015f : 0.015f;
+            if (playerMovement.getLinearVelocity().x > 0.01f || playerMovement.getLinearVelocity().x < -0.01f)
+            {
+                xForce *= 3;
+            }
+            Vector3 force = new Vector3(xForce, 0.015f, 0);
+
+
+            impulseSource.GenerateImpulse(force);
         }
         //}
     }
