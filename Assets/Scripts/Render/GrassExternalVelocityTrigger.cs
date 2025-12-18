@@ -43,7 +43,7 @@ public class GrassExternalVelocityTrigger : MonoBehaviour
             if (!easeInCoroutineRunning && Mathf.Abs(playerBody.linearVelocity.x) > Mathf.Abs(controller.VelocityThreshold))
             {
                 StartCoroutine(EaseIn(playerBody.linearVelocity.x * controller.ExternalInfluenceStrength));
-                print("started coroutine");
+                //print("started coroutine");
             }
         }
     }
@@ -54,7 +54,7 @@ public class GrassExternalVelocityTrigger : MonoBehaviour
         if (collision.gameObject == player)
         {
             StartCoroutine(EaseOut());
-            print("easing out coroutine");
+            //print("easing out coroutine");
         }
     }
 

@@ -4,73 +4,47 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    //private GameObject[] allCinemachineGOs;
+    //private CinemachineCamera[] allCinemachineCams;
 
-    /*[SerializeField] private CinemachineCamera[] allVirtualCameras;
 
-    private float fallPanAmount = 0.25f;
-    private float panYFallTime = 0.35f;
-    public float fallSpeedYDampingChangeThreshold = -15f;
-
-    public bool isLerpingYDamping { get; private set; }
-    public bool LerpedFromPlayerFalling { get; set; }
-
-    private Coroutine lerpYPanCoroutine;
-
-    private CinemachineCamera currentCamera;
-    private CinemachineFramingTransposer framingTransposer;
-
-    private float normYPanAmount;
-
-    public static CameraManager instance;
-
-    void Awake()
+    private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
+        /*allCinemachineGOs = GameObject.FindGameObjectsWithTag("CinemachineCamera");
+        for (int i = 0; i < allCinemachineGOs.Length; i++) 
+        { 
+            allCinemachineCams[i] = allCinemachineGOs[i].GetComponent<CinemachineCamera>();
+            print(allCinemachineCams[i]);
+        }*/
+        
 
-        for (int i = 0; i < allVirtualCameras.Length; i++)
-        {
-            if (allVirtualCameras[i].enabled)
-            {
-                currentCamera = allVirtualCameras[i];
-                framingTransposer = currentCamera.GetComponent<CinemachineFramingTransposer>();
-            }
-        }
     }
+    //[SerializeField] private CinemachineCamera CamLeft;
+    //[SerializeField] private CinemachineCamera CamRight;
+
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Player"))
+    //    {
+    //        Vector2 exitDirection = (collision.transform.position - collision.bounds.center).normalized;
+    //        SwapCamera(CamLeft, CamRight, exitDirection);
+    //    }
+    //}
+
+    //public void SwapCamera(BoxCollider2D cameraFromLeft, BoxCollider2D cameraFromRight, Vector2 triggerExitDirection)
+    //{
+    //    if (triggerExitDirection.x > 0f)
+    //    {
+    //        confiner.InvalidateBoundingShapeCache();
+    //        confiner.BoundingShape2D = cameraFromRight;
 
 
-    public void LerpYDamping(bool isPlayerFalling)
-    {
-        lerpYPanCoroutine = StartCoroutine(LerpYAction(isPlayerFalling));
-    }
+    //    }
+    //    else if (triggerExitDirection.x < 0f)
+    //    {
+    //        confiner.InvalidateBoundingShapeCache();
+    //        confiner.BoundingShape2D = cameraFromLeft;
 
-    public IEnumerator LerpYAction(bool isPlayerFalling)
-    {
-        isLerpingYDamping = true;
-
-        float startDampAmount = framingTransposer.m_YDamping;
-
-        float endDampAmount = 0f;
-
-        if (isPlayerFalling)
-        {
-            endDampAmount = fallPanAmount;
-            LerpedFromPlayerFalling = true;
-        } else
-        {
-            endDampAmount = normYPanAmount;
-        }
-
-        float elapsedTime = 0f;
-        while (elapsedTime < panYFallTime)
-        {
-            elapsedTime += Time.deltaTime;
-            float lerpedPanAmount = Mathf.Lerp(startDampAmount, endDampAmount, (elapsedTime / panYFallTime));
-            framingTransposer.m_YDamping = lerpedPanAmount;
-            yield return null;
-        }
-        isLerpingYDamping = false;
-    }*/
+    //    }
+    //}
 }
