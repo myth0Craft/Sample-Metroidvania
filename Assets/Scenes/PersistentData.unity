@@ -133,11 +133,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 600001523047703461, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.6847103
+      value: -0.00000023841858
       objectReference: {fileID: 0}
     - target: {fileID: 600001523047703461, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.42879862
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1377584213374545329, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_IsActive
@@ -191,6 +191,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4825874947382596393, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4825874947382596393, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
+      propertyPath: DefaultBlend.Time
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4825874947382596393, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
+      propertyPath: LensModeOverride.Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5142924539579459169, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
@@ -199,47 +211,41 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6611253000375804887, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6619175520425829864, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.6847103
+      value: -0.00000023841858
       objectReference: {fileID: 0}
     - target: {fileID: 6619175520425829864, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.42879862
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6827771851370424541, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.6847103
+      value: 0.6847101
       objectReference: {fileID: 0}
     - target: {fileID: 6827771851370424541, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.42879862
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    - target: {fileID: 8379581239361157950, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6611253000375804887, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
+    - {fileID: 8379581239361157950, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 1377584213374545329, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
+    - {fileID: 1798301031604284199, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
+    - {fileID: 8884028774665082434, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
+    - {fileID: 3783800198236740936, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1377584213374545329, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 882108720}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
---- !u!1 &882108717 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1377584213374545329, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
-  m_PrefabInstance: {fileID: 882108715}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &882108720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 882108717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 713e9680ffdf33049ab6b47193dd45ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraManager
 --- !u!1001 &1014110976
 PrefabInstance:
   m_ObjectHideFlags: 0

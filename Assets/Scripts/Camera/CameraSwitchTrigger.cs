@@ -1,26 +1,49 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class CameraSwitchTrigger : MonoBehaviour
 {
-    private GameObject cinemachineCam;
-    private CameraManager manager;
 
-    [SerializeField] private BoxCollider2D leftCollider;
-    [SerializeField] private BoxCollider2D rightCollider;
+    [SerializeField] private CinemachineCamera leftCam;
+    [SerializeField] private CinemachineCamera rightCam;
+    private BoxCollider2D collider;
 
-
-    void Awake()
+    private void Awake()
     {
-        cinemachineCam = GameObject.FindGameObjectWithTag("CinemachineCamera");
-        manager = cinemachineCam.GetComponent<CameraManager>();
+        collider = GetComponent<BoxCollider2D>();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            Vector2 exitDirection = (collision.transform.position - collision.bounds.center).normalized;
-            //manager.SwapCamera(leftCollider, rightCollider, exitDirection);
+            Vector2 exitDirection = (collision.transform.position - collider.bounds.center).normalized;
+            if (leftCam != null && rightCam != null)
+            {
+                if (exitDirection.x > 0f)
+                {
+                    leftCam.Priority = 0;
+                    rightCam.Priority = 10;
+
+
+                }
+                else if (exitDirection.x < 0f)
+                {
+                    leftCam.Priority = 10;
+                    rightCam.Priority = 0;
+
+                }
+            } else
+            {
+                if (exitDirection.x > 0f && leftCam != null)
+                    leftCam.Priority = 0;
+                else if (exitDirection.x > 0f && rightCam != null)
+                    rightCam.Priority = 10;
+                else if (exitDirection.x < 0f && leftCam != null)
+                    leftCam.Priority = 10;
+                else if (exitDirection.x < 0f && rightCam != null)
+                    rightCam.Priority = 0;
+            }
         }
     }
 }
