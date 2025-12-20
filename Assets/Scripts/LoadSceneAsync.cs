@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class LoadSceneAsync : MonoBehaviour
 {
-    [SerializeField] private SceneAsset[] scenesToLoad;
-    [SerializeField] private SceneAsset[] scenesToUnload;
+    [SerializeField] private string[] scenesToLoad;
+    [SerializeField] private string[] scenesToUnload;
 
     private GameObject player;
     void Awake()
@@ -15,7 +15,7 @@ public class LoadSceneAsync : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == player)
+        if (collision.CompareTag("Player"))
         {
             LoadScenes();
             UnloadScenes();
@@ -31,7 +31,7 @@ public class LoadSceneAsync : MonoBehaviour
             for (int j = 0; j < SceneManager.sceneCount; j++)
             {
                 Scene loadedScene = SceneManager.GetSceneAt(j);
-                if (loadedScene.name == scenesToLoad[i].name)
+                if (loadedScene.name == scenesToLoad[i])
                 {
                     isSceneLoaded = true;
                     break;
@@ -40,9 +40,16 @@ public class LoadSceneAsync : MonoBehaviour
 
             if (!isSceneLoaded)
             {
-                SceneManager.LoadSceneAsync(scenesToLoad[i].name, LoadSceneMode.Additive);
+                SceneManager.LoadSceneAsync(scenesToLoad[i], LoadSceneMode.Additive);
             }
         }
+        //foreach (string sceneName in scenesToLoad)
+        //{
+        //    if (!SceneManager.GetSceneByName(sceneName).isLoaded)
+        //    {
+        //        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        //    }
+        //}
 
 
     }
@@ -54,11 +61,20 @@ public class LoadSceneAsync : MonoBehaviour
             for (int j = 0; j < SceneManager.sceneCount; j++)
             {
                 Scene loadedScene = SceneManager.GetSceneAt(j);
-                if (loadedScene.name == scenesToLoad[i].name)
+                if (loadedScene.name == scenesToUnload[i])
                 {
-                    SceneManager.UnloadSceneAsync(scenesToLoad[i].name);
+                    SceneManager.UnloadSceneAsync(scenesToUnload[i]);
                 }
             }
         }
+
+        //foreach (string sceneName in scenesToUnload)
+        //{
+        //    Scene scene = SceneManager.GetSceneByName(sceneName);
+        //    if (scene.isLoaded)
+        //    {
+        //        SceneManager.UnloadSceneAsync(sceneName);
+        //    }
+        //}
     }
 }

@@ -1,6 +1,7 @@
 using NUnit.Framework.Constraints;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -67,7 +68,18 @@ public class CameraFollowObject : MonoBehaviour
             if (transform.position.y < playerTransform.position.y)
                 targetPosition.y = Mathf.Lerp(transform.position.y, playerTransform.position.y, Time.deltaTime * smoothSpeed);
         }*/
-        transform.position = targetPosition;
+        /*if (!player.IsGroundedBuffered())
+        {
+            if (!player.isWallJumping)
+                transform.position = new Vector3(Mathf.Lerp(transform.position.x, targetPosition.x, Time.deltaTime * smoothSpeed), targetPosition.y, targetPosition.z);
+            else
+               transform.position = new Vector3(transform.position.x, targetPosition.y, targetPosition.z);
+        } else
+        {
+            transform.position = new Vector3(targetPosition.x, targetPosition.y, targetPosition.z);
+        }*/
+
+        transform.position = new Vector3(targetPosition.x, targetPosition.y, targetPosition.z);
     }
 
     public bool shouldLerpY()

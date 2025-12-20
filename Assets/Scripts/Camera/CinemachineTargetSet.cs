@@ -11,8 +11,18 @@ public class CinemachineTargetSet : MonoBehaviour
     //{
     //    cam = GetComponent<CinemachineCamera>();
     //    trackingTarget = GameObject.FindGameObjectWithTag("CameraFollow");
-        
+
     //}
+
+    private void Start()
+    {
+        var vcam = GetComponent<CinemachineCamera>();
+        var target = GameObject.FindGameObjectWithTag("CameraFollow");
+        if (target != null)
+        {
+            vcam.Follow = target.transform;
+        }
+    }
 
     private void OnEnable()
     {

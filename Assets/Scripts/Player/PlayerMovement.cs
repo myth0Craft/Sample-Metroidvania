@@ -80,6 +80,8 @@ public class PlayerMovement : MonoBehaviour
     private bool jumpHeld;
     private bool wasJumpHeld;
 
+    public bool isWallJumping = false;
+
     //camera
     private CameraFollowObject cameraFollowObject;
     private float fallSpeedYDampingChangeThreshold;
@@ -209,7 +211,7 @@ public class PlayerMovement : MonoBehaviour
             if (StuckToWallBuffered() && !IsGroundedBuffered()) { 
                 ExecuteWallJump();
                 jumpBufferTimer = 0f;
-
+                isWallJumping = true;
                 
                 
             }
@@ -225,6 +227,7 @@ public class PlayerMovement : MonoBehaviour
         if (wasJumpHeld && !jumpHeld)
         {
             OnJumpReleased();
+            isWallJumping = false;
         }
 
         wasJumpHeld = jumpHeld;
