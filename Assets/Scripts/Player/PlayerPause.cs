@@ -7,6 +7,8 @@ public class PlayerPause : MonoBehaviour
 
     private bool gamePaused = false;
 
+    [SerializeField] private PauseScreen pauseScreen;
+
     private void Awake()
     {
         controls = PlayerData.getControls();
@@ -20,12 +22,20 @@ public class PlayerPause : MonoBehaviour
             pausePressed = false;
             gamePaused = true;
             Time.timeScale = 0;
+            if (pauseScreen != null)
+            {
+                pauseScreen.OnGamePause();
+            }
         }
         else if (pausePressed && gamePaused)
         {
             pausePressed = false;
             gamePaused = false;
             Time.timeScale = 1;
+            if (pauseScreen != null)
+            {
+                pauseScreen.OnGameUnpause();
+            }
         }
     }
 
