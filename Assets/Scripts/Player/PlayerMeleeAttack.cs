@@ -5,6 +5,7 @@ public class PlayerMeleeAttack : MonoBehaviour
 {
     private PlayerControls controls;
     private PlayerMovement playerMovement;
+    private PlayerPause pause;
     private bool attackPressed;
     private float attackDurationSeconds = 0.12f;
     private float attackTimer = 0;
@@ -20,9 +21,10 @@ public class PlayerMeleeAttack : MonoBehaviour
     private void Awake()
     {
         playerMovement = GetComponentInParent<PlayerMovement>();
+        pause = GetComponentInParent<PlayerPause>();
         //playerBox = GetComponentInParent<BoxCollider2D>();
         attackCollider = attackHitbox.GetComponent<BoxCollider2D>();
-        controls = new PlayerControls();
+        controls = PlayerData.getControls();
         controls.Player.Attack.performed += ctx => attackPressed = true;
         oldFacingRight = playerMovement.getFacingDirection();
         attackHitbox.SetActive(false);
@@ -107,18 +109,19 @@ public class PlayerMeleeAttack : MonoBehaviour
     
     public void StartAttack()
     {
-        if (!isMidAttack) {
-            if (playerMovement.getDashFrames() <= 0)
+        if (!pause.IsPaused())
+        {
+            if (!isMidAttack)
             {
-                attackAnimator.SetTrigger("SwingSword");
-                playerMovement.disableSword();
-                playerMovement.bodyDrawSword();
-                isMidAttack = true;
+                if (playerMovement.getDashFrames() <= 0)
+                {
+                    attackAnimator.SetTrigger("SwingSword");
+                    playerMovement.disableSword();
+                    playerMovement.bodyDrawSword();
+                    isMidAttack = true;
+                }
             }
         }
-        
-        
-
     }
 
     public void ApplyDamage()

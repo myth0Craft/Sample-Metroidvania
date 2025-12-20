@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     private LayerMask groundLayer;
     private BoxCollider2D boxCollider;
-    private Animator anim;
 
     [SerializeField] private Animator capeAnim;
     [SerializeField] private Animator armsAnim;
@@ -94,8 +93,7 @@ public class PlayerMovement : MonoBehaviour
         //gets values from unity
         body = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
-        anim = GetComponent<Animator>();
-        controls = new PlayerControls();
+        controls = PlayerData.getControls();
         sizeScale = transform.localScale;
         groundLayer = LayerMask.GetMask("Ground");
         sprintParticles = GetComponentInChildren<ParticleSystem>();
@@ -153,7 +151,6 @@ public class PlayerMovement : MonoBehaviour
             CameraManager.instance.LerpedFromPlayerFalling = false;
             CameraManager.instance.LerpYDamping(false);
         }*/
-        anim.SetBool("run", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
         //weaponsAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f) && IsGroundedBuffered());
         capeAnim.SetBool("moving", (body.linearVelocity.x < -3f || body.linearVelocity.x > 3f) && !StuckToWallBuffered());
         bodyAnim.SetBool("moving", (horizontalMovement > 0.01f || horizontalMovement < -0.01f));

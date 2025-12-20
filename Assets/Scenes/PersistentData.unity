@@ -310,22 +310,44 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7784393455625957828, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
+    - {fileID: 1767069784318740102, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5821003880182260375, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1289664202}
   m_SourcePrefab: {fileID: 100100000, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
 --- !u!114 &1208325724 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4839901651880856055, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
   m_PrefabInstance: {fileID: 1014110976}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1289664194}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cd6548e210b98f43b0d0abc8d249b9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthManager
+--- !u!1 &1289664194 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5821003880182260375, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
+  m_PrefabInstance: {fileID: 1014110976}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1289664202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289664194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ebba3efb530e98448676e5eba011340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPause
 --- !u!4 &1592878875 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8638099070957558962, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
@@ -342,7 +364,7 @@ GameObject:
   - component: {fileID: 1592963293}
   - component: {fileID: 1592963292}
   m_Layer: 14
-  m_Name: Loading
+  m_Name: SceneLoader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -360,6 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b73ed4e56cd732a4d9c5ebfbe2ea5d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  sceneToLoad: Room1
 --- !u!4 &1592963293
 Transform:
   m_ObjectHideFlags: 0

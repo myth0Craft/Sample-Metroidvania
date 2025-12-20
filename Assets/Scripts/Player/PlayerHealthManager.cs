@@ -5,8 +5,8 @@ public class PlayerHealthManager : HealthManager
     
     private void Awake()
     {
-        this.maxHealth = PlayerDataManager.Instance.Data.maxHealth;
-        this.currentHealth = PlayerDataManager.Instance.Data.currentHealth;
+        this.maxHealth = PlayerData.maxHealth;
+        this.currentHealth = PlayerData.currentHealth;
     }
 
     public override void ApplyDamageIgnoreIFrames(int amount)

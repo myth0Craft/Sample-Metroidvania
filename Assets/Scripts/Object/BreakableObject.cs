@@ -10,13 +10,13 @@ public class BreakableObject : HealthManager
         print("object broken");
         Destroy(this.gameObject);
 
-        Instantiate(
-            breakParticlesPrefab,
-            transform.position,
-            Quaternion.identity
-        );
-
-        Destroy(gameObject);
-
+        if (breakParticlesPrefab != null)
+        {
+            Instantiate(
+                breakParticlesPrefab,
+                transform.position,
+                Quaternion.identity
+            );
+        }
     }
 }
