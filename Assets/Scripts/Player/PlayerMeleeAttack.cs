@@ -5,7 +5,6 @@ public class PlayerMeleeAttack : MonoBehaviour
 {
     private PlayerControls controls;
     private PlayerMovement playerMovement;
-    private PlayerPause pause;
     private bool attackPressed;
     private float attackDurationSeconds = 0.12f;
     private float attackTimer = 0;
@@ -21,7 +20,6 @@ public class PlayerMeleeAttack : MonoBehaviour
     private void Awake()
     {
         playerMovement = GetComponentInParent<PlayerMovement>();
-        pause = GetComponentInParent<PlayerPause>();
         //playerBox = GetComponentInParent<BoxCollider2D>();
         attackCollider = attackHitbox.GetComponent<BoxCollider2D>();
         controls = PlayerData.getControls();
@@ -75,7 +73,6 @@ public class PlayerMeleeAttack : MonoBehaviour
             }
         }
 
-
         if (attackPressed)
         {
                 if ((attackCooldownTimer == 0 || attackCooldownTimer < 0.03) && attackTimer == 0)
@@ -87,12 +84,12 @@ public class PlayerMeleeAttack : MonoBehaviour
             {
                 attackPressed = false;
             }
-
         }
-        
 
-        
-
+        if (attackPressed && PlayerData.gamePaused)
+        {
+            attackPressed = false;
+        }
     }
 
 
@@ -109,8 +106,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     
     public void StartAttack()
     {
-        if (!pause.IsPaused())
-        {
+        if (!PlayerData.gamePaused) {
             if (!isMidAttack)
             {
                 if (playerMovement.getDashFrames() <= 0)
@@ -121,6 +117,7 @@ public class PlayerMeleeAttack : MonoBehaviour
                     isMidAttack = true;
                 }
             }
+ 
         }
     }
 
