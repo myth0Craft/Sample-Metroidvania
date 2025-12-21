@@ -1,0 +1,77 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class SceneLoader : MonoBehaviour
+{
+
+    [SerializeField] private string startScene;
+    private string persistentGame = "PersistentData";
+    private FaderController fader;
+
+    private void Awake()
+    {
+        fader = GetComponentInChildren<FaderController>();
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+
+    public void LoadTitleScreen()
+    {
+        PlayerData.AllowGameInput(false);
+        Time.timeScale = 0;
+        StartCoroutine(LoadTitleScreenCoroutine());
+    }
+
+    public IEnumerator LoadTitleScreenCoroutine()
+    {
+        yield return fader.FadeOut();
+        fader.setOpaque();
+        PlayerData.gamePaused = false;
+        SceneManager.LoadScene("Title");
+        Time.timeScale = 1;
+        yield return fader.FadeIn();
+        Destroy(this.gameObject);
+    }
+
+
+    //public void LoadGame()
+    //{
+    //    StartCoroutine(fader.FadeOut());
+    //    SceneManager.UnloadSceneAsync("Title");
+    //    SceneManager.LoadSceneAsync(persistentGame);
+
+    //    if (!SceneManager.GetSceneByName(startScene).isLoaded)
+    //        SceneManager.LoadSceneAsync(startScene, LoadSceneMode.Additive);
+    //    //fader.FadeOut();
+    //}
+
+    public void LoadGame()
+    {
+        Time.timeScale = 0;
+        StartCoroutine(LoadGameCoroutine());
+    }
+
+    public IEnumerator LoadGameCoroutine()
+    {
+        PlayerData.AllowGameInput(false);
+        yield return fader.FadeOut();
+        fader.setOpaque();
+        yield return SceneManager.UnloadSceneAsync("Title");
+        yield return SceneManager.LoadSceneAsync(persistentGame);
+
+        if (!SceneManager.GetSceneByName(startScene).isLoaded)
+            yield return SceneManager.LoadSceneAsync(startScene, LoadSceneMode.Additive);
+        Time.timeScale = 1;
+        PlayerData.AllowGameInput(false);
+        yield return fader.FadeIn();
+        PlayerData.AllowGameInput(true);
+        Destroy(this.gameObject);
+
+    }
+
+    //private IEnumerator Start()
+    //{
+    //    yield return fader.FadeIn();
+    //}
+}
