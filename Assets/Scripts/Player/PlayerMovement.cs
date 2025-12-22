@@ -112,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
         controls.Player.Jump.canceled += ctx => jumpHeld = false;
         controls.Player.Jump.started += ctx => jumpHeld = true;
+        gameObject.transform.position = PlayerData.currentPosition;
     }
 
     private void Start()

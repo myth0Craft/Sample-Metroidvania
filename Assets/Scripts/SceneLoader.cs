@@ -11,6 +11,7 @@ public class SceneLoader : MonoBehaviour
 
     private void Awake()
     {
+        startScene = PlayerData.currentScene;
         fader = GetComponentInChildren<FaderController>();
         DontDestroyOnLoad(this.gameObject);
     }
@@ -18,7 +19,9 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadTitleScreen()
     {
+        SaveSystem.Save(PlayerData.saveIndex);
         PlayerData.AllowGameInput(false);
+
         Time.timeScale = 0;
         StartCoroutine(LoadTitleScreenCoroutine());
     }
@@ -46,8 +49,10 @@ public class SceneLoader : MonoBehaviour
     //    //fader.FadeOut();
     //}
 
-    public void LoadGame()
+    public void LoadGame(int saveIndex)
     {
+        PlayerData.saveIndex = saveIndex;
+        
         Time.timeScale = 0;
         StartCoroutine(LoadGameCoroutine());
     }
@@ -57,9 +62,11 @@ public class SceneLoader : MonoBehaviour
         PlayerData.AllowGameInput(false);
         yield return fader.FadeOut();
         fader.setOpaque();
+        SaveSystem.Load(PlayerData.saveIndex);
+        startScene = PlayerData.currentScene;
         yield return SceneManager.UnloadSceneAsync("Title");
         yield return SceneManager.LoadSceneAsync(persistentGame);
-
+        
         if (!SceneManager.GetSceneByName(startScene).isLoaded)
             yield return SceneManager.LoadSceneAsync(startScene, LoadSceneMode.Additive);
         Time.timeScale = 1;
@@ -67,7 +74,6 @@ public class SceneLoader : MonoBehaviour
         yield return fader.FadeIn();
         PlayerData.AllowGameInput(true);
         Destroy(this.gameObject);
-
     }
 
     //private IEnumerator Start()
