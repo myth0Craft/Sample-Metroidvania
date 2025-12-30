@@ -1,0 +1,6 @@
+Breakable Walls:
+
+R + Room Number + BW + Breakable Wall Number within room
+
+Ex. R1BW1
+

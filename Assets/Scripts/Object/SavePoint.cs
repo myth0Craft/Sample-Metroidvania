@@ -18,7 +18,8 @@ public class SavePoint : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             PlayerData.currentScene = gameObject.scene.name;
-            PlayerData.currentPosition = gameObject.transform.position;
+            PlayerData.posX = gameObject.transform.position.x;
+            PlayerData.posY = gameObject.transform.position.y;
             SaveSystem.Save(PlayerData.saveIndex);
         }
     }

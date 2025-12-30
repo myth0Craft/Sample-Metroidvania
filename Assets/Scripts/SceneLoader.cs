@@ -69,8 +69,8 @@ public class SceneLoader : MonoBehaviour
         
         if (!SceneManager.GetSceneByName(startScene).isLoaded)
             yield return SceneManager.LoadSceneAsync(startScene, LoadSceneMode.Additive);
-        Time.timeScale = 1;
         PlayerData.AllowGameInput(false);
+        Time.timeScale = 1;
         yield return fader.FadeIn();
         PlayerData.AllowGameInput(true);
         Destroy(this.gameObject);

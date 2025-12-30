@@ -2,7 +2,6 @@ using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
-[System.Serializable]
 public static class PlayerData
 {
     public static int saveIndex = 0;
@@ -12,7 +11,9 @@ public static class PlayerData
     public static bool gamePaused = false;
     private static bool _allowGameInput = false;
     public static string currentScene = "Room1";
-    public static Vector2 currentPosition = new Vector2(-3.0f, -1.0f);
+    //public static Vector2 currentPosition = new Vector2(-3.0f, -1.0f);
+    public static float posX = -3.0f;
+    public static float posY = -1.0f;
 
 
     public static PlayerControls getControls()
@@ -34,14 +35,16 @@ public static class PlayerData
 
     public static void Save(ref PlayerSaveData data)
     {
-        data.position = currentPosition;
+        data.posX = posX;
+        data.posY = posY;
         data.maxHealth = maxHealth;
         data.currentScene = currentScene;
     }
 
     public static void Load(PlayerSaveData data)
     {
-        currentPosition = data.position;
+        posX = data.posX;
+        posY = data.posY;
         maxHealth = data.maxHealth;
         currentScene = data.currentScene;
         currentHealth = data.maxHealth;
@@ -49,7 +52,8 @@ public static class PlayerData
 
     public static void SetDefaults()
     {
-        currentPosition = new Vector2(-3.0f, -1.0f);
+        posX = -3.0f;
+        posY = -1.0f;
         currentScene = "Room1";
         maxHealth = 5;
         currentHealth = 5;
@@ -59,7 +63,8 @@ public static class PlayerData
 [System.Serializable]
 public struct PlayerSaveData
 {
-    public Vector2 position;
+    public float posX;
+    public float posY;
     public int maxHealth;
     public string currentScene;
 }

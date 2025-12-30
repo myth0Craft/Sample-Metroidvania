@@ -9,7 +9,7 @@ public class HealthManager : MonoBehaviour
     protected float iFrameTimer = 0;
     public event Action OnHealthChanged;
 
-    private void Awake()
+    public virtual void Awake()
     {
         if (maxHealth < 0) maxHealth = 5;
         currentHealth = maxHealth;
