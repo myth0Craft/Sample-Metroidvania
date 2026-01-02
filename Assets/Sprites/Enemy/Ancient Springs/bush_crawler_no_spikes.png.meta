@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 521a596632540634da3ad4c4daf405ae
+guid: 18bdd219cc644024b8a281855a79e233
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3816484672396369500
-    second: bush_crawler_0
+      213: -5145056110072166718
+    second: bush_crawler_no_spikes_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bush_crawler_0
+      name: bush_crawler_no_spikes_0
       rect:
         serializedVersion: 2
-        x: 57
+        x: 74
         y: 114
-        width: 404
-        height: 230
+        width: 351
+        height: 153
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c5e98e4c690e6f430800000000000000
-      internalID: 3816484672396369500
+      spriteID: 2c602b14ab61998b0800000000000000
+      internalID: -5145056110072166718
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bush_crawler_0: 3816484672396369500
+      bush_crawler_no_spikes_0: -5145056110072166718
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

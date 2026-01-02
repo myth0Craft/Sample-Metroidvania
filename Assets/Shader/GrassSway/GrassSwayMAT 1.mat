@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GrassSwayMAT
+  m_Name: GrassSwayMAT 1
   m_Shader: {fileID: -6465566751694194690, guid: 13ace76fc6368b542b97d04d56efc83c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -42,7 +42,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _ExternalInfluence: 1
-    - _TimeOffset: 0
+    - _TimeOffset: 100
     - _WindIntensity: 1
     - _WindScale: 0.31
     - _WindSpeed: 0.92
