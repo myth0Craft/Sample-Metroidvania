@@ -5,7 +5,7 @@ public class HealthManager : MonoBehaviour
 {
     [SerializeField] protected int maxHealth;
     public int currentHealth { get; protected set; }
-    protected float iFrameDuration = 0.5f;
+    public float iFrameDuration = 0.5f;
     protected float iFrameTimer = 0;
     public event Action OnHealthChanged;
 
@@ -37,12 +37,19 @@ public class HealthManager : MonoBehaviour
 
     public virtual void ApplyDamageIgnoreIFrames(int amount)
     {
+        AddHitEffects();
         currentHealth -= Mathf.Max(amount, 0);
         HealthChanged();
         if (currentHealth <= 0)
         {
             Die();
         }
+    }
+
+
+    protected virtual void AddHitEffects()
+    {
+
     }
 
     public void ApplyDamage(int amount)

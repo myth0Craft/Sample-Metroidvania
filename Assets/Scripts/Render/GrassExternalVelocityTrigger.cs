@@ -44,6 +44,8 @@ public class GrassExternalVelocityTrigger : MonoBehaviour
             {
                 StartCoroutine(EaseIn(playerBody.linearVelocity.x * controller.ExternalInfluenceStrength));
                 //print("started coroutine");
+
+
             }
         }
     }
