@@ -1,0 +1,2639 @@
+fileFormatVersion: 2
+guid: e34fd112a353dbb48aa63eda501b616b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6897508436094037739
+    second: save_point_light_0
+  - first:
+      213: -1338781634239273285
+    second: save_point_light_1
+  - first:
+      213: -5263870061622195162
+    second: save_point_light_2
+  - first:
+      213: -2583613593428781504
+    second: save_point_light_3
+  - first:
+      213: 3589402370191444048
+    second: save_point_light_4
+  - first:
+      213: 7033265577684138481
+    second: save_point_light_5
+  - first:
+      213: 8470633280121512821
+    second: save_point_light_6
+  - first:
+      213: -6989446625898917435
+    second: save_point_light_7
+  - first:
+      213: -1374496606252256550
+    second: save_point_light_8
+  - first:
+      213: -1976379894372079656
+    second: save_point_light_9
+  - first:
+      213: 8528496856326591992
+    second: save_point_light_10
+  - first:
+      213: -8073606102164139236
+    second: save_point_light_11
+  - first:
+      213: -3579515027111173087
+    second: save_point_light_12
+  - first:
+      213: 8366640267299649268
+    second: save_point_light_13
+  - first:
+      213: -7929627913468598158
+    second: save_point_light_14
+  - first:
+      213: -956532514753986216
+    second: save_point_light_15
+  - first:
+      213: 9183996633302119347
+    second: save_point_light_16
+  - first:
+      213: 6056710374607587526
+    second: save_point_light_17
+  - first:
+      213: 686100429313821068
+    second: save_point_light_18
+  - first:
+      213: 2356502106085157940
+    second: save_point_light_19
+  - first:
+      213: -1836815997469459129
+    second: save_point_light_20
+  - first:
+      213: -4078192781003234771
+    second: save_point_light_21
+  - first:
+      213: 5888110216350663785
+    second: save_point_light_22
+  - first:
+      213: 3814811567733075231
+    second: save_point_light_23
+  - first:
+      213: 322629800251020373
+    second: save_point_light_24
+  - first:
+      213: -4785870447507516776
+    second: save_point_light_25
+  - first:
+      213: 3478700002313388294
+    second: save_point_light_26
+  - first:
+      213: 6551097918305367013
+    second: save_point_light_27
+  - first:
+      213: -7924834176873252812
+    second: save_point_light_28
+  - first:
+      213: 7113264940001446059
+    second: save_point_light_29
+  - first:
+      213: -6626311658657424642
+    second: save_point_light_30
+  - first:
+      213: -1552184010869105644
+    second: save_point_light_31
+  - first:
+      213: -2971816135919560271
+    second: save_point_light_32
+  - first:
+      213: 6553370193212764586
+    second: save_point_light_33
+  - first:
+      213: -407266681738488316
+    second: save_point_light_34
+  - first:
+      213: 3987364994133976735
+    second: save_point_light_35
+  - first:
+      213: 1455275730149644776
+    second: save_point_light_36
+  - first:
+      213: -7915307971443851187
+    second: save_point_light_37
+  - first:
+      213: 1482727891391078087
+    second: save_point_light_38
+  - first:
+      213: 5117586769853611121
+    second: save_point_light_39
+  - first:
+      213: 4085613673369150287
+    second: save_point_light_40
+  - first:
+      213: -7248698813313738232
+    second: save_point_light_41
+  - first:
+      213: -175762322581556386
+    second: save_point_light_42
+  - first:
+      213: -1220203028196656410
+    second: save_point_light_43
+  - first:
+      213: -989631933231115447
+    second: save_point_light_44
+  - first:
+      213: -2878391647892218538
+    second: save_point_light_45
+  - first:
+      213: -4188558307449362689
+    second: save_point_light_46
+  - first:
+      213: -7001317823309135480
+    second: save_point_light_47
+  - first:
+      213: 7626157288502938259
+    second: save_point_light_48
+  - first:
+      213: -3679554410314426764
+    second: save_point_light_49
+  - first:
+      213: 6274843837580101029
+    second: save_point_light_50
+  - first:
+      213: -128393723768029517
+    second: save_point_light_51
+  - first:
+      213: 2873617848699674326
+    second: save_point_light_52
+  - first:
+      213: 7377984187746741706
+    second: save_point_light_53
+  - first:
+      213: -1858686488300574849
+    second: save_point_light_54
+  - first:
+      213: -2871332007580398128
+    second: save_point_light_55
+  - first:
+      213: 6428875944322355004
+    second: save_point_light_56
+  - first:
+      213: 193169255998647487
+    second: save_point_light_57
+  - first:
+      213: -6794168142257442455
+    second: save_point_light_58
+  - first:
+      213: 3340025186388184087
+    second: save_point_light_59
+  - first:
+      213: 8759965712213872896
+    second: save_point_light_60
+  - first:
+      213: -4987875756688948069
+    second: save_point_light_61
+  - first:
+      213: 8557490836029400624
+    second: save_point_light_62
+  - first:
+      213: -7270876386385278738
+    second: save_point_light_63
+  - first:
+      213: 1482027375445507064
+    second: save_point_light_64
+  - first:
+      213: 6061751104255474025
+    second: save_point_light_65
+  - first:
+      213: 999381493254799938
+    second: save_point_light_66
+  - first:
+      213: -4320657969983591116
+    second: save_point_light_67
+  - first:
+      213: -5052965609805365371
+    second: save_point_light_68
+  - first:
+      213: 5807933566465255183
+    second: save_point_light_69
+  - first:
+      213: -1574035953612684427
+    second: save_point_light_70
+  - first:
+      213: 8138863463310322918
+    second: save_point_light_71
+  - first:
+      213: 152228389324483663
+    second: save_point_light_72
+  - first:
+      213: 3686909649468468352
+    second: save_point_light_73
+  - first:
+      213: 9088652682742306618
+    second: save_point_light_74
+  - first:
+      213: -9215187007106260353
+    second: save_point_light_75
+  - first:
+      213: 5672428039984241244
+    second: save_point_light_76
+  - first:
+      213: -3262783542966902949
+    second: save_point_light_77
+  - first:
+      213: -539137133069250609
+    second: save_point_light_78
+  - first:
+      213: -4161375218394378036
+    second: save_point_light_79
+  - first:
+      213: 2563694866548221198
+    second: save_point_light_80
+  - first:
+      213: -4221741870270674150
+    second: save_point_light_81
+  - first:
+      213: -6671496304037638358
+    second: save_point_light_82
+  - first:
+      213: -3612548595086027296
+    second: save_point_light_83
+  - first:
+      213: -4178210571025705971
+    second: save_point_light_84
+  - first:
+      213: -3899332324435524087
+    second: save_point_light_85
+  - first:
+      213: -6516881889755264454
+    second: save_point_light_86
+  - first:
+      213: -403605742454105930
+    second: save_point_light_87
+  - first:
+      213: -6870047246758614503
+    second: save_point_light_88
+  - first:
+      213: -8693440389739808334
+    second: save_point_light_89
+  - first:
+      213: -8468458891666144165
+    second: save_point_light_90
+  - first:
+      213: -2848356753723658306
+    second: save_point_light_91
+  - first:
+      213: 6052319681045136705
+    second: save_point_light_92
+  - first:
+      213: -324605954866862127
+    second: save_point_light_93
+  - first:
+      213: 8082416132190001248
+    second: save_point_light_94
+  - first:
+      213: -5236309887825273931
+    second: save_point_light_95
+  - first:
+      213: 191312238225782382
+    second: save_point_light_96
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: save_point_light_0
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 931
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bee25a8c06fd8bf50800000000000000
+      internalID: 6897508436094037739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_1
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 931
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb6e9536231bb6de0800000000000000
+      internalID: -1338781634239273285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_2
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 941
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62c0231711af2f6b0800000000000000
+      internalID: -5263870061622195162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_3
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 917
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0469ec61029252cd0800000000000000
+      internalID: -2583613593428781504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_4
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 925
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 058c43f207e10d130800000000000000
+      internalID: 3589402370191444048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_5
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 916
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f978d077cd2b9160800000000000000
+      internalID: 7033265577684138481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_6
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 922
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 573ae34c61cbd8570800000000000000
+      internalID: 8470633280121512821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_7
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 916
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c11ebe435f700f90800000000000000
+      internalID: -6989446625898917435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_8
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 915
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad2ba577e9eccece0800000000000000
+      internalID: -1374496606252256550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_9
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 918
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d76ab615fc7294e0800000000000000
+      internalID: -1976379894372079656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_10
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 904
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f5d16574be4b5670800000000000000
+      internalID: 8528496856326591992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_11
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 909
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c139410a60ac4ff80800000000000000
+      internalID: -8073606102164139236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_12
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 907
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 124add44c02035ec0800000000000000
+      internalID: -3579515027111173087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_13
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 913
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f6ffd7aef64c1470800000000000000
+      internalID: 8366640267299649268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_14
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 903
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 278aea8fc6d44f190800000000000000
+      internalID: -7929627913468598158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_15
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 911
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8514af9eeb6b9b2f0800000000000000
+      internalID: -956532514753986216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_16
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 903
+        width: 22
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b33b52774c147f70800000000000000
+      internalID: 9183996633302119347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_17
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 914
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c888e1fef1cd0450800000000000000
+      internalID: 6056710374607587526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_18
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 903
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c894e7194b4858900800000000000000
+      internalID: 686100429313821068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_19
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 889
+        width: 23
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43c6aa12e2af3b020800000000000000
+      internalID: 2356502106085157940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_20
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 900
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74df31905915286e0800000000000000
+      internalID: -1836815997469459129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_21
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 106
+        width: 837
+        height: 798
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d226dbad5495767c0800000000000000
+      internalID: -4078192781003234771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_22
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 899
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9640ee39b05c6b150800000000000000
+      internalID: 5888110216350663785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_23
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 895
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1de7cbb8eee0f430800000000000000
+      internalID: 3814811567733075231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_24
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 901
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 554daed08163a7400800000000000000
+      internalID: 322629800251020373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_25
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 900
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89256434f2c259db0800000000000000
+      internalID: -4785870447507516776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_26
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 897
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6014a0e9833d64030800000000000000
+      internalID: 3478700002313388294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_27
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 896
+        width: 27
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e37465f8dc2aea50800000000000000
+      internalID: 6551097918305367013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_28
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 898
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 438389fbd45550290800000000000000
+      internalID: -7924834176873252812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_29
+      rect:
+        serializedVersion: 2
+        x: 669
+        y: 895
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba8c60676c467b260800000000000000
+      internalID: 7113264940001446059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_30
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 886
+        width: 20
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efad1b677ac9a04a0800000000000000
+      internalID: -6626311658657424642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_31
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 666
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41c1b1eadd8857ae0800000000000000
+      internalID: -1552184010869105644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_32
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 665
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b99db048fcf1c6d0800000000000000
+      internalID: -2971816135919560271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_33
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 649
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa17410387f32fa50800000000000000
+      internalID: 6553370193212764586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_34
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 623
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 406102a5c19195af0800000000000000
+      internalID: -407266681738488316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_35
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 607
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f96ee211657f55730800000000000000
+      internalID: 3987364994133976735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_36
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 602
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e911d1f09d223410800000000000000
+      internalID: 1455275730149644776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_37
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 588
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d40854a465d272290800000000000000
+      internalID: -7915307971443851187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_38
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 587
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cedde05925b39410800000000000000
+      internalID: 1482727891391078087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_39
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 583
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17cfc549d02550740800000000000000
+      internalID: 5117586769853611121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_40
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 564
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f43a5aa4df303b830800000000000000
+      internalID: 4085613673369150287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_41
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 569
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80a93a4a5d2776b90800000000000000
+      internalID: -7248698813313738232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_42
+      rect:
+        serializedVersion: 2
+        x: 932
+        y: 565
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e53f0ad49119f8df0800000000000000
+      internalID: -175762322581556386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_43
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 559
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ea7b7e8fc7f01fe0800000000000000
+      internalID: -1220203028196656410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_44
+      rect:
+        serializedVersion: 2
+        x: 954
+        y: 566
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9435061000f1442f0800000000000000
+      internalID: -989631933231115447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_45
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 541
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65ddeeeeb06ed08d0800000000000000
+      internalID: -2878391647892218538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_46
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 545
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff6287b49604fd5c0800000000000000
+      internalID: -4188558307449362689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_47
+      rect:
+        serializedVersion: 2
+        x: 945
+        y: 550
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8814c06c88256de90800000000000000
+      internalID: -7001317823309135480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_48
+      rect:
+        serializedVersion: 2
+        x: 964
+        y: 542
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39a497616ad85d960800000000000000
+      internalID: 7626157288502938259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_49
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 533
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4769c7942c89fecc0800000000000000
+      internalID: -3679554410314426764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_50
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 535
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a5c2088939b41750800000000000000
+      internalID: 6274843837580101029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_51
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 527
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3beba67a69ad73ef0800000000000000
+      internalID: -128393723768029517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_52
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 523
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6de57f3553421e720800000000000000
+      internalID: 2873617848699674326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_53
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 506
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acde71d478dd36660800000000000000
+      internalID: 7377984187746741706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_54
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 511
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f77a6049c7e9436e0800000000000000
+      internalID: -1858686488300574849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_55
+      rect:
+        serializedVersion: 2
+        x: 947
+        y: 504
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dd06f780caf628d0800000000000000
+      internalID: -2871332007580398128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_56
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 495
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3f43661c94f73950800000000000000
+      internalID: 6428875944322355004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_57
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 495
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbc63553a664ea200800000000000000
+      internalID: 193169255998647487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_58
+      rect:
+        serializedVersion: 2
+        x: 947
+        y: 487
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9613878521446b1a0800000000000000
+      internalID: -6794168142257442455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_59
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 482
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71c8687f5372a5e20800000000000000
+      internalID: 3340025186388184087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_60
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 481
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0011c192766a19970800000000000000
+      internalID: 8759965712213872896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_61
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 479
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b94c5ca1d6187cab0800000000000000
+      internalID: -4987875756688948069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_62
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 469
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 036613a639052c670800000000000000
+      internalID: 8557490836029400624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_63
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 468
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee8cab70378a81b90800000000000000
+      internalID: -7270876386385278738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_64
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 454
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fb75dcbb08319410800000000000000
+      internalID: 1482027375445507064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_65
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 442
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 969baf5438aaf1450800000000000000
+      internalID: 6061751104255474025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_66
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 453
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2424d845c248edd00800000000000000
+      internalID: 999381493254799938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_67
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 441
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43dea27d770f904c0800000000000000
+      internalID: -4320657969983591116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_68
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 423
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58f3945bc8240e9b0800000000000000
+      internalID: -5052965609805365371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_69
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 426
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f07aa349ecce99050800000000000000
+      internalID: 5807933566465255183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_70
+      rect:
+        serializedVersion: 2
+        x: 941
+        y: 425
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5730939c3a6e72ae0800000000000000
+      internalID: -1574035953612684427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_71
+      rect:
+        serializedVersion: 2
+        x: 952
+        y: 417
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ec6406c23d03f070800000000000000
+      internalID: 8138863463310322918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_72
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 376
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4c6a6ed9e2dc1200800000000000000
+      internalID: 152228389324483663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_73
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 348
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08c2787cac88a2330800000000000000
+      internalID: 3686909649468468352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_74
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 323
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3791c11671612e70800000000000000
+      internalID: 9088652682742306618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_75
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 307
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f72e2aebd341d1080800000000000000
+      internalID: -9215187007106260353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_76
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 95
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5ad931af3388be40800000000000000
+      internalID: 5672428039984241244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_77
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 93
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5f977697a348b2d0800000000000000
+      internalID: -3262783542966902949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_78
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 101
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcf4f2a42a99488f0800000000000000
+      internalID: -539137133069250609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_79
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 93
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc05d7a6943df36c0800000000000000
+      internalID: -4161375218394378036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_80
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 94
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e056919e5e2149320800000000000000
+      internalID: 2563694866548221198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_81
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 93
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1b8f11032c5965c0800000000000000
+      internalID: -4221741870270674150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_82
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 96
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2f418565751a63a0800000000000000
+      internalID: -6671496304037638358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_83
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 96
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e59f006136adddc0800000000000000
+      internalID: -3612548595086027296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_84
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 95
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d041b3d6f930406c0800000000000000
+      internalID: -4178210571025705971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_85
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 104
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90682d419e9c2e9c0800000000000000
+      internalID: -3899332324435524087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_86
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 96
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3a06fdf2726f85a0800000000000000
+      internalID: -6516881889755264454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_87
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 97
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b817b337ba166af0800000000000000
+      internalID: -403605742454105930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_88
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 94
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91a6dca9d60b8a0a0800000000000000
+      internalID: -6870047246758614503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_89
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 94
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b9768d7602ba5780800000000000000
+      internalID: -8693440389739808334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_90
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 74
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b54cd3f718df97a80800000000000000
+      internalID: -8468458891666144165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_91
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 82
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebf67bcaf9a9878d0800000000000000
+      internalID: -2848356753723658306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_92
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 84
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1450dcfeea82ef350800000000000000
+      internalID: 6052319681045136705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_93
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 78
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d72f289a94ce7bf0800000000000000
+      internalID: -324605954866862127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_94
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 86
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 068521656a28a2070800000000000000
+      internalID: 8082416132190001248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_95
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 80
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bb1f4276e3e457b0800000000000000
+      internalID: -5236309887825273931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_point_light_96
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 75
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e66f1a0977da7a200800000000000000
+      internalID: 191312238225782382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      save_point_light_0: 6897508436094037739
+      save_point_light_1: -1338781634239273285
+      save_point_light_10: 8528496856326591992
+      save_point_light_11: -8073606102164139236
+      save_point_light_12: -3579515027111173087
+      save_point_light_13: 8366640267299649268
+      save_point_light_14: -7929627913468598158
+      save_point_light_15: -956532514753986216
+      save_point_light_16: 9183996633302119347
+      save_point_light_17: 6056710374607587526
+      save_point_light_18: 686100429313821068
+      save_point_light_19: 2356502106085157940
+      save_point_light_2: -5263870061622195162
+      save_point_light_20: -1836815997469459129
+      save_point_light_21: -4078192781003234771
+      save_point_light_22: 5888110216350663785
+      save_point_light_23: 3814811567733075231
+      save_point_light_24: 322629800251020373
+      save_point_light_25: -4785870447507516776
+      save_point_light_26: 3478700002313388294
+      save_point_light_27: 6551097918305367013
+      save_point_light_28: -7924834176873252812
+      save_point_light_29: 7113264940001446059
+      save_point_light_3: -2583613593428781504
+      save_point_light_30: -6626311658657424642
+      save_point_light_31: -1552184010869105644
+      save_point_light_32: -2971816135919560271
+      save_point_light_33: 6553370193212764586
+      save_point_light_34: -407266681738488316
+      save_point_light_35: 3987364994133976735
+      save_point_light_36: 1455275730149644776
+      save_point_light_37: -7915307971443851187
+      save_point_light_38: 1482727891391078087
+      save_point_light_39: 5117586769853611121
+      save_point_light_4: 3589402370191444048
+      save_point_light_40: 4085613673369150287
+      save_point_light_41: -7248698813313738232
+      save_point_light_42: -175762322581556386
+      save_point_light_43: -1220203028196656410
+      save_point_light_44: -989631933231115447
+      save_point_light_45: -2878391647892218538
+      save_point_light_46: -4188558307449362689
+      save_point_light_47: -7001317823309135480
+      save_point_light_48: 7626157288502938259
+      save_point_light_49: -3679554410314426764
+      save_point_light_5: 7033265577684138481
+      save_point_light_50: 6274843837580101029
+      save_point_light_51: -128393723768029517
+      save_point_light_52: 2873617848699674326
+      save_point_light_53: 7377984187746741706
+      save_point_light_54: -1858686488300574849
+      save_point_light_55: -2871332007580398128
+      save_point_light_56: 6428875944322355004
+      save_point_light_57: 193169255998647487
+      save_point_light_58: -6794168142257442455
+      save_point_light_59: 3340025186388184087
+      save_point_light_6: 8470633280121512821
+      save_point_light_60: 8759965712213872896
+      save_point_light_61: -4987875756688948069
+      save_point_light_62: 8557490836029400624
+      save_point_light_63: -7270876386385278738
+      save_point_light_64: 1482027375445507064
+      save_point_light_65: 6061751104255474025
+      save_point_light_66: 999381493254799938
+      save_point_light_67: -4320657969983591116
+      save_point_light_68: -5052965609805365371
+      save_point_light_69: 5807933566465255183
+      save_point_light_7: -6989446625898917435
+      save_point_light_70: -1574035953612684427
+      save_point_light_71: 8138863463310322918
+      save_point_light_72: 152228389324483663
+      save_point_light_73: 3686909649468468352
+      save_point_light_74: 9088652682742306618
+      save_point_light_75: -9215187007106260353
+      save_point_light_76: 5672428039984241244
+      save_point_light_77: -3262783542966902949
+      save_point_light_78: -539137133069250609
+      save_point_light_79: -4161375218394378036
+      save_point_light_8: -1374496606252256550
+      save_point_light_80: 2563694866548221198
+      save_point_light_81: -4221741870270674150
+      save_point_light_82: -6671496304037638358
+      save_point_light_83: -3612548595086027296
+      save_point_light_84: -4178210571025705971
+      save_point_light_85: -3899332324435524087
+      save_point_light_86: -6516881889755264454
+      save_point_light_87: -403605742454105930
+      save_point_light_88: -6870047246758614503
+      save_point_light_89: -8693440389739808334
+      save_point_light_9: -1976379894372079656
+      save_point_light_90: -8468458891666144165
+      save_point_light_91: -2848356753723658306
+      save_point_light_92: 6052319681045136705
+      save_point_light_93: -324605954866862127
+      save_point_light_94: 8082416132190001248
+      save_point_light_95: -5236309887825273931
+      save_point_light_96: 191312238225782382
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
