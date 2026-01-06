@@ -25,10 +25,10 @@ public class PlayerAttackDamageObject : MonoBehaviour
             health.ApplyDamage();
             AddScreenShake(0.02f);
         }
-        if (enemyHealth)
+        if (enemyHealth != null)
         {
             enemyHealth.ApplyDamage();
-            AddScreenShake(0.02f);
+            AddScreenShake(0.04f);
             StartCoroutine(hitStopCoroutine());
         }
         //}

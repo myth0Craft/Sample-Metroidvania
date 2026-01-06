@@ -4,3 +4,10 @@ R + Room Number + BW + Breakable Wall Number within room
 
 Ex. R1BW1
 
+
+Waystones:
+
+R + Room Number + WS + Waystone number in room
+
+Ex. R1WS1
+

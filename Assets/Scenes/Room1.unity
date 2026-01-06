@@ -16063,6 +16063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaystoneController
   inactive: {fileID: 1341984922}
   active: {fileID: 2044301669}
+  id: R1WS1
   waystoneActive: 1
 --- !u!50 &1475878295
 Rigidbody2D:
