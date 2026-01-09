@@ -9,6 +9,7 @@ TagManager:
   - CinemachineCamera
   - InteractHintUI
   - InteractUIText
+  - SaveIcon
   layers:
   - Default
   - TransparentFX
