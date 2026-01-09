@@ -63,6 +63,7 @@ public class WaystoneController : MonoBehaviour
         {
             if (interactPressed)
             {
+                interactPressed = false;
                 Deactivate();
             }
 
@@ -75,6 +76,14 @@ public class WaystoneController : MonoBehaviour
                 var room = SaveSystem.getRoom(gameObject.scene.name);
                 room.pickups[id] = true;
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            interactPressed = false;
         }
     }
 

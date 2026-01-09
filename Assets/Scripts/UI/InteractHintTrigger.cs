@@ -1,14 +1,18 @@
+using TMPro;
 using UnityEngine;
 
 public class InteractHintTrigger : MonoBehaviour
 {
     private GameObject interactHintObj;
+    private TextMeshProUGUI interactTextObj;
     public bool shouldCheckForCollision = true;
+    public string interactText = "Interact";
 
     private void Start()
     {
         interactHintObj = GameObject.FindGameObjectWithTag("InteractHintUI");
         interactHintObj = interactHintObj.transform.GetChild(0).gameObject;
+        interactTextObj = interactHintObj.GetComponentInChildren<TextMeshProUGUI>();
         Debug.Log("interact hint trigger awake");
         if (interactHintObj == null)
         {
@@ -21,6 +25,7 @@ public class InteractHintTrigger : MonoBehaviour
         if (collision.CompareTag("Player") && shouldCheckForCollision)
         {
             SetInteractPopupActive(true);
+
         }
     }
 
@@ -37,6 +42,7 @@ public class InteractHintTrigger : MonoBehaviour
         if (interactHintObj != null)
         {
             interactHintObj.SetActive(active);
+            interactTextObj.text = interactText;
 
         } else
         {

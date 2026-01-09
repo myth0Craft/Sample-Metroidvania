@@ -8,6 +8,7 @@ TagManager:
   - CameraFollow
   - CinemachineCamera
   - InteractHintUI
+  - InteractUIText
   layers:
   - Default
   - TransparentFX
