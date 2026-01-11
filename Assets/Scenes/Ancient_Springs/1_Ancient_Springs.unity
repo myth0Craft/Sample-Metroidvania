@@ -119,7 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &117429158098410050
+--- !u!1001 &587687447
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -129,11 +129,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 68807644399175398, guid: e73694843880d064f85c08e8a57070f4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.08968
       objectReference: {fileID: 0}
     - target: {fileID: 68807644399175398, guid: e73694843880d064f85c08e8a57070f4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.11218
       objectReference: {fileID: 0}
     - target: {fileID: 68807644399175398, guid: e73694843880d064f85c08e8a57070f4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -169,7 +169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 676103836952489145, guid: e73694843880d064f85c08e8a57070f4, type: 3}
       propertyPath: m_Name
-      value: ---ROOM---
+      value: BaseRoom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -180,4 +180,4 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 117429158098410050}
+  - {fileID: 587687447}
