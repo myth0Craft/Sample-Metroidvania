@@ -172,7 +172,8 @@ PrefabInstance:
       value: BaseRoom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6098454305213713265, guid: e73694843880d064f85c08e8a57070f4, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e73694843880d064f85c08e8a57070f4, type: 3}
