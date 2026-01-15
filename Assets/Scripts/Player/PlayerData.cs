@@ -10,7 +10,7 @@ public static class PlayerData
     public static int currentHealth = 5;
     public static bool gamePaused = false;
     private static bool _allowGameInput = false;
-    public static string currentScene = "Room1";
+    public static string currentScene = "1_Ancient_Springs";
     //public static Vector2 currentPosition = new Vector2(-3.0f, -1.0f);
     public static float posX = -3.0f;
     public static float posY = -1.0f;
@@ -54,7 +54,7 @@ public static class PlayerData
     {
         posX = -3.0f;
         posY = -1.0f;
-        currentScene = "Room1";
+        currentScene = "1_Ancient_Springs";
         maxHealth = 5;
         currentHealth = 5;
     }

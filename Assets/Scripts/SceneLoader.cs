@@ -4,8 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-
-    [SerializeField] private string startScene;
+    private string startScene = "1_Ancient_Springs";
     private string persistentGame = "PersistentData";
     private FaderController fader;
 
@@ -65,10 +64,16 @@ public class SceneLoader : MonoBehaviour
         SaveSystem.Load(PlayerData.saveIndex);
         startScene = PlayerData.currentScene;
         yield return SceneManager.UnloadSceneAsync("Title");
+
         yield return SceneManager.LoadSceneAsync(persistentGame);
-        
+
+
         if (!SceneManager.GetSceneByName(startScene).isLoaded)
             yield return SceneManager.LoadSceneAsync(startScene, LoadSceneMode.Additive);
+
+        
+        
+        
         PlayerData.AllowGameInput(false);
         Time.timeScale = 1;
         yield return fader.FadeIn();

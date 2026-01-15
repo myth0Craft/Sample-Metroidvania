@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca00fb90e00e6144951b28412db85e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  startScene: Room1
+  startScene: 1_Ancient_Springs
 --- !u!4 &1592963293
 Transform:
   m_ObjectHideFlags: 0
