@@ -3,8 +3,20 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 
+public enum CombatState
+{
+    Idle,
+    Startup,
+    Active,
+    Cooldown,
+    Blocking
+}
+
 public class PlayerMeleeAttack : MonoBehaviour
 {
+
+    public CombatState currentCombatState { get; private set; }
+
 
     public static PlayerMeleeAttack instance;
     private PlayerControls controls;
@@ -14,15 +26,18 @@ public class PlayerMeleeAttack : MonoBehaviour
     public bool attackHitboxActive { get; private set; } = false;
 
     private float attackCooldownDurationSeconds = 0.4f;
-    private bool attackIsOnCooldown = false;
     [SerializeField] private GameObject attackHitbox;
 
     [SerializeField] private bool attackDebug;
     public bool attackDebugActive { get; private set; } = false;
     private BoxCollider2D attackCollider;
-    public bool isMidAttack = false;
 
     public int comboNum = 0;
+
+    private float attackStartupSeconds = 0.28f;
+
+
+    private Coroutine currentCombatCoroutine;
 
     private void Awake()
     {
@@ -41,6 +56,8 @@ public class PlayerMeleeAttack : MonoBehaviour
         controls.Player.Attack.performed += OnAttackPressed;
         attackHitbox.SetActive(false);
         attackDebugActive = attackDebug;
+
+        currentCombatState = CombatState.Idle;
     }
 
     
@@ -58,7 +75,7 @@ public class PlayerMeleeAttack : MonoBehaviour
         {
             controls.Player.Enable();
         }
-        controls.Player.Attack.performed += OnAttackPressed;
+        //controls.Player.Attack.performed += OnAttackPressed;
     }
 
     void OnDisable()
@@ -72,7 +89,7 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private void OnAttackPressed(InputAction.CallbackContext context)
     {
-        if ((PlayerData.swordUnlocked || attackDebugActive) && !PlayerData.gamePaused && PlayerMovement.instance.currentCombatState != CombatState.Blocking)
+        if ((PlayerData.swordUnlocked || attackDebugActive) && !PlayerData.gamePaused)
         {
             //cancel attack if player is dashing
             /*if (playerMovement.getDashFrames() <= 0)
@@ -90,23 +107,18 @@ public class PlayerMeleeAttack : MonoBehaviour
             }
 
 
-            if (!attackHitboxActive && !attackIsOnCooldown)
+            if (currentCombatState == CombatState.Idle)
             {
-                Debug.Log("Attack started");
                 StartAttack();
+                return;
             }
-            else if (!isMidAttack)
+
+            if (currentCombatState == CombatState.Startup || currentCombatState == CombatState.Cooldown || currentCombatState == CombatState.Active)
             {
-                Debug.Log("combo queued");
-                //if pressed mid attack queue a combo attack
                 PlayerAnimationManager.instance.SetAttackQueued(true);
+                return;
             }
-        } else
-        {
-            Debug.Log("Cannot attack");
         }
-
-
     }
 
     private void PerformDashAttack()
@@ -118,42 +130,41 @@ public class PlayerMeleeAttack : MonoBehaviour
         PlayerMovement.instance.OnDashAttack();
     }
 
-    private IEnumerator AttackCooldownCoroutine()
+    
+
+    private IEnumerator AttackCoroutine()
     {
+        currentCombatState = CombatState.Startup;
+        yield return new WaitForSeconds(attackStartupSeconds);
+
+        UpdateFacingDirection();
+
+        currentCombatState = CombatState.Active;
+        attackHitbox.SetActive(true);
         attackHitboxActive = true;
         yield return new WaitForSeconds(attackHitboxActiveDurationSeconds);
         attackHitbox.SetActive(false);
         attackHitboxActive = false;
 
-        attackIsOnCooldown = true;
+
+
+        currentCombatState = CombatState.Cooldown;
         yield return new WaitForSeconds(attackCooldownDurationSeconds);
-        attackIsOnCooldown = false;
+
+        currentCombatState = CombatState.Idle;
     }
 
     public void CancelAttack()
     {
         PlayerAnimationManager.instance.SetAttackQueued(false);
-        StopAllCoroutines();
+        StopCoroutine(currentCombatCoroutine);
         attackHitboxActive = false;
-        attackIsOnCooldown = false;
         attackHitbox.SetActive(false);
         PlayerAnimationManager.instance.enableSword();
         attackPressed = false;
-        isMidAttack = false;
+        currentCombatState = CombatState.Idle;
+        
     }
-
-    //currently unused
-    //private void UpdateComboNum()
-    //{
-    //    if (!attackIsOnCooldown && !attackHitboxActive)
-    //    {
-    //        comboNum = 0;
-    //    } else { 
-    //        comboNum++;
-    //    if (comboNum >= 2)
-    //        comboNum = 0;
-    //    }
-    //}
 
     //updates attack damage hitbox position to be in front of the player
     private void UpdateFacingDirection()
@@ -162,24 +173,22 @@ public class PlayerMeleeAttack : MonoBehaviour
         Vector3 offsetVector = playerMovement.getFacingDirection() ? new Vector3(0.5f, 0, 0) : new Vector3(-0.5f, 0, 0);
         attackHitbox.transform.position = playerPos += offsetVector;
     }
-
-    
     
     //called when the attack animation starts, begins execution of attack anim
     public void StartAttack()
     {
-        if (!PlayerData.gamePaused) {
-            if (!isMidAttack)
+            if (playerMovement.getDashFrames() <= 0)
             {
-                if (playerMovement.getDashFrames() <= 0)
+                PlayerAnimationManager.instance.disableSword();
+                PlayerAnimationManager.instance.SetSwingSwordTrigger();
+                if (currentCombatCoroutine != null)
                 {
-                    PlayerAnimationManager.instance.disableSword();
-                    PlayerAnimationManager.instance.SetSwingSwordTrigger();
-                    isMidAttack = true;
+                    CancelAttack();
                 }
+                currentCombatCoroutine = StartCoroutine(AttackCoroutine());
             }
         }
-    }
+    
 
     //called from within the animation itself on prespecified "contact frames". Enables damage hitbox.
     public void ApplyDamage()
@@ -187,22 +196,12 @@ public class PlayerMeleeAttack : MonoBehaviour
         UpdateFacingDirection();
         
         attackHitbox.SetActive(true);
-        isMidAttack = false;
-
-        StartCoroutine(AttackCooldownCoroutine());
-
-        //comboNum++;
-        //if (comboNum >= 1)
-        //{
-        //    comboNum = 0;
-        //}
     }
 
     public void ApplyDashAttackDamage()
     {
         UpdateFacingDirection();
         attackHitbox.SetActive(true);
-        isMidAttack = false;
         PlayerHealthManager.instance.ShouldApplyDamage(false);
         
     }
@@ -211,7 +210,6 @@ public class PlayerMeleeAttack : MonoBehaviour
     {
         attackHitbox.SetActive(false);
         attackHitboxActive = false;
-        attackIsOnCooldown = false;
         PlayerHealthManager.instance.ShouldApplyDamage(true);
     }
 }

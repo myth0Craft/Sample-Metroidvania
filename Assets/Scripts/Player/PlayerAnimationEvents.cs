@@ -57,13 +57,13 @@ public class PlayerAnimationEvent : MonoBehaviour
 
     public void setMidAttackFalse()
     {
-        playerAttack.isMidAttack = false;
+        //playerAttack.isMidAttack = false;
     }
 
     //called from 2nd sword swing animation to set player to mid attack state, preventing dashing during the sword swing
     public void startAttack()
     {
-        playerAttack.isMidAttack = true;
+        //playerAttack.isMidAttack = true;
         AudioSource.PlayClipAtPoint(swordSwingSoundClip, PlayerMovement.instance.transform.position);
     }
 
@@ -85,7 +85,7 @@ public class PlayerAnimationEvent : MonoBehaviour
 
         impulseSource.GenerateImpulse(force);
 
-        playerAttack.ApplyDamage();
+        //playerAttack.ApplyDamage();
     }
 
     public void triggerDashAttackScreenShake()

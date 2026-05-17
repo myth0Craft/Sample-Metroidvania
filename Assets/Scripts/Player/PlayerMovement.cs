@@ -13,12 +13,12 @@ public enum HorizontalState
     ShieldSliding
 }
 
-public enum CombatState
+/*public enum CombatState
 {
     Idle,
     Attacking,
     Blocking
-}
+}*/
 
 public enum VerticalState
 {
@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     public static PlayerMovement instance { get; private set; }
     public HorizontalState currentHorizontalState;
     public VerticalState currentVerticalState;
-    public CombatState currentCombatState;
+    //public CombatState currentCombatState;
     public Rigidbody2D body;
     private LayerMask groundLayer;
     private BoxCollider2D boxCollider;
@@ -132,11 +132,11 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        controls.Player.Move.started += OnDirectionInput;
-        controls.Player.Move.performed += ctx => horizontalInput = ctx.ReadValue<Vector2>().x;
+        controls.Player.Move.performed += OnDirectionInput;
+        //controls.Player.Move.performed += ctx => horizontalInput = ctx.ReadValue<Vector2>().x;
         controls.Player.Move.canceled += OnDirectionInputCancel;
 
-        controls.Player.Move.performed += ctx => verticalInput = ctx.ReadValue<Vector2>().y;
+        //controls.Player.Move.performed += ctx => verticalInput = ctx.ReadValue<Vector2>().y;
 
         controls.Player.Jump.performed += OnJumpPressed;
         controls.Player.Jump.started += OnJumpHeld;
@@ -154,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
 
         currentHorizontalState = HorizontalState.Idle;
         currentVerticalState = VerticalState.Idle;
-        currentCombatState = CombatState.Idle;
+        //currentCombatState = CombatState.Idle;
         sprintParticles.Stop();
 
     }
@@ -190,6 +190,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!dashUsed)
         {
+
+            PlayerAnimationManager.instance.enableSword();
             currentHorizontalState = HorizontalState.Dashing;
             dashFrames = maxDashFrames;
             dashUsed = true;
@@ -222,7 +224,7 @@ public class PlayerMovement : MonoBehaviour
             } else
             {
                 currentHorizontalState = HorizontalState.Idle;
-                currentCombatState = CombatState.Blocking;
+                //currentCombatState = CombatState.Blocking;
                 StartCoroutine(BlockCoroutine());
             }
             PlayerAnimationManager.instance.Block();
@@ -238,7 +240,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator BlockCoroutine()
     {
         yield return new WaitForSeconds(2f);
-        currentCombatState = CombatState.Idle;
+        //currentCombatState = CombatState.Idle;
     }
 
     private void OnSprintCanceled(InputAction.CallbackContext context)
@@ -285,7 +287,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnJumpHeld(InputAction.CallbackContext context)
     {
         if (jumpHoldRoutine != null)
-            StopCoroutine(jumpHoldRoutine);
+            jumpHoldRoutine = null;
 
 
         jumpHoldRoutine = StartCoroutine(JumpHeldCoroutine());
@@ -327,6 +329,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDirectionInput(InputAction.CallbackContext context)
     {
+        Vector2 move = context.ReadValue<Vector2>();
+
+        horizontalInput = move.x;
+        verticalInput = move.y;
+
         if (Mathf.Abs(horizontalInput) > 0.1f)
         {
             currentHorizontalState = HorizontalState.Walking;
@@ -481,7 +488,7 @@ public class PlayerMovement : MonoBehaviour
         if (Mathf.Abs(horizontalInput) > 0.01f)
             TurnSprite();
 
-        if (currentHorizontalState == HorizontalState.Idle || currentCombatState == CombatState.Blocking)
+        if (currentHorizontalState == HorizontalState.Idle)
         {
             StopMoving();
             return;
@@ -619,8 +626,7 @@ public class PlayerMovement : MonoBehaviour
         bool shouldFaceRight = horizontalInput > 0;
 
         //turn logic - only executes if player is not currently attacking. If the player is in midair, turn logic still applies regardless of attack state.
-        if (shouldFaceRight != facingRight && !playerMeleeAttack.isMidAttack 
-            && !playerMeleeAttack.attackHitboxActive)
+        if (shouldFaceRight != facingRight && playerMeleeAttack.currentCombatState != CombatState.Startup && playerMeleeAttack.currentCombatState != CombatState.Active)
         {
 
             //rotates player 180 on y
