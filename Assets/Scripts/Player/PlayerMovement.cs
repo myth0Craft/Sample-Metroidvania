@@ -581,7 +581,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(currentHorizontalState);
+        //Debug.Log(currentHorizontalState);
         groundedThisFrame = IsGrounded();
 
         UpdateTimers();
@@ -626,7 +626,7 @@ public class PlayerMovement : MonoBehaviour
         bool shouldFaceRight = horizontalInput > 0;
 
         //turn logic - only executes if player is not currently attacking. If the player is in midair, turn logic still applies regardless of attack state.
-        if (shouldFaceRight != facingRight && playerMeleeAttack.currentCombatState != CombatState.Startup && playerMeleeAttack.currentCombatState != CombatState.Active)
+        if (shouldFaceRight != facingRight && playerMeleeAttack.currentCombatState != CombatState.Active)
         {
 
             //rotates player 180 on y

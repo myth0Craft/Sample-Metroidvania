@@ -153,6 +153,11 @@ public class PlayerAnimationManager : MonoBehaviour
         bodyAnim.SetTrigger("drawSword");
     }
 
+    public void SetComboAttackTrigger()
+    {
+        armsAnim.SetTrigger("ComboAttack");
+    }
+
     public void SetGainSwordAbility(bool gainSwordSequenceActive)
     {
         armsAnim.SetBool("gainSwordAbility", gainSwordSequenceActive);

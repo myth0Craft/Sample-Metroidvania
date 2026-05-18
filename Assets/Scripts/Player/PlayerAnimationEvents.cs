@@ -24,10 +24,10 @@ public class PlayerAnimationEvent : MonoBehaviour
 
     public void disableAttackQueued()
     {
-        if (PlayerAnimationManager.instance != null)
+       /* if (PlayerAnimationManager.instance != null)
         {
             PlayerAnimationManager.instance.SetAttackQueued(false);
-        }
+        }*/
     }
 
     public void ExitDashAttack()
@@ -70,6 +70,7 @@ public class PlayerAnimationEvent : MonoBehaviour
     public void startOverheadSlash()
     {
         PlayerAnimationManager.instance.StartOverheadSlash();
+        //PlayerAnimationManager.instance.SetAttackQueued(false);
     }
 
 
@@ -97,6 +98,11 @@ public class PlayerAnimationEvent : MonoBehaviour
         impulseSource.GenerateImpulse(force);
         
         playerAttack.ApplyDashAttackDamage();
+    }
+
+    public void SetIdle()
+    {
+        
     }
 
 }
