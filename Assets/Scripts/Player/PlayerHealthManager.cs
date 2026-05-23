@@ -52,6 +52,25 @@ public class PlayerHealthManager : HealthManager
         }
         
     }
+    public void StopDamageForDuration(float durationSeconds)
+    {
+        StartCoroutine(StopDamageForDurationCoroutine(durationSeconds));
+    }
+    private IEnumerator StopDamageForDurationCoroutine(float durationSeconds)
+    {
+        shouldApplyDamage = false;
+        yield return new WaitForSeconds(durationSeconds);
+        shouldApplyDamage = true;
+    }
+
+    public override void ApplyDamage(int amount)
+    {
+        if (iFrameTimer <= 0 && shouldApplyDamage)
+        {
+            ApplyDamageIgnoreIFrames(amount);
+            iFrameTimer = iFrameDuration;
+        }
+    }
 
     public override void Die()
     {

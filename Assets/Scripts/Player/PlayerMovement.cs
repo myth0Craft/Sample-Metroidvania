@@ -762,7 +762,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (currentHorizontalState != HorizontalState.Dashing && PlayerMeleeAttack.instance.currentCombatState == CombatState.Idle)
             {
-                StartCoroutine(PlayerAttackDamageObject.instance.DoShieldBounce());
+                StartCoroutine(ShieldBounceHitbox.instance.DoShieldBounce());
                 PlayerAnimationManager.instance.ShieldBounce();
             }
             

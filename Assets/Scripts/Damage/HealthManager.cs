@@ -52,7 +52,7 @@ public class HealthManager : MonoBehaviour
 
     }
 
-    public void ApplyDamage(int amount)
+    public virtual void ApplyDamage(int amount)
     {
         if (iFrameTimer <= 0)
         {
