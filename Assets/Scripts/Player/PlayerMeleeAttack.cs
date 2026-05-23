@@ -60,9 +60,15 @@ public class PlayerMeleeAttack : MonoBehaviour
 
         currentCombatState = CombatState.Idle;
     }
-
-
-
+    public void ResetCombatState()
+    {
+        currentCombatCoroutine = null;
+        currentCombatState = CombatState.Idle;
+        comboNum = 0;
+        attackHitbox.SetActive(false);
+        attackHitboxActive = false;
+        PlayerAnimationManager.instance.enableSword();
+    }
 
 
     private void OnDestroy()
@@ -76,7 +82,6 @@ public class PlayerMeleeAttack : MonoBehaviour
         {
             controls.Player.Enable();
         }
-        //controls.Player.Attack.performed += OnAttackPressed;
     }
 
     void OnDisable()
@@ -98,7 +103,7 @@ public class PlayerMeleeAttack : MonoBehaviour
             }
 
 
-            Debug.Log("Clicked with combat state " + currentCombatState + " at combo stage " + comboNum);
+            //Debug.Log("Clicked with combat state " + currentCombatState + " at combo stage " + comboNum);
             if (playerMovement.currentHorizontalState == HorizontalState.Dashing && playerMovement.IsGroundedBuffered()
                 )
             {
@@ -109,7 +114,6 @@ public class PlayerMeleeAttack : MonoBehaviour
 
             if (currentCombatState == CombatState.Idle)
             {
-                //attackQueued = true;
                 currentCombatState = CombatState.Startup;
                 comboNum = 0;
                 StartAttack();
@@ -128,12 +132,13 @@ public class PlayerMeleeAttack : MonoBehaviour
         }
     }
 
+
+
     private void PerformDashAttack()
     {
         PlayerAnimationManager.instance.LungeAttack();
         PlayerAnimationManager.instance.disableSword();
         PlayerMovement.instance.currentHorizontalState = HorizontalState.Dashing;
-        //PlayerMovement.instance.OnSprintCanceled();
         PlayerMovement.instance.OnDashAttack();
     }
 
@@ -159,55 +164,29 @@ public class PlayerMeleeAttack : MonoBehaviour
 
             currentCombatState = CombatState.Cooldown;
 
-
-
             float cooldownTimer = 0f;
-            bool comboContinued = false;
 
             while (cooldownTimer < attackCooldownDurationSeconds)
             {
                 cooldownTimer += Time.deltaTime;
                 if (attackQueued && cooldownTimer > 0.1f)
                 {
-                    comboContinued = true;
                     PlayerAnimationManager.instance.SetComboAttackTrigger();
                     break;
                 }
                 yield return null;
             }
-            //comboNum++;
+
             if (comboNum > 2)
             {
-                //yield return new WaitForSeconds(0.5f);
                 currentCombatState = CombatState.Idle;
                 comboNum = 0;
                 currentCombatCoroutine = null;
                 break;
                 
             }
-
-
-                /*while (cooldownTimer < attackCooldownDurationSeconds)
-            {
-                if (attackQueued && cooldownTimer > 0.2f)
-                {
-                    attackQueued = false;
-                    comboContinued = true;
-                    PlayerAnimationManager.instance.SetComboAttackTrigger();
-                    break;
-                }
-                cooldownTimer += Time.deltaTime;
-                yield return null;
-            }*/
-
-            
         } while (attackQueued);
 
-
-
-
-
-        //PlayerAnimationManager.instance.SetAttackQueued(false);
         comboNum = 0;
         currentCombatState = CombatState.Idle;
         currentCombatCoroutine = null;
@@ -237,42 +216,15 @@ public class PlayerMeleeAttack : MonoBehaviour
     //called when the attack animation starts, begins execution of attack anim
     public void StartAttack()
     {
-
-        /*if (playerMovement.getDashFrames() > 0)
-        {
-            return;
-        }*/
-
-
         if (currentCombatCoroutine != null)
         {
             return;
         }
         
-
-        /*if (currentCombatCoroutine != null)
-        {
-            attackHitbox.SetActive(false);
-            attackHitboxActive = false;
-            //StopCoroutine(currentCombatCoroutine);
-            currentCombatCoroutine = null;
-            comboNum = 0;
-        }*/
         PlayerAnimationManager.instance.disableSword();
         PlayerAnimationManager.instance.SetSwingSwordTrigger();
         currentCombatCoroutine = StartCoroutine(AttackCoroutine());
     }
-
-    
-    
-
-    //called from within the animation itself on prespecified "contact frames". Enables damage hitbox.
-    /*public void ApplyDamage()
-    {
-        UpdateFacingDirection();
-        
-        attackHitbox.SetActive(true);
-    }*/
 
     public void ApplyDashAttackDamage()
     {

@@ -12,8 +12,21 @@ public class PlayerAttackDamageObject : MonoBehaviour
 
     private CamShakeSource camShakeSource;
 
+    private bool isShieldBouncing = false;
+    private bool hitWhileShieldBouncing = false;
+
+    public static PlayerAttackDamageObject instance;
+
     void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        } else
+        {
+            Destroy(gameObject);
+        }
+
         camShakeSource = GameObject.FindGameObjectWithTag("CinemachineImpulseSource").GetComponent<CamShakeSource>();
     }
 
@@ -27,6 +40,13 @@ public class PlayerAttackDamageObject : MonoBehaviour
         {
             health.ApplyDamage();
             CamShakeSource.instance.AddScreenShake(0.08f);
+
+            if (isShieldBouncing)
+            {
+                isShieldBouncing = false;
+                hitWhileShieldBouncing = true;
+            }
+
         }
         if (enemyHealth != null)
         {
@@ -46,7 +66,13 @@ public class PlayerAttackDamageObject : MonoBehaviour
                 Quaternion.identity
             );
             StartCoroutine(DestroySparkParticleCoroutine());
-            
+
+            if (isShieldBouncing)
+            {
+                isShieldBouncing = false;
+                hitWhileShieldBouncing = true;
+            }
+
         }
         //}
     }
@@ -55,6 +81,30 @@ public class PlayerAttackDamageObject : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         Destroy(currentSparkInstance.gameObject);
+    }
+
+    public IEnumerator DoShieldBounce()
+    {
+        gameObject.SetActive(true);
+        isShieldBouncing = true;
+        float shieldBounceTime = 0.25f;
+        float timeElapsed = 0;
+
+        while (timeElapsed < shieldBounceTime)
+        {
+            timeElapsed += Time.deltaTime;
+            if (hitWhileShieldBouncing)
+            {
+
+                isShieldBouncing = false;
+                hitWhileShieldBouncing = false;
+                PlayerMovement.instance.ApplyShieldBounceForce();
+                break;
+            }
+            yield return null;
+        }
+
+        gameObject.SetActive(false);
     }
 
     

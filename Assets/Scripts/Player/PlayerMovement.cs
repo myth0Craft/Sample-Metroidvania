@@ -13,13 +13,6 @@ public enum HorizontalState
     ShieldSliding
 }
 
-/*public enum CombatState
-{
-    Idle,
-    Attacking,
-    Blocking
-}*/
-
 public enum VerticalState
 {
     Idle,
@@ -34,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
     public static PlayerMovement instance { get; private set; }
     public HorizontalState currentHorizontalState;
     public VerticalState currentVerticalState;
-    //public CombatState currentCombatState;
     public Rigidbody2D body;
     private LayerMask groundLayer;
     private BoxCollider2D boxCollider;
@@ -190,14 +182,24 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!dashUsed)
         {
-
-            PlayerAnimationManager.instance.enableSword();
-            currentHorizontalState = HorizontalState.Dashing;
-            dashFrames = maxDashFrames;
-            dashUsed = true;
-            PlayerAnimationManager.instance.Dash();
-            sprintPressed = true;
+            StartCoroutine(DashCoroutine());
+            
         }
+    }
+
+    private IEnumerator DashCoroutine()
+    {
+        while (PlayerMeleeAttack.instance.currentCombatState == CombatState.Active || PlayerMeleeAttack.instance.currentCombatState == CombatState.Startup)
+        {
+            yield return null;
+        }
+        PlayerAnimationManager.instance.enableSword();
+        currentHorizontalState = HorizontalState.Dashing;
+        dashFrames = maxDashFrames;
+        dashUsed = true;
+        PlayerAnimationManager.instance.Dash();
+        sprintPressed = true;
+        PlayerMeleeAttack.instance.ResetCombatState();
     }
 
     public void OnDashAttack()
@@ -262,7 +264,6 @@ public class PlayerMovement : MonoBehaviour
             currentHorizontalState = HorizontalState.Idle;
             sprintPressed = false;
         }
-
     }
 
     private void OnSprintStarted()
@@ -759,10 +760,19 @@ public class PlayerMovement : MonoBehaviour
     {
         if (PlayerData.shieldBounceUnlocked || abilityDebug)
         {
-
-            float wallJumpHorizontalForce = Mathf.Abs(horizontalInput) < 0.1f ? 0 : facingRight ? 15f : -15f;
-            body.linearVelocity = new Vector2(wallJumpHorizontalForce, jumpStrength * 1.3f);
+            if (currentHorizontalState != HorizontalState.Dashing && PlayerMeleeAttack.instance.currentCombatState == CombatState.Idle)
+            {
+                StartCoroutine(PlayerAttackDamageObject.instance.DoShieldBounce());
+                PlayerAnimationManager.instance.ShieldBounce();
+            }
+            
         }
+    }
+
+    public void ApplyShieldBounceForce()
+    {
+        float wallJumpHorizontalForce = Mathf.Abs(horizontalInput) < 0.1f ? 0 : facingRight ? 15f : -15f;
+        body.linearVelocity = new Vector2(wallJumpHorizontalForce, jumpStrength * 1.3f);
     }
 
     private void UpdateTimers()

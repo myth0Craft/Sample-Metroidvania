@@ -103,6 +103,14 @@ public class PlayerAnimationManager : MonoBehaviour
         legsAnim.SetTrigger("LungeAttack");
     }
 
+    public void ShieldBounce() {
+        armsAnim.SetTrigger("ShieldBounce");
+        bodyAnim.SetTrigger("ShieldBounce");
+        legsAnim.SetTrigger("ShieldBounce");
+        shieldAnim.SetTrigger("ShieldBounce");
+        capeAnim.SetTrigger("ShieldBounce");
+
+    }
 
     public void enableSword()
     {
