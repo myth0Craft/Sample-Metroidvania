@@ -773,6 +773,13 @@ public class PlayerMovement : MonoBehaviour
     {
         float wallJumpHorizontalForce = Mathf.Abs(horizontalInput) < 0.1f ? 0 : facingRight ? 15f : -15f;
         body.linearVelocity = new Vector2(wallJumpHorizontalForce, jumpStrength * 1.3f);
+           
+    }
+
+    public void ResetAbilities()
+    {
+        doubleJumpUsed = false;
+        dashUsed = false;
     }
 
     private void UpdateTimers()
@@ -781,6 +788,7 @@ public class PlayerMovement : MonoBehaviour
         {
             groundedRememberTimer = groundedRememberTime;
             dashUsed = false;
+            doubleJumpUsed = false;
         }
         else
             groundedRememberTimer -= Time.fixedDeltaTime;

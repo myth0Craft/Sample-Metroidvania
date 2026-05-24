@@ -94,6 +94,12 @@ public class PlayerAnimationManager : MonoBehaviour
             legsAnim.SetTrigger("jump");
             bodyAnim.SetTrigger("jump");
         }
+
+        if (PlayerData.wallJumpUnlocked || playerMovement.abilityDebug)
+        {
+            bodyAnim.SetBool("WallSliding", playerMovement.currentVerticalState == VerticalState.StuckToWall);
+            legsAnim.SetBool("WallSliding", playerMovement.currentVerticalState == VerticalState.StuckToWall);
+        }
     }
 
     public void LungeAttack()

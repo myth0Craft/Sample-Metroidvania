@@ -209,7 +209,18 @@ public class PlayerMeleeAttack : MonoBehaviour
     private void UpdateFacingDirection()
     {
         Vector3 playerPos = playerMovement.transform.position;
-        Vector3 offsetVector = playerMovement.getFacingDirection() ? new Vector3(0.5f, 0, 0) : new Vector3(-0.5f, 0, 0);
+
+        float multiplier;
+
+        if (playerMovement.currentVerticalState == VerticalState.StuckToWall)
+        {
+            multiplier = -1f;
+        } else
+        {
+            multiplier = 1f;
+        }
+
+        Vector3 offsetVector = playerMovement.getFacingDirection() ? new Vector3(0.5f * multiplier, 0, 0) : new Vector3(-0.5f * multiplier, 0, 0);
         attackHitbox.transform.position = playerPos += offsetVector;
     }
 

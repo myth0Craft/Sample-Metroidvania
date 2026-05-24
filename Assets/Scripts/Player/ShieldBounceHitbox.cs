@@ -104,6 +104,7 @@ public class ShieldBounceHitbox : MonoBehaviour
                 hitWhileShieldBouncing = false;
                 //PlayerHealthManager.instance.StopDamageForDuration(0.2f);
                 PlayerMovement.instance.ApplyShieldBounceForce();
+                PlayerMovement.instance.ResetAbilities();
                 break;
             }
             yield return null;

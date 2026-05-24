@@ -7,16 +7,18 @@ public class EnemyHealthManager : HealthManager
     public Material hurtMaterial;
     public GameObject deathParticlesPrefab;
     private GameObject particleInstance;
-    private SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
     public bool shouldSaveAcrossRooms = false;
-    [SerializeField] private string id;
+    [SerializeField] protected string id;
     public AudioClip hurtSound;
     public GameObject hitParticlesPrefab;
+    protected BoxCollider2D hitCollider;
 
 
     public override void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        hitCollider = GetComponent<BoxCollider2D>();
         if (maxHealth < 0) maxHealth = 5;
         currentHealth = maxHealth;
 
@@ -76,7 +78,7 @@ public class EnemyHealthManager : HealthManager
         spriteRenderer.material = defaultMaterial;
     }
 
-    private void AddParticles(GameObject particleInstance)
+    protected void AddParticles(GameObject particleInstance)
     {
         if (particleInstance != null && particleInstance.GetComponent<ParticleSystem>() != null)
         {

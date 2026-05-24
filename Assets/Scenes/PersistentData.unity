@@ -1683,15 +1683,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6827771851370424541, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37.86755
+      value: 34.91147
       objectReference: {fileID: 0}
     - target: {fileID: 6827771851370424541, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 74.11519
+      value: 73.13566
       objectReference: {fileID: 0}
     - target: {fileID: 6827771851370424541, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7599288736048242903, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_RendererIndex
@@ -2036,6 +2036,10 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 5.12
       objectReference: {fileID: 0}
+    - target: {fileID: 3263363217401237753, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: eb9575b0ac191c645a8a7834525810dd, type: 2}
     - target: {fileID: 4231613699887606292, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -2059,11 +2063,19 @@ PrefabInstance:
     - target: {fileID: 4645579845114001996, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+      objectReference: {fileID: 2100000, guid: eb9575b0ac191c645a8a7834525810dd, type: 2}
+    - target: {fileID: 4839901651880856055, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
+      propertyPath: shinyMat
+      value: 
+      objectReference: {fileID: 2100000, guid: eb9575b0ac191c645a8a7834525810dd, type: 2}
     - target: {fileID: 4839901651880856055, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
       propertyPath: hurtSound
       value: 
       objectReference: {fileID: 8300000, guid: 0e2841f09a4100b4f95021db8fc23fb0, type: 3}
+    - target: {fileID: 4839901651880856055, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
+      propertyPath: defaultMat
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 5821003880182260375, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3206,7 +3218,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.07888079, y: -0.42604995}
+  m_Offset: {x: 0.31266904, y: -0.42604995}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3216,7 +3228,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.1577611, y: 1.0768949}
+  m_Size: {x: 1.6253381, y: 1.0768949}
   m_EdgeRadius: 0
 --- !u!1 &1719513024
 GameObject:

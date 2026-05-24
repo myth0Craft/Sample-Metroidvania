@@ -6,6 +6,7 @@ public class PlayerHealthManager : HealthManager
 
     private SpriteRenderer[] spriteRenderers;
     public Material defaultMat;
+    public Material shinyMat;
     public Material hurtMat;
     public ParticleSystem hitParticle;
     private CamShakeSource camShakeSource;
@@ -155,6 +156,14 @@ public class PlayerHealthManager : HealthManager
                 spriteRenderers[x].material = defaultMat;
             }
             yield return new WaitForSecondsRealtime(0.075f);
+        }
+
+        for (int i = 0; i < spriteRenderers.Length; i++)
+        {
+            if (spriteRenderers[i].gameObject.name == "Body" || spriteRenderers[i].gameObject.name == "Sword")
+            {
+                spriteRenderers[i].material = shinyMat;
+            }
         }
     }
 }
