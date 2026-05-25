@@ -12,6 +12,8 @@ public class ShieldBounceEnemy : MonoBehaviour
     public void Awake()
     {
         startYPos = transform.position.y;
+        goingDown = UnityEngine.Random.Range(0, 2) == 1;
+        startYPos += UnityEngine.Random.Range(-maxDistance, maxDistance);
     }
 
     private void Update()

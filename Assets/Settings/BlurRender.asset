@@ -49,7 +49,7 @@ MonoBehaviour:
     blendMode: 0
   m_UseDepthStencilBuffer: 0
   m_UseCameraSortingLayersTexture: 1
-  m_CameraSortingLayersTextureBound: 2041769115
+  m_CameraSortingLayersTextureBound: -879508239
   m_CameraSortingLayerDownsamplingMethod: 0
   m_MaxLightRenderTextureCount: 16
   m_MaxShadowRenderTextureCount: 1

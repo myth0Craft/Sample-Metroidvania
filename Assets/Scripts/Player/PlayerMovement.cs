@@ -359,11 +359,11 @@ public class PlayerMovement : MonoBehaviour
             finalGravity = fallGravity;
         }
 
-        //if stuck to wall, slow gravity for wall slide
+        /*//if stuck to wall, slow gravity for wall slide
         if (currentVerticalState == VerticalState.StuckToWall)
         {
             finalGravity *= 0.1f;
-        }
+        }*/
 
         //if dashing in midair, slow gravity
         if (currentHorizontalState == HorizontalState.Sprinting)
@@ -409,7 +409,7 @@ public class PlayerMovement : MonoBehaviour
 
         } else if (currentVerticalState == VerticalState.StuckToWall)
         {
-            body.linearVelocity = new Vector2(body.linearVelocity.x, Mathf.Max(body.linearVelocity.y, -5f));
+            body.linearVelocity = new Vector2(body.linearVelocity.x, Mathf.Max(body.linearVelocity.y, -1.5f));
             return;   
         }
 
@@ -787,8 +787,7 @@ public class PlayerMovement : MonoBehaviour
         if (groundedThisFrame)
         {
             groundedRememberTimer = groundedRememberTime;
-            dashUsed = false;
-            doubleJumpUsed = false;
+            ResetAbilities();
         }
         else
             groundedRememberTimer -= Time.fixedDeltaTime;
@@ -799,7 +798,10 @@ public class PlayerMovement : MonoBehaviour
         } 
 
         if (StuckToWall())
+        {
             wallRememberTimer = wallRememberTime;
+            ResetAbilities();
+        }
         else
             wallRememberTimer -= Time.fixedDeltaTime;
     }

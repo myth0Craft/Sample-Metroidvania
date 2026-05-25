@@ -1362,6 +1362,97 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 5575781214523206796, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
   m_PrefabInstance: {fileID: 1014110976}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &611858063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 611858065}
+  - component: {fileID: 611858064}
+  m_Layer: 0
+  m_Name: ShockwaveOverlay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!212 &611858064
+SpriteRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611858063}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 7c57dc639ba3ef1489df802c266963bc, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: -477896943
+  m_SortingLayer: 9
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 7482667652216324306, guid: 43f5182e416f5fa42bc8bdd2b76099be, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.33333334}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.16, y: 0.16}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
+--- !u!4 &611858065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611858063}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 41.4205, y: 77.4189, z: 0}
+  m_LocalScale: {x: 22.990427, y: 12.473337, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &667735910 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4093251293894907697, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
@@ -1683,15 +1774,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6827771851370424541, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 34.91147
+      value: 37.86755
       objectReference: {fileID: 0}
     - target: {fileID: 6827771851370424541, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 73.13566
+      value: 74.11519
       objectReference: {fileID: 0}
     - target: {fileID: 6827771851370424541, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 7599288736048242903, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_RendererIndex
@@ -2922,7 +3013,7 @@ MonoBehaviour:
   m_Intensity: 1.5
   m_LightVolumeIntensity: 0.2
   m_LightVolumeEnabled: 1
-  m_ApplyToSortingLayers: 67e261c7
+  m_ApplyToSortingLayers: 67e261c711df83e3
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -3800,7 +3891,7 @@ MonoBehaviour:
   m_Intensity: 5
   m_LightVolumeIntensity: 0
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 000000002d3b00ad9becb279f1c493cb
+  m_ApplyToSortingLayers: 000000002d3b00ad9becb279f1c493cb11df83e3
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -5102,3 +5193,4 @@ SceneRoots:
   - {fileID: 1208710914}
   - {fileID: 25987290}
   - {fileID: 442941088}
+  - {fileID: 611858065}
