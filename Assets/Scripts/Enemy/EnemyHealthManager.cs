@@ -13,6 +13,7 @@ public class EnemyHealthManager : HealthManager
     public AudioClip hurtSound;
     public GameObject hitParticlesPrefab;
     protected BoxCollider2D hitCollider;
+    public GameObject gameObjectToDestroy;
 
 
     public override void Awake()
@@ -59,9 +60,16 @@ public class EnemyHealthManager : HealthManager
 
         print("enemy killed");
         AddParticles(deathParticlesPrefab);
-        Destroy(transform.parent.gameObject);
+        if (gameObjectToDestroy != null)
+        {
+            Destroy(gameObjectToDestroy);
+        } else
+        {
+            Destroy(transform.parent.gameObject);
+            
+        }
 
-        
+
     }
 
     protected override void AddHitEffects()
