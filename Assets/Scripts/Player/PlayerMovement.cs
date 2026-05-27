@@ -222,14 +222,12 @@ public class PlayerMovement : MonoBehaviour
                 ExecuteShieldBounce();
             } else if (verticalInput > 0.1f)
             {
-                StartShieldSlide();
+                //StartShieldSlide();
             } else
             {
-                currentHorizontalState = HorizontalState.Idle;
-                //currentCombatState = CombatState.Blocking;
-                StartCoroutine(BlockCoroutine());
+                PlayerMeleeAttack.instance.OnBlock();
+                
             }
-            PlayerAnimationManager.instance.Block();
         }
     }
 
@@ -237,12 +235,6 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerAnimationManager.instance.SetShieldSlide(true);
 
-    }
-
-    private IEnumerator BlockCoroutine()
-    {
-        yield return new WaitForSeconds(2f);
-        //currentCombatState = CombatState.Idle;
     }
 
     private void OnSprintCanceled(InputAction.CallbackContext context)

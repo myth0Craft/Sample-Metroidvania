@@ -186,6 +186,7 @@ public class PlayerAnimationManager : MonoBehaviour
     public void Block()
     {
         armsAnim.SetTrigger("Block");
+
     }
 
     public void SetShieldSlide(bool isShieldSliding)

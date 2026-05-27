@@ -59,6 +59,7 @@ public class PlayerMeleeAttack : MonoBehaviour
         attackDebugActive = attackDebug;
 
         currentCombatState = CombatState.Idle;
+
     }
     public void ResetCombatState()
     {
@@ -91,6 +92,27 @@ public class PlayerMeleeAttack : MonoBehaviour
             controls.Player.Disable();
         }
         controls.Player.Attack.performed -= OnAttackPressed;
+    }
+
+    public void OnBlock()
+    {
+        if (currentCombatState == CombatState.Startup) return;
+
+        if (currentCombatState == CombatState.Cooldown || currentCombatState == CombatState.Active)
+        {
+            ResetCombatState();
+        }
+
+        PlayerAnimationManager.instance.Block();
+        currentCombatState = CombatState.Blocking;
+        StartCoroutine(BlockCoroutine());
+    }
+
+    private IEnumerator BlockCoroutine()
+    {
+        yield return new WaitForSeconds(0.25f);
+        ShockwaveEffectManager.instance.StartShockwave();
+        currentCombatState = CombatState.Idle;
     }
 
     private void OnAttackPressed(InputAction.CallbackContext context)
@@ -194,15 +216,12 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     /*public void CancelAttack()
     {
-        PlayerAnimationManager.instance.SetAttackQueued(false);
         StopCoroutine(currentCombatCoroutine);
         currentCombatCoroutine = null;
         attackHitboxActive = false;
         attackHitbox.SetActive(false);
         PlayerAnimationManager.instance.enableSword();
-        attackPressed = false;
         currentCombatState = CombatState.Idle;
-        
     }*/
 
     //updates attack damage hitbox position to be in front of the player

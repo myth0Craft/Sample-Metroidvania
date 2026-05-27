@@ -18,6 +18,27 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 512
     material: {fileID: 2100000, guid: 59572ffb45abb50408e87536e64ec6eb, type: 2}
+--- !u!114 &-329711981106645954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e52e6cb03d9f4a4ab35bcb6c0c62af6, type: 3}
+  m_Name: ShockwaveRenderFeature
+  m_EditorClassIdentifier: Assembly-CSharp::ShockwaveRenderFeature
+  m_Active: 1
+  settings:
+    material: {fileID: 2100000, guid: 7c57dc639ba3ef1489df802c266963bc, type: 2}
+    layers:
+      serializedVersion: 2
+      m_Bits: 62967
+    downscaling: 1
+    renderBehindScene: 0
+    rendererIndex: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43,9 +64,10 @@ MonoBehaviour:
     probeSamplingDebugTexture: {fileID: 2800000, guid: 24ec0e140fb444a44ab96ee80844e18e, type: 3}
     probeVolumeBlendStatesCS: {fileID: 0}
   m_RendererFeatures:
+  - {fileID: -329711981106645954}
   - {fileID: 4024492890531530637}
   - {fileID: 5876038125951743331}
-  m_RendererFeatureMap: 8d873715f6ded937637501008be18b51
+  m_RendererFeatureMap: 3eb4f237b3a06cfb8d873715f6ded937637501008be18b51
   m_UseNativeRenderPass: 0
   m_LayerMask:
     serializedVersion: 2

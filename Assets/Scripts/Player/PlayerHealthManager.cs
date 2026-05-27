@@ -46,7 +46,7 @@ public class PlayerHealthManager : HealthManager
 
     public override void ApplyDamageIgnoreIFrames(int amount)
     {
-        if (shouldApplyDamage)
+        if (shouldApplyDamage && PlayerMeleeAttack.instance.currentCombatState != CombatState.Blocking)
         {
             base.ApplyDamageIgnoreIFrames(amount);
             print(maxHealth + "/" + currentHealth);
