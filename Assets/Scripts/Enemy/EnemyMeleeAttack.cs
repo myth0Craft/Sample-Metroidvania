@@ -9,33 +9,41 @@ public class EnemyMeleeAttack : MonoBehaviour
 
     public float maxTimeBetweenAttacks = 2f;
 
+    public float timeUntilHitboxActivates;
     public float attackHitboxDuration;
     public float totalAttackDuration;
 
     private Coroutine currentAttackCoroutine;
 
-    private BoxCollider2D attackHitbox;
+    public GameObject attackHitbox;
 
     private void Awake()
     {
-        attackHitbox = GetComponent<BoxCollider2D>();
-        attackHitbox.enabled = false;
+        attackHitbox.SetActive(false);
     }
 
     private void Update()
     {
-        float time = 0;
-        if (animator != null && time % 15 == 0) 
+        if (currentAttackCoroutine == null)
         {
-            animator.SetTrigger("Attack");
+            currentAttackCoroutine = StartCoroutine(AttackCoroutine());
         }
-
-        time++;
     }
 
 
     private IEnumerator AttackCoroutine()
     {
-        yield return null;
+        animator.SetTrigger("Attack");
+
+        
+        yield return new WaitForSeconds(timeUntilHitboxActivates);
+
+        attackHitbox.SetActive(true);
+        yield return new WaitForSeconds(attackHitboxDuration);
+        attackHitbox.SetActive(false);
+
+        yield return new WaitForSeconds(totalAttackDuration - attackHitboxDuration - timeUntilHitboxActivates);
+        yield return new WaitForSeconds(Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks));
+        currentAttackCoroutine = null;
     }
 }
