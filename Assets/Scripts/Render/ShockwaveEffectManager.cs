@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class ShockwaveEffectManager : MonoBehaviour
@@ -62,6 +61,16 @@ public class ShockwaveEffectManager : MonoBehaviour
 
             shockwaveMaterial.SetFloat("_WaveDistanceFromCenter", distanceFromCenter);
 
+            yield return null;
+        }
+
+
+        float alpha = 1f;
+
+        while (alpha > 0f)
+        {
+            alpha -= Time.deltaTime * 6;
+            shockwaveMaterial.SetFloat("_GlobalAlpha", alpha);
             yield return null;
         }
 

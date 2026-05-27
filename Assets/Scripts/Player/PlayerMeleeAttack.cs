@@ -111,7 +111,6 @@ public class PlayerMeleeAttack : MonoBehaviour
     private IEnumerator BlockCoroutine()
     {
         yield return new WaitForSeconds(0.25f);
-        ShockwaveEffectManager.instance.StartShockwave();
         currentCombatState = CombatState.Idle;
     }
 

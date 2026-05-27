@@ -62,12 +62,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _ColorMult: 0.75
     - _GlobalAlpha: 0
     - _Size: 0.1
-    - _WaveDistanceFromCenter: 1.0004005
+    - _WaveDistanceFromCenter: 1.0417957
     - _WaveStrength: -0.1
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
-    - _RingSpawnPosition: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _ColorMult: {r: 1, g: 1, b: 1, a: 1}
+    - _RingSpawnPosition: {r: 0.45898896, g: 0.32150728, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

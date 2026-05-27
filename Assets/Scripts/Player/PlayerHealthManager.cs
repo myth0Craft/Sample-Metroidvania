@@ -9,6 +9,7 @@ public class PlayerHealthManager : HealthManager
     public Material shinyMat;
     public Material hurtMat;
     public ParticleSystem hitParticle;
+    public GameObject blockParticle;
     private CamShakeSource camShakeSource;
 
     public AudioClip hurtSound;
@@ -46,7 +47,21 @@ public class PlayerHealthManager : HealthManager
 
     public override void ApplyDamageIgnoreIFrames(int amount)
     {
-        if (shouldApplyDamage && PlayerMeleeAttack.instance.currentCombatState != CombatState.Blocking)
+        if (PlayerMeleeAttack.instance.currentCombatState == CombatState.Blocking)
+        {
+            Instantiate(blockParticle, transform.position, Quaternion.identity);
+            Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
+            //GlobalHitstopManager.DoHitstop(0.05f);
+            GlobalHitstopManager.DoHitStopThenHitSlow(0.05f, 0.15f, 0.25f);
+            CamShakeSource.instance.AddScreenShake(0.2f);
+
+            ShockwaveEffectManager.instance.SetSpeed(3f);
+            ShockwaveEffectManager.instance.StartShockwave(new Vector2(viewportPos.x, viewportPos.y));
+            return;
+        }
+
+
+        if (shouldApplyDamage)
         {
             base.ApplyDamageIgnoreIFrames(amount);
             print(maxHealth + "/" + currentHealth);
@@ -57,6 +72,7 @@ public class PlayerHealthManager : HealthManager
     {
         StartCoroutine(StopDamageForDurationCoroutine(durationSeconds));
     }
+
     private IEnumerator StopDamageForDurationCoroutine(float durationSeconds)
     {
         shouldApplyDamage = false;

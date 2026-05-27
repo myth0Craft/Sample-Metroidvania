@@ -43,4 +43,18 @@ public class GlobalHitstopManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(duration);
         Time.timeScale = 1f;
     }
+
+    public static void DoHitStopThenHitSlow(float hitStopDuration, float hitSlowDuration, float timescale)
+    {
+        if (instance.active != null)
+            instance.StopCoroutine(instance.active);
+
+        instance.active = instance.StartCoroutine(instance.HitStopThenHitSlowCoroutine(hitStopDuration, hitSlowDuration, timescale));
+    }
+
+    private IEnumerator HitStopThenHitSlowCoroutine(float hitStopDuration, float hitSlowDuration, float timescale)
+    {
+        yield return Hitstop(hitStopDuration);
+        yield return Hitslow(hitSlowDuration, timescale);
+    }
 }
