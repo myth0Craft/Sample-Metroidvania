@@ -14,6 +14,7 @@ TagManager:
   - Slope
   - SaveIconController
   - EventSystem
+  - UnsafeZone
   layers:
   - Default
   - TransparentFX

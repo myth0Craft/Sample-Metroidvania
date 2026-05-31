@@ -167,6 +167,7 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Block.performed -= OnBlockPressed;
     }
 
+    
 
     void OnEnable()
     {
@@ -177,6 +178,7 @@ public class PlayerMovement : MonoBehaviour
     {
         controls.Player.Disable();
     }
+
 
     private void OnDashPressed(InputAction.CallbackContext context)
     {
@@ -779,6 +781,7 @@ public class PlayerMovement : MonoBehaviour
         if (groundedThisFrame)
         {
             groundedRememberTimer = groundedRememberTime;
+            SafeZoneTracker.instance.UpdateLastSafeZone();
             ResetAbilities();
         }
         else

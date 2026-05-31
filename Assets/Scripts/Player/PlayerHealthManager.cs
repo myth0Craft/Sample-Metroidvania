@@ -89,6 +89,25 @@ public class PlayerHealthManager : HealthManager
         }
     }
 
+    public void ApplySpikeDamage(int amount)
+    {
+        base.ApplyDamageIgnoreIFrames(amount);
+        iFrameTimer = iFrameDuration;
+        if (currentHealth > 0)
+        {
+            SafeZoneTracker.instance.MoveParentToLastSafeZone();
+            StartCoroutine(DisableInputOnHurt());
+        }
+        
+    }
+
+    private IEnumerator DisableInputOnHurt()
+    {
+        PlayerData.AllowGameInput(false);
+        yield return new WaitForSeconds(0.25f);
+        PlayerData.AllowGameInput(true);
+    }
+
     public override void Die()
     {
         if (!isDead)

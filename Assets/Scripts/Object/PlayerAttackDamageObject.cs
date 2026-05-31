@@ -26,12 +26,20 @@ public class PlayerAttackDamageObject : MonoBehaviour
         {*/
         BreakableObject health = other.GetComponent<BreakableObject>();
         EnemyHealthManager enemyHealth = other.GetComponent <EnemyHealthManager>();
+        OneWayBreakableObj oneWayHealth = other.GetComponent<OneWayBreakableObj>();
         if (health != null)
         {
             health.ApplyDamage();
             CamShakeSource.instance.AddScreenShake(0.08f);
 
         }
+
+        if (oneWayHealth != null)
+        {
+            oneWayHealth.ApplyDamage();
+            CamShakeSource.instance.AddScreenShake(0.08f);
+        }
+
         if (enemyHealth != null)
         {
             enemyHealth.ApplyDamage();
