@@ -30,12 +30,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6685a9d70b2e96240aef78d50f654d4f, type: 3}
   m_Name: LayerMaskRenderFeature
   m_EditorClassIdentifier: Assembly-CSharp::LayerMaskRenderFeature
-  m_Active: 1
+  m_Active: 0
   settings:
     material: {fileID: 2100000, guid: 26af727e00176b34c8f9d25d21bd6d81, type: 2}
     captureLayers:
       serializedVersion: 2
-      m_Bits: 81920
+      m_Bits: 82432
     hiddenLayers:
       serializedVersion: 2
       m_Bits: 0
@@ -46,7 +46,24 @@ MonoBehaviour:
     postProcessingMask:
       serializedVersion: 2
       m_Bits: 131072
-    useOcclusionCulling: 0
+    useOcclusionCulling: 1
+--- !u!114 &-1413657371641758739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1286b53aef7fc414dbd2de5663fb1d26, type: 3}
+  m_Name: BlitFromRenderTexture
+  m_EditorClassIdentifier: Assembly-CSharp::BlitFromRenderTexture
+  m_Active: 1
+  settings:
+    material: {fileID: 2100000, guid: 26af727e00176b34c8f9d25d21bd6d81, type: 2}
+    tex: {fileID: 8600000, guid: 89239779196f99f4d84060b1af20235d, type: 2}
+  pass: 500
 --- !u!114 &-329711981106645954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,7 +114,8 @@ MonoBehaviour:
   - {fileID: 4024492890531530637}
   - {fileID: 5876038125951743331}
   - {fileID: -4134799733540237035}
-  m_RendererFeatureMap: 3eb4f237b3a06cfb8d873715f6ded937637501008be18b511551f4a88c3d9ec6
+  - {fileID: -1413657371641758739}
+  m_RendererFeatureMap: 3eb4f237b3a06cfb8d873715f6ded937637501008be18b511551f4a88c3d9ec6ed3b2e411cae61ec
   m_UseNativeRenderPass: 0
   m_LayerMask:
     serializedVersion: 2

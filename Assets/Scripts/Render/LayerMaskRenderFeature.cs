@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
@@ -29,8 +28,9 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
         hidden.aspect = main.aspect;
         hidden.nearClipPlane = main.nearClipPlane;
         hidden.farClipPlane = main.farClipPlane;
-        hidden.projectionMatrix = main.projectionMatrix;
+        //hidden.projectionMatrix = main.projectionMatrix;
         hidden.aspect = main.aspect;
+        //hidden.GetComponent<UniversalAdditionalCameraData>().volumeLayerMask = settings.postProcessingMask;
 
         if (hidden.targetTexture != null &&
             (hidden.targetTexture.width != main.pixelWidth || hidden.targetTexture.height != main.pixelHeight))
@@ -89,8 +89,11 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
         {
             SyncCamera(hiddenCam, cam);
 
+            
             var request = new UniversalRenderPipeline.SingleCameraRequest();
             request.destination = hiddenCam.targetTexture;
+            
+            
             RenderPipeline.SubmitRenderRequest(hiddenCam, request);
         }
         finally
@@ -103,6 +106,9 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
 
     public override void Create()
     {
+        handle?.Release();
+        handle = null;
+
         var w = Mathf.Max(1, Screen.width / settings.downscaling);
         var h = Mathf.Max(1, Screen.height / settings.downscaling);
 
@@ -125,7 +131,8 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
         {
             handle?.Release();
             handle = null;
-
+            if (hiddenCam != null)
+                hiddenCam.targetTexture = null;
 
 
             if (tex != null) { tex.Release(); tex = null; }
@@ -177,8 +184,11 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
         urpData.volumeLayerMask = settings.postProcessingMask;
         urpData.renderShadows = false;
         urpData.requiresDepthTexture = false;
-        urpData.requiresColorTexture = false;
-        urpData.volumeTrigger = null;
+        urpData.requiresColorTexture = true;
+        urpData.volumeTrigger = hiddenCam.transform;
+        
+        
+        //urpData.volumeTrigger = hiddenCam.transform;
         urpData.antialiasing = AntialiasingMode.None;
 
         hiddenCam.enabled = false;
@@ -186,6 +196,8 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
         _renderHandler = OnBeginCameraRendering;
         RenderPipelineManager.beginCameraRendering += _renderHandler;
     }
+
+
 
     protected override void Dispose(bool disposing)
     {
@@ -195,10 +207,19 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
             _renderHandler = null;
         }
 
+        if (hiddenCam != null)
+        {
+            hiddenCam.targetTexture = null;
+        }
+
         handle?.Release();
         handle = null;
 
-        if (tex != null) { tex.Release(); tex = null; }
+        if (tex != null)
+        {
+            tex.Release();
+            tex = null;
+        }
 
         if (hiddenCamGO != null)
         {
