@@ -56514,7 +56514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a913b75e374ff2f4296c579d5d3596ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthManager
-  maxHealth: 3
+  maxHealth: 20
   iFrameDuration: 0.5
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   hurtMaterial: {fileID: 2100000, guid: 2e449d64daac4b14ab50cb16f78df2d4, type: 2}

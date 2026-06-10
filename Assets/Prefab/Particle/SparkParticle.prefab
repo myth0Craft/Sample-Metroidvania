@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 629572697614605684}
   - component: {fileID: 535316810328911236}
   - component: {fileID: 7830343870249462111}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: SparkParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,8 +223,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.45535713, b: 0, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      minColor: {r: 1, g: 0.22568531, b: 0, a: 1}
+      maxColor: {r: 1, g: 0.98104197, b: 0.13679248, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -288,8 +288,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.1
-      minScalar: 0.05
+      scalar: 0.03
+      minScalar: 0.02
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -981,7 +981,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 8
+        scalar: 15
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -3878,7 +3878,7 @@ ParticleSystem:
       properties: 0
       emitProbability: 1
   LightsModule:
-    enabled: 1
+    enabled: 0
     ratio: 0
     light: {fileID: 0}
     randomDistribution: 1
@@ -4861,7 +4861,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -135360115
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: -200
   m_MaskInteraction: 0
   m_RenderMode: 0
@@ -4906,7 +4906,7 @@ GameObject:
   - component: {fileID: 2138702947231505028}
   - component: {fileID: 2781857296636546846}
   - component: {fileID: 75542566141288335}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: SparkParticle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5117,8 +5117,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.59912676, b: 0, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      minColor: {r: 1, g: 0.24545762, b: 0, a: 1}
+      maxColor: {r: 1, g: 0.94365287, b: 0.3537736, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5182,8 +5182,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.1
-      minScalar: 0.05
+      scalar: 0.03
+      minScalar: 0.02
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5875,7 +5875,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 8
+        scalar: 15
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -9755,7 +9755,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -135360115
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: -200
   m_MaskInteraction: 0
   m_RenderMode: 0

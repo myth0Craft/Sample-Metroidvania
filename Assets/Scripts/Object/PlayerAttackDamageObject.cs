@@ -51,13 +51,14 @@ public class PlayerAttackDamageObject : MonoBehaviour
             {
                 Destroy(currentSparkInstance.gameObject);
             }
-
+            
             currentSparkInstance = Instantiate(
                 sparkParticles,
                 transform.position,
                 Quaternion.identity
             );
-            StartCoroutine(DestroySparkParticleCoroutine());
+            //currentSparkInstance.layer = LayerMask.NameToLayer("HighBloom");
+            //StartCoroutine(DestroySparkParticleCoroutine());
 
         }
         //}

@@ -33,7 +33,7 @@ TagManager:
   - Lighting
   - Enemy
   - HighBloom
-  - DOF
+  - BloomPostProcessing
   - 
   - 
   - 
