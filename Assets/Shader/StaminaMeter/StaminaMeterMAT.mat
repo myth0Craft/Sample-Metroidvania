@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3545323429819432444
+--- !u!114 &-7435238183414857493
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ShockwaveMAT
-  m_Shader: {fileID: -6465566751694194690, guid: 69b056a12cfa24b429a17316eda86a83, type: 3}
+  m_Name: StaminaMeterMAT
+  m_Shader: {fileID: -6465566751694194690, guid: 02660af8b355ea041b32408c64ae2703, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -36,14 +36,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _BlitTexture:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _CameraSortingLayerTexture:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -62,14 +54,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ColorMult: 0.75
-    - _GlobalAlpha: 0
-    - _Size: 0.1
-    - _WaveDistanceFromCenter: 1.04247
-    - _WaveStrength: -0.1
+    - _Stamina: 1
+    - _TimeSpeed: 0
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorMult: {r: 1, g: 1, b: 1, a: 1}
-    - _RingSpawnPosition: {r: 0.4273552, g: 0.39630738, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
