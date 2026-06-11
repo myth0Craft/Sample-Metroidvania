@@ -46,23 +46,6 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 512
     material: {fileID: 2100000, guid: 59572ffb45abb50408e87536e64ec6eb, type: 2}
---- !u!114 &-1413657371641758739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1286b53aef7fc414dbd2de5663fb1d26, type: 3}
-  m_Name: BlitFromRenderTexture
-  m_EditorClassIdentifier: Assembly-CSharp::BlitFromRenderTexture
-  m_Active: 0
-  settings:
-    material: {fileID: 2100000, guid: 26af727e00176b34c8f9d25d21bd6d81, type: 2}
-    tex: {fileID: 8600000, guid: 89239779196f99f4d84060b1af20235d, type: 2}
-  pass: 500
 --- !u!114 &-329711981106645954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,13 +93,10 @@ MonoBehaviour:
     probeVolumeBlendStatesCS: {fileID: 0}
   m_RendererFeatures:
   - {fileID: -329711981106645954}
-  - {fileID: 4024492890531530637}
-  - {fileID: 5876038125951743331}
-  - {fileID: -1413657371641758739}
   - {fileID: 3024546607955135292}
   - {fileID: 946665036061007976}
   - {fileID: -6474134315028845756}
-  m_RendererFeatureMap: 3eb4f237b3a06cfb8d873715f6ded937637501008be18b51ed3b2e411cae61ec3c4bc77d1d59f92968e0b2abd53a230d44eb8954244127a6
+  m_RendererFeatureMap: 3eb4f237b3a06cfb3c4bc77d1d59f92968e0b2abd53a230d44eb8954244127a6
   m_UseNativeRenderPass: 0
   m_LayerMask:
     serializedVersion: 2
@@ -245,52 +225,6 @@ MonoBehaviour:
       m_Bits: 0
     downscaling: 1
     renderBehindScene: 0
-    rendererIndex: 1
---- !u!114 &4024492890531530637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06941618248ec364fa3e8ac7c6133128, type: 3}
-  m_Name: ForegroundBlur
-  m_EditorClassIdentifier: Assembly-CSharp::CustomMaskRenderFeature
-  m_Active: 0
-  settings:
-    material: {fileID: 2100000, guid: 6729ced3af4078940817644fd1f34c54, type: 2}
-    mat2: {fileID: 2100000, guid: db2c1306610b0e74b93125965677eee3, type: 2}
-    blurAmount: 0.0035
-    foregroundLayers:
-      serializedVersion: 2
-      m_Bits: 18432
-    downscaling: 2
-    renderBehindScene: 0
-    rendererIndex: 1
---- !u!114 &5876038125951743331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06941618248ec364fa3e8ac7c6133128, type: 3}
-  m_Name: BackgroundBlur
-  m_EditorClassIdentifier: Assembly-CSharp::CustomMaskRenderFeature
-  m_Active: 0
-  settings:
-    material: {fileID: 2100000, guid: ed4f4c2808b45d045858ec616e012d2c, type: 2}
-    mat2: {fileID: 2100000, guid: 84774fd17d895e4499b699bbc0563f7e, type: 2}
-    blurAmount: 0.0025
-    foregroundLayers:
-      serializedVersion: 2
-      m_Bits: 16896
-    downscaling: 2
-    renderBehindScene: 1
     rendererIndex: 1
 --- !u!114 &8389911850138563732
 MonoBehaviour:

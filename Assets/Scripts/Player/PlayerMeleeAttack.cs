@@ -39,6 +39,9 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private Coroutine currentCombatCoroutine;
 
+    public int combatStaminaCost = 15;
+    public int dashAttackStaminaCost = 30;
+
 
     private void Awake()
     {
@@ -116,8 +119,15 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private void OnAttackPressed(InputAction.CallbackContext context)
     {
+
+
         if ((PlayerData.swordUnlocked || attackDebugActive) && !PlayerData.gamePaused)
         {
+            if (!StaminaManager.instance.CanAffordStaminaCost(combatStaminaCost))
+            {
+                return;
+            }
+
             if (comboNum >= 2)
             {
                 return;
@@ -128,10 +138,15 @@ public class PlayerMeleeAttack : MonoBehaviour
             if (playerMovement.currentHorizontalState == HorizontalState.Dashing && playerMovement.IsGroundedBuffered()
                 )
             {
+                if (!StaminaManager.instance.CanAffordStaminaCost(dashAttackStaminaCost)) return;
+
                 PerformDashAttack();
                 return;
             }
 
+            if (!StaminaManager.instance.CanAffordStaminaCost(combatStaminaCost)) return;
+
+            
 
             if (currentCombatState == CombatState.Idle)
             {
@@ -157,6 +172,7 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private void PerformDashAttack()
     {
+        StaminaManager.instance.DecrementStamina(dashAttackStaminaCost);
         PlayerAnimationManager.instance.LungeAttack();
         PlayerAnimationManager.instance.disableSword();
         PlayerMovement.instance.currentHorizontalState = HorizontalState.Dashing;
@@ -169,6 +185,7 @@ public class PlayerMeleeAttack : MonoBehaviour
         comboNum = 0;
         do
         {
+            StaminaManager.instance.DecrementStamina(combatStaminaCost);
             attackQueued = false;
 
             currentCombatState = CombatState.Startup;
@@ -249,7 +266,9 @@ public class PlayerMeleeAttack : MonoBehaviour
         {
             return;
         }
+
         
+
         PlayerAnimationManager.instance.disableSword();
         PlayerAnimationManager.instance.SetSwingSwordTrigger();
         currentCombatCoroutine = StartCoroutine(AttackCoroutine());

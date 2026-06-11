@@ -1939,7 +1939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6827771851370424541, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37.86755
+      value: 33.166565
       objectReference: {fileID: 0}
     - target: {fileID: 6827771851370424541, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1998,8 +1998,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 910467496}
+  - component: {fileID: 910467497}
   m_Layer: 0
-  m_Name: Stamina
+  m_Name: StaminaManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2021,6 +2022,23 @@ Transform:
   - {fileID: 1010620888}
   m_Father: {fileID: 1000776769}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &910467497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910467495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64688be7e1117fb47ba3e15bf5c6714c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StaminaManager
+  currentStamina: 100
+  maxStamina: 100
+  cooldownBeforeRecharge: 2
+  rechargeSpeed: 5
+  staminaMeterMat: {fileID: 2100000, guid: a495153953ba6654b9ff40553cbc4b57, type: 2}
 --- !u!1 &961455638
 GameObject:
   m_ObjectHideFlags: 0
