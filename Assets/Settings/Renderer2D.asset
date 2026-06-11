@@ -1,5 +1,33 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6474134315028845756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6685a9d70b2e96240aef78d50f654d4f, type: 3}
+  m_Name: BloomRenderFeature
+  m_EditorClassIdentifier: Assembly-CSharp::LayerMaskRenderFeature
+  m_Active: 1
+  settings:
+    passName: BloomRenderFeature
+    rendererIndex: 1
+    renderingOrder: 500
+    tex: {fileID: 8600000, guid: 89239779196f99f4d84060b1af20235d, type: 2}
+    materials:
+    - {fileID: 2100000, guid: 26af727e00176b34c8f9d25d21bd6d81, type: 2}
+    captureLayers:
+      serializedVersion: 2
+      m_Bits: 0
+    hiddenLayers:
+      serializedVersion: 2
+      m_Bits: 0
+    downscaling: 1
+    renderInSceneView: 0
 --- !u!114 &-5175326485259581987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18,35 +46,6 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 512
     material: {fileID: 2100000, guid: 59572ffb45abb50408e87536e64ec6eb, type: 2}
---- !u!114 &-4134799733540237035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6685a9d70b2e96240aef78d50f654d4f, type: 3}
-  m_Name: LayerMaskRenderFeature
-  m_EditorClassIdentifier: Assembly-CSharp::LayerMaskRenderFeature
-  m_Active: 0
-  settings:
-    material: {fileID: 2100000, guid: 26af727e00176b34c8f9d25d21bd6d81, type: 2}
-    captureLayers:
-      serializedVersion: 2
-      m_Bits: 82432
-    hiddenLayers:
-      serializedVersion: 2
-      m_Bits: 0
-    downscaling: 1
-    renderBehindScene: 0
-    renderInSceneView: 0
-    postProcessing: 1
-    postProcessingMask:
-      serializedVersion: 2
-      m_Bits: 131072
-    useOcclusionCulling: 1
 --- !u!114 &-1413657371641758739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1286b53aef7fc414dbd2de5663fb1d26, type: 3}
   m_Name: BlitFromRenderTexture
   m_EditorClassIdentifier: Assembly-CSharp::BlitFromRenderTexture
-  m_Active: 1
+  m_Active: 0
   settings:
     material: {fileID: 2100000, guid: 26af727e00176b34c8f9d25d21bd6d81, type: 2}
     tex: {fileID: 8600000, guid: 89239779196f99f4d84060b1af20235d, type: 2}
@@ -113,9 +112,11 @@ MonoBehaviour:
   - {fileID: -329711981106645954}
   - {fileID: 4024492890531530637}
   - {fileID: 5876038125951743331}
-  - {fileID: -4134799733540237035}
   - {fileID: -1413657371641758739}
-  m_RendererFeatureMap: 3eb4f237b3a06cfb8d873715f6ded937637501008be18b511551f4a88c3d9ec6ed3b2e411cae61ec
+  - {fileID: 3024546607955135292}
+  - {fileID: 946665036061007976}
+  - {fileID: -6474134315028845756}
+  m_RendererFeatureMap: 3eb4f237b3a06cfb8d873715f6ded937637501008be18b51ed3b2e411cae61ec3c4bc77d1d59f92968e0b2abd53a230d44eb8954244127a6
   m_UseNativeRenderPass: 0
   m_LayerMask:
     serializedVersion: 2
@@ -146,6 +147,35 @@ MonoBehaviour:
   m_PostProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   m_DefaultMaterialType: 0
   m_DefaultCustomMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+--- !u!114 &946665036061007976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6685a9d70b2e96240aef78d50f654d4f, type: 3}
+  m_Name: NewForegroundBlur
+  m_EditorClassIdentifier: Assembly-CSharp::LayerMaskRenderFeature
+  m_Active: 1
+  settings:
+    passName: NewForegroundBlur
+    rendererIndex: 1
+    renderingOrder: 500
+    tex: {fileID: 0}
+    materials:
+    - {fileID: 2100000, guid: 6729ced3af4078940817644fd1f34c54, type: 2}
+    - {fileID: 2100000, guid: db2c1306610b0e74b93125965677eee3, type: 2}
+    captureLayers:
+      serializedVersion: 2
+      m_Bits: 18432
+    hiddenLayers:
+      serializedVersion: 2
+      m_Bits: 18432
+    downscaling: 4
+    renderInSceneView: 0
 --- !u!114 &2669276714532398708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +194,35 @@ MonoBehaviour:
     layersToBlur:
       serializedVersion: 2
       m_Bits: 4294967295
+--- !u!114 &3024546607955135292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6685a9d70b2e96240aef78d50f654d4f, type: 3}
+  m_Name: NewBackgroundBlur
+  m_EditorClassIdentifier: Assembly-CSharp::LayerMaskRenderFeature
+  m_Active: 1
+  settings:
+    passName: NewBackgroundBlur
+    rendererIndex: 1
+    renderingOrder: 250
+    tex: {fileID: 0}
+    materials:
+    - {fileID: 2100000, guid: ed4f4c2808b45d045858ec616e012d2c, type: 2}
+    - {fileID: 2100000, guid: 84774fd17d895e4499b699bbc0563f7e, type: 2}
+    captureLayers:
+      serializedVersion: 2
+      m_Bits: 16896
+    hiddenLayers:
+      serializedVersion: 2
+      m_Bits: 16896
+    downscaling: 2
+    renderInSceneView: 0
 --- !u!114 &3463837079115857520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06941618248ec364fa3e8ac7c6133128, type: 3}
   m_Name: ForegroundBlur
   m_EditorClassIdentifier: Assembly-CSharp::CustomMaskRenderFeature
-  m_Active: 1
+  m_Active: 0
   settings:
     material: {fileID: 2100000, guid: 6729ced3af4078940817644fd1f34c54, type: 2}
     mat2: {fileID: 2100000, guid: db2c1306610b0e74b93125965677eee3, type: 2}
@@ -222,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06941618248ec364fa3e8ac7c6133128, type: 3}
   m_Name: BackgroundBlur
   m_EditorClassIdentifier: Assembly-CSharp::CustomMaskRenderFeature
-  m_Active: 1
+  m_Active: 0
   settings:
     material: {fileID: 2100000, guid: ed4f4c2808b45d045858ec616e012d2c, type: 2}
     mat2: {fileID: 2100000, guid: 84774fd17d895e4499b699bbc0563f7e, type: 2}

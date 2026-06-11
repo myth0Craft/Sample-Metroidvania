@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
@@ -15,9 +16,9 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
     private RenderTexture tex;
     private Camera hiddenCam;
     private GameObject hiddenCamGO;
-    private bool _isRendering = false;
-    private Action<ScriptableRenderContext, Camera> _renderHandler;
-    private int _lastRenderedFrame = -1;
+    private bool isRendering = false;
+    private Action<ScriptableRenderContext, Camera> renderHandler;
+    private int lastRenderedFrame = -1;
 
     void SyncCamera(Camera hidden, Camera main)
     {
@@ -28,9 +29,7 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
         hidden.aspect = main.aspect;
         hidden.nearClipPlane = main.nearClipPlane;
         hidden.farClipPlane = main.farClipPlane;
-        //hidden.projectionMatrix = main.projectionMatrix;
         hidden.aspect = main.aspect;
-        //hidden.GetComponent<UniversalAdditionalCameraData>().volumeLayerMask = settings.postProcessingMask;
 
         if (hidden.targetTexture != null &&
             (hidden.targetTexture.width != main.pixelWidth || hidden.targetTexture.height != main.pixelHeight))
@@ -63,42 +62,36 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
             if (settings.renderInSceneView)
             {
                 cam.cullingMask = ~settings.hiddenLayers;
-            } else
+            }
+            else
             {
                 return;
             }
         }
 
-        /*if (cam.cameraType != CameraType.Game &&
-            cam.cameraType != CameraType.SceneView) return;
-        if (!cam.CompareTag("MainCamera")) return;*/
-        if (_isRendering) return;
+        if (isRendering) return;
         if (hiddenCam == null) return;
         if (handle == null) return;
         if (hiddenCam.targetTexture == null) return;
-        if (Time.frameCount == _lastRenderedFrame) return;
-        _lastRenderedFrame = Time.frameCount;
+        if (Time.frameCount == lastRenderedFrame) return;
+        lastRenderedFrame = Time.frameCount;
 
 
 
         hiddenCam.cullingMask = settings.captureLayers;
-        hiddenCam.GetComponent<UniversalAdditionalCameraData>().volumeLayerMask = settings.postProcessingMask;
 
-        _isRendering = true;
+        isRendering = true;
         try
         {
             SyncCamera(hiddenCam, cam);
 
-            
             var request = new UniversalRenderPipeline.SingleCameraRequest();
             request.destination = hiddenCam.targetTexture;
-            
-            
             RenderPipeline.SubmitRenderRequest(hiddenCam, request);
         }
         finally
         {
-            _isRendering = false;
+            isRendering = false;
         }
     }
 
@@ -106,18 +99,21 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
 
     public override void Create()
     {
-        handle?.Release();
-        handle = null;
+        if (settings.tex != null)
+        {
+            SetUpManualRendering();
+            return;
+        }
 
         var w = Mathf.Max(1, Screen.width / settings.downscaling);
         var h = Mathf.Max(1, Screen.height / settings.downscaling);
 
         bool needsRealloc = tex == null || !tex.IsCreated() || tex.width != w || tex.height != h;
 
-        if (_renderHandler != null)
+        if (renderHandler != null)
         {
-            RenderPipelineManager.beginCameraRendering -= _renderHandler;
-            _renderHandler = null;
+            RenderPipelineManager.beginCameraRendering -= renderHandler;
+            renderHandler = null;
         }
 
         if (hiddenCamGO != null || hiddenCam != null)
@@ -131,8 +127,7 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
         {
             handle?.Release();
             handle = null;
-            if (hiddenCam != null)
-                hiddenCam.targetTexture = null;
+
 
 
             if (tex != null) { tex.Release(); tex = null; }
@@ -144,7 +139,7 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
                 msaaSamples = 1,
                 sRGB = true
             };
-            tex = new RenderTexture(desc) { name = "__BlurRT" + System.Guid.NewGuid() };
+            tex = new RenderTexture(desc) { name = $"_{settings.passName}_{System.Guid.NewGuid()}" };
 
             RenderingUtils.ReAllocateHandleIfNeeded(ref handle,
                 Vector2.one / settings.downscaling,
@@ -154,72 +149,76 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
                 name: "_CustomMaskTex");
 
 
-            mainPass = new LayerMaskRenderFeaturePass(settings, handle, this);
+            mainPass = new LayerMaskRenderFeaturePass(settings, handle);
             mainPass.InvalidateRTInfo();
         }
 
         if (mainPass != null)
-            mainPass.renderPassEvent = settings.renderBehindScene
-                ? RenderPassEvent.BeforeRenderingOpaques
-                : RenderPassEvent.AfterRenderingTransparents;
+        {
+            mainPass.renderPassEvent = settings.renderingOrder;
+        }
 
-        //Configure the hidden camera here.
+
+
+
         hiddenCamGO = new GameObject("HiddenCamGO") { hideFlags = HideFlags.HideAndDontSave };
         hiddenCam = hiddenCamGO.AddComponent<Camera>();
         hiddenCam.cullingMask = settings.captureLayers;
         hiddenCam.depthTextureMode = DepthTextureMode.None;
         hiddenCam.targetTexture = handle.rt;
         hiddenCam.forceIntoRenderTexture = true;
-        
+        hiddenCam.enabled = false;
         hiddenCam.clearFlags = CameraClearFlags.SolidColor;
         hiddenCam.backgroundColor = new Color(0, 0, 0, 0);
         hiddenCam.allowHDR = false;
         hiddenCam.allowMSAA = false;
-        hiddenCam.useOcclusionCulling = settings.useOcclusionCulling;
+        hiddenCam.useOcclusionCulling = false;
         hiddenCam.allowDynamicResolution = false;
 
         var urpData = hiddenCam.gameObject.AddComponent<UniversalAdditionalCameraData>();
-        urpData.SetRenderer(1);
-        urpData.renderPostProcessing = settings.postProcessing;
-        urpData.volumeLayerMask = settings.postProcessingMask;
+        urpData.SetRenderer(settings.rendererIndex);
+        urpData.renderPostProcessing = false;
         urpData.renderShadows = false;
         urpData.requiresDepthTexture = false;
-        urpData.requiresColorTexture = true;
-        urpData.volumeTrigger = hiddenCam.transform;
-        
-        
-        //urpData.volumeTrigger = hiddenCam.transform;
+        urpData.requiresColorTexture = false;
         urpData.antialiasing = AntialiasingMode.None;
 
-        hiddenCam.enabled = false;
-
-        _renderHandler = OnBeginCameraRendering;
-        RenderPipelineManager.beginCameraRendering += _renderHandler;
+        renderHandler = OnBeginCameraRendering;
+        RenderPipelineManager.beginCameraRendering += renderHandler;
     }
 
+    private void SetUpManualRendering()
+    {
+        Dispose();
+
+        if (settings.tex != null)
+        {
+            handle = RTHandles.Alloc(settings.tex);
+        }
+        else
+        {
+            handle = null;
+        }
+
+        mainPass = new LayerMaskRenderFeaturePass(settings, handle);
+        mainPass.InvalidateRTInfo();
+        mainPass.renderPassEvent = settings.renderingOrder;
+
+    }
 
 
     protected override void Dispose(bool disposing)
     {
-        if (_renderHandler != null)
+        if (renderHandler != null)
         {
-            RenderPipelineManager.beginCameraRendering -= _renderHandler;
-            _renderHandler = null;
-        }
-
-        if (hiddenCam != null)
-        {
-            hiddenCam.targetTexture = null;
+            RenderPipelineManager.beginCameraRendering -= renderHandler;
+            renderHandler = null;
         }
 
         handle?.Release();
         handle = null;
 
-        if (tex != null)
-        {
-            tex.Release();
-            tex = null;
-        }
+        if (tex != null) { tex.Release(); tex = null; }
 
         if (hiddenCamGO != null)
         {
@@ -233,7 +232,6 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
     {
         if (!obj) return;
         if (Application.isPlaying) Destroy(obj);
-        //else DestroyImmediate(obj);
     }
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
@@ -245,17 +243,22 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
     [Serializable]
     public class LayerMaskRenderFeatureSettings
     {
+        public string passName = "CustomMaskPass";
+        public int rendererIndex = 0;
+
+        [Tooltip("Select BeforeRenderingOpaques to render behind the main camera. \nSelect AfterRenderingTransparents to render on top of the main camera.")]
+        public RenderPassEvent renderingOrder = RenderPassEvent.BeforeRenderingOpaques;
+
+        [Tooltip("Select a custom render texture here to render manually from your own camera. \n\nRecommended for post-processing effects.")]
+        public RenderTexture tex;
+
         [Tooltip("The material used to render the selected layers.\nSelect any fullscreen shader that reads from _BlitTexture.")]
-        public Material material;
+        public List<Material> materials = new List<Material>();
         public LayerMask captureLayers;
         public LayerMask hiddenLayers;
         [Range(1, 8)] public int downscaling = 1;
-        public bool renderBehindScene = false;
-        //public int rendererIndex = 1;
+        //public bool renderBehindScene = false;
         public bool renderInSceneView = false;
-        public bool postProcessing = false;
-        public LayerMask postProcessingMask;
-        public bool useOcclusionCulling = true;
     }
 
     class LayerMaskRenderFeaturePass : ScriptableRenderPass
@@ -263,16 +266,14 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
         private readonly RTHandle rt;
         readonly LayerMaskRenderFeatureSettings settings;
 
-        private RenderTargetInfo _rtInfo;
+        private RenderTargetInfo rtInfo;
         private ImportResourceParams _importParams;
-        private bool _rtInfoDirty = true;
-        private LayerMaskRenderFeature feature;
+        private bool rtInfoDirty = true;
 
-        public LayerMaskRenderFeaturePass(LayerMaskRenderFeatureSettings settings, RTHandle handle, LayerMaskRenderFeature feature)
+        public LayerMaskRenderFeaturePass(LayerMaskRenderFeatureSettings settings, RTHandle handle)
         {
             this.settings = settings;
             this.rt = handle;
-            this.feature = feature;
         }
 
         class PassData
@@ -281,20 +282,20 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
             public Material blitMaterial;
         }
 
-        public void InvalidateRTInfo() => _rtInfoDirty = true;
+        public void InvalidateRTInfo() => rtInfoDirty = true;
 
         public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData)
         {
             if (rt == null || rt.rt == null || !rt.rt.IsCreated()) return;
 
-            if (_rtInfoDirty)
+            if (rtInfoDirty)
             {
                 _importParams = new ImportResourceParams
                 {
                     clearOnFirstUse = false,
                     discardOnLastUse = false
                 };
-                _rtInfo = new RenderTargetInfo
+                rtInfo = new RenderTargetInfo
                 {
                     width = rt.rt.width,
                     height = rt.rt.height,
@@ -302,7 +303,7 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
                     msaaSamples = 1,
                     format = rt.rt.graphicsFormat
                 };
-                _rtInfoDirty = false;
+                rtInfoDirty = false;
             }
 
             settings.downscaling = Mathf.Clamp(settings.downscaling, 1, 8);
@@ -317,7 +318,7 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
             var resourceData = frameData.Get<UniversalResourceData>();
             var cameraColor = resourceData.activeColorTexture;
 
-            TextureHandle sourceHandle = renderGraph.ImportTexture(rt, _rtInfo, _importParams);
+            TextureHandle sourceHandle = renderGraph.ImportTexture(rt, rtInfo, _importParams);
 
             var tempDesc = new TextureDesc(rt.rt.width, rt.rt.height)
             {
@@ -334,17 +335,48 @@ public class LayerMaskRenderFeature : ScriptableRendererFeature
 
             TextureHandle tempA = renderGraph.CreateTexture(tempDesc);
 
-            using (var builder = renderGraph.AddRasterRenderPass<PassData>("CustomMaskRenderPass", out var passData))
+            TextureHandle tempB = renderGraph.CreateTexture(tempDesc);
+
+            TextureHandle currentSource = sourceHandle;
+
+            for (int i = 0; i < settings.materials.Count; i++)
             {
-                builder.AllowPassCulling(true);
-                builder.SetRenderAttachment(cameraColor, 0, AccessFlags.Write);
-                passData.source = sourceHandle;
-                passData.blitMaterial = settings.material;
-                builder.UseTexture(passData.source, AccessFlags.Read);
-                builder.SetRenderFunc((PassData data, RasterGraphContext context) =>
+
+                TextureHandle destination;
+
+                if (i == settings.materials.Count - 1)
                 {
-                    Blitter.BlitTexture(context.cmd, data.source, new Vector4(1, 1, 0, 0), data.blitMaterial, 0);
-                });
+                    destination = cameraColor;
+                }
+                else
+                {
+                    destination = (i % 2 == 0) ? tempA : tempB;
+                }
+
+                Material material = settings.materials[i];
+                if (material == null)
+                {
+                    Debug.Log("null material!");
+                    break;
+                }
+
+                using (var builder = renderGraph.AddRasterRenderPass<PassData>($"{settings.passName}_{i}", out var passData))
+                {
+
+                    passData.blitMaterial = material;
+                    builder.AllowPassCulling(true);
+                    builder.SetRenderAttachment(destination, 0, AccessFlags.Write);
+                    passData.source = currentSource;
+                    builder.UseTexture(passData.source, AccessFlags.Read);
+
+
+                    builder.SetRenderFunc((PassData data, RasterGraphContext context) =>
+                    {
+                        Blitter.BlitTexture(context.cmd, data.source, new Vector4(1, 1, 0, 0), data.blitMaterial, 0);
+                    });
+                }
+
+                currentSource = destination;
             }
         }
     }
