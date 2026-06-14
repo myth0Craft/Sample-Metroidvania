@@ -65,11 +65,11 @@ Material:
     - _ColorMult: 0.75
     - _GlobalAlpha: 0
     - _Size: 0.1
-    - _WaveDistanceFromCenter: 1.044221
+    - _WaveDistanceFromCenter: 1.0447272
     - _WaveStrength: -0.1
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
     - _ColorMult: {r: 1, g: 1, b: 1, a: 1}
-    - _RingSpawnPosition: {r: 0.42652512, g: 0.46449584, b: 0, a: 0}
+    - _RingSpawnPosition: {r: 0.4265255, g: 0.39999086, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

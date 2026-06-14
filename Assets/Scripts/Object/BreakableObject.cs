@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BreakableObject : HealthManager
@@ -7,6 +8,7 @@ public class BreakableObject : HealthManager
     public GameObject hitParticlesPrefab;
     public AudioClip hitSound;
     public bool saveState = false;
+    public List<GameObject> drops = new List<GameObject>();
     [SerializeField] private string id;
 
     public override void Awake()
@@ -55,6 +57,15 @@ public class BreakableObject : HealthManager
         {
             GameObject instance = Instantiate(breakParticlesPrefab, transform.position, Quaternion.identity);
             instance.GetComponent<ParticleSystem>().Play();
+        }
+        SpawnDrops();
+    }
+
+    private void SpawnDrops()
+    {
+        foreach(var GO in drops)
+        {
+            Instantiate(GO, transform.position, Quaternion.identity);
         }
     }
 

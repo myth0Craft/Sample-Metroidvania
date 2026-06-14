@@ -9,8 +9,6 @@ public class PlayerHealthManager : HealthManager
     public Material shinyMat;
     public Material hurtMat;
     public ParticleSystem hitParticle;
-    public GameObject blockParticle;
-    private CamShakeSource camShakeSource;
 
     public AudioClip hurtSound;
 
@@ -19,6 +17,8 @@ public class PlayerHealthManager : HealthManager
     private bool shouldApplyDamage = true;
 
     public static PlayerHealthManager instance;
+
+    
 
     private void Awake()
     {
@@ -37,7 +37,6 @@ public class PlayerHealthManager : HealthManager
         this.maxHealth = PlayerData.maxHealth;
         this.currentHealth = PlayerData.currentHealth;
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
-        camShakeSource = GameObject.FindGameObjectWithTag("CinemachineImpulseSource").GetComponent<CamShakeSource>();
     }
 
     public void ShouldApplyDamage(bool shouldApplyDamage)
@@ -49,14 +48,7 @@ public class PlayerHealthManager : HealthManager
     {
         if (PlayerMeleeAttack.instance.currentCombatState == CombatState.Blocking)
         {
-            Instantiate(blockParticle, transform.position, Quaternion.identity);
-            Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
-            //GlobalHitstopManager.DoHitstop(0.05f);
-            GlobalHitstopManager.DoHitStopThenHitSlow(0.05f, 0.15f, 0.25f);
-            CamShakeSource.instance.AddScreenShake(0.2f);
-
-            ShockwaveEffectManager.instance.SetSpeed(3f);
-            ShockwaveEffectManager.instance.StartShockwave(new Vector2(viewportPos.x, viewportPos.y));
+            PlayerMeleeAttack.instance.AddBlockEffects();
             return;
         }
 
@@ -68,6 +60,7 @@ public class PlayerHealthManager : HealthManager
         }
         
     }
+
     public void StopDamageForDuration(float durationSeconds)
     {
         StartCoroutine(StopDamageForDurationCoroutine(durationSeconds));

@@ -15,6 +15,7 @@ TagManager:
   - SaveIconController
   - EventSystem
   - UnsafeZone
+  - Pickup
   layers:
   - Default
   - TransparentFX

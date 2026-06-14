@@ -41,7 +41,13 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     public int combatStaminaCost = 15;
     public int dashAttackStaminaCost = 30;
+    public float blockStaminaCost = 20;
+    public float staminaRequiredToBlock = 10;
+    public float amountOfStaminaRestoredOnParry = 20;
 
+    public GameObject blockParticle;
+
+    private bool successfullyParried = false;
 
     private void Awake()
     {
@@ -66,6 +72,11 @@ public class PlayerMeleeAttack : MonoBehaviour
     }
     public void ResetCombatState()
     {
+        if (currentCombatCoroutine != null)
+        {
+            StopCoroutine(currentCombatCoroutine);
+        }
+        
         currentCombatCoroutine = null;
         currentCombatState = CombatState.Idle;
         comboNum = 0;
@@ -99,13 +110,18 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     public void OnBlock()
     {
-        if (currentCombatState == CombatState.Startup) return;
+        if (currentCombatState == CombatState.Startup || currentCombatState == CombatState.Active || currentCombatState == CombatState.Blocking) return;
+
+        if (!StaminaManager.instance.CanAffordStaminaCost(staminaRequiredToBlock)) return;
+
 
         if (currentCombatState == CombatState.Cooldown || currentCombatState == CombatState.Active)
         {
             ResetCombatState();
         }
 
+
+        successfullyParried = false;
         PlayerAnimationManager.instance.Block();
         currentCombatState = CombatState.Blocking;
         StartCoroutine(BlockCoroutine());
@@ -115,6 +131,26 @@ public class PlayerMeleeAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(0.25f);
         currentCombatState = CombatState.Idle;
+        if (!successfullyParried)
+        {
+            StaminaManager.instance.DecrementStamina(blockStaminaCost);
+        }
+        successfullyParried = false;
+        ResetCombatState();
+    }
+
+    public void AddBlockEffects()
+    {
+        successfullyParried = true;
+        StaminaManager.instance.RestoreStamina(amountOfStaminaRestoredOnParry);
+        Instantiate(blockParticle, transform.position, Quaternion.identity);
+        Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
+        //GlobalHitstopManager.DoHitstop(0.05f);
+        GlobalHitstopManager.DoHitStopThenHitSlow(0.05f, 0.15f, 0.25f);
+        CamShakeSource.instance.AddScreenShake(0.2f);
+
+        ShockwaveEffectManager.instance.SetSpeed(3f);
+        ShockwaveEffectManager.instance.StartShockwave(new Vector2(viewportPos.x, viewportPos.y));
     }
 
     private void OnAttackPressed(InputAction.CallbackContext context)
