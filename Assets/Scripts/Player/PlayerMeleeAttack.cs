@@ -24,7 +24,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     private float attackHitboxActiveDurationSeconds = 0.12f;
     public bool attackHitboxActive { get; private set; } = false;
 
-    private float attackCooldownDurationSeconds = 1f;
+    private float attackCooldownDurationSeconds = 0.8f;
     [SerializeField] private GameObject attackHitbox;
 
     [SerializeField] private bool attackDebug;
