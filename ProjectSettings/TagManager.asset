@@ -16,6 +16,7 @@ TagManager:
   - EventSystem
   - UnsafeZone
   - Pickup
+  - PlayerAttackHitbox
   layers:
   - Default
   - TransparentFX

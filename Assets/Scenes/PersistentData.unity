@@ -7522,6 +7522,10 @@ PrefabInstance:
       propertyPath: abilityDebug
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9217998083109764275, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
+      propertyPath: m_TagString
+      value: PlayerAttackHitbox
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4653989688271885521, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
     m_RemovedGameObjects:
