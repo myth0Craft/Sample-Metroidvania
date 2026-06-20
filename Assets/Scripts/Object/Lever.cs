@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Lever : MonoBehaviour
@@ -6,7 +7,11 @@ public class Lever : MonoBehaviour
 
     public bool isActivated = false;
 
+    public bool onlyWorksOnce = false;
+
     [SerializeField] private string id;
+
+    public List<Gate> gates = new List<Gate>();
 
     private void Awake()
     {
@@ -33,10 +38,13 @@ public class Lever : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (!isActivated)
+        if ((!isActivated && onlyWorksOnce) || !onlyWorksOnce)
         {
             if (collision.CompareTag("PlayerAttackHitbox"))
             {
+
+                isActivated = !isActivated;
+
                 if (id == null)
                 {
                     Debug.Log("Id of Lever is null!");
@@ -44,14 +52,25 @@ public class Lever : MonoBehaviour
                 else
                 {
                     var room = SaveSystem.getRoom(gameObject.scene.name);
-                    room.pickups[id] = true;
+                    room.pickups[id] = isActivated;
                 }
 
                 CamShakeSource.instance.AddScreenShake(0.25f);
-
+                anim.SetBool("Locked", onlyWorksOnce);
+                anim.SetBool("IsActivated", isActivated);
                 anim.SetTrigger("Activate");
-                isActivated = true;
+                
+
+                OnLeverHit();
             }
+        }
+    }
+
+    public void OnLeverHit()
+    {
+        foreach(Gate gate in gates)
+        {
+            gate.TriggerGate();
         }
     }
 }
