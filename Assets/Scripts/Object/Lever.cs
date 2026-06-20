@@ -17,7 +17,7 @@ public class Lever : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        if (id == null)
+        if (id == null || id == "")
         {
             Debug.Log("Id of Lever is null!");
         }

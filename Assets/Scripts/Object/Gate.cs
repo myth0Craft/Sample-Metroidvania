@@ -18,9 +18,11 @@ public class Gate : MonoBehaviour
 
     [SerializeField] private string id;
 
+    public bool disableOnOpen = false;
+
     private void Awake()
     {
-        if (id == null)
+        if (id == null || id == "")
         {
             Debug.Log("Id of Gate is null!");
         }
@@ -37,7 +39,11 @@ public class Gate : MonoBehaviour
 
         if (!closed)
         {
-            gameObject.SetActive(false);
+            if (disableOnOpen)
+            {
+                gameObject.SetActive(false);
+            }
+            
             gameObject.transform.localPosition = openPosition;
             closed = false;
         } else
@@ -99,7 +105,7 @@ public class Gate : MonoBehaviour
         SetClosedPosition();
         closed = false;
 
-        currentCoroutine = StartCoroutine(MoveCoroutine(closedPosition, openPosition, true));
+        currentCoroutine = StartCoroutine(MoveCoroutine(closedPosition, openPosition, disableOnOpen));
     }
 
     public void SetClosedPosition()
