@@ -13,6 +13,8 @@ public class Lever : MonoBehaviour
 
     public List<Gate> gates = new List<Gate>();
 
+    public bool canTrigger = true;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -40,7 +42,7 @@ public class Lever : MonoBehaviour
 
         if ((!isActivated && onlyWorksOnce) || !onlyWorksOnce)
         {
-            if (collision.CompareTag("PlayerAttackHitbox"))
+            if (collision.CompareTag("PlayerAttackHitbox") && canTrigger)
             {
 
                 isActivated = !isActivated;

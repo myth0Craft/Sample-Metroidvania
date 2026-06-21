@@ -9,7 +9,7 @@ public class BreakableObject : HealthManager
     public AudioClip hitSound;
     public bool saveState = false;
     public List<GameObject> drops = new List<GameObject>();
-    [SerializeField] private string id;
+    [SerializeField] protected string id;
 
     public override void Awake()
     {
