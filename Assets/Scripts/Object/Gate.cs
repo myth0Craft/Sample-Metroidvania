@@ -20,6 +20,7 @@ public class Gate : MonoBehaviour
 
     public bool disableOnOpen = false;
 
+
     private void Awake()
     {
         if (id == null || id == "")

@@ -154,7 +154,7 @@ MonoBehaviour:
     hiddenLayers:
       serializedVersion: 2
       m_Bits: 18432
-    downscaling: 4
+    downscaling: 2
     renderInSceneView: 0
 --- !u!114 &2669276714532398708
 MonoBehaviour:
