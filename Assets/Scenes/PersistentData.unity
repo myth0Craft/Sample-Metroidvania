@@ -6775,11 +6775,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6827771851370424541, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 157.37895
+      value: 164.91429
       objectReference: {fileID: 0}
     - target: {fileID: 6827771851370424541, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 64.13566
+      value: 67.08108
       objectReference: {fileID: 0}
     - target: {fileID: 6827771851370424541, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7420,7 +7420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4615566162392958578, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
       propertyPath: attackDebug
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4615566162392958578, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
       propertyPath: blockParticle
@@ -7520,7 +7520,7 @@ PrefabInstance:
       objectReference: {fileID: 6200000, guid: f2bfe24f9e6a3f44ca882d3f5b5ce4ee, type: 2}
     - target: {fileID: 7538908298182209412, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
       propertyPath: abilityDebug
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9217998083109764275, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
       propertyPath: m_TagString

@@ -1,12 +1,17 @@
+
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class SafeZoneTracker : MonoBehaviour
 {
     public static SafeZoneTracker instance;
 
-    private bool inSafeZone = true;
 
-    private Vector2 lastSafeZone;
+
+    private Vector2 respawnCheckpoint;
+
+   /* public CinemachineCamera camToLoad;
+    public CinemachineCamera camToUnload;*/
 
     private void Awake()
     {
@@ -17,35 +22,41 @@ public class SafeZoneTracker : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        lastSafeZone = gameObject.transform.position;
+        respawnCheckpoint = transform.parent.gameObject.transform.position;
     }
 
-    public void UpdateLastSafeZone()
-    {
-        if (inSafeZone)
-        {
-            lastSafeZone = gameObject.transform.position;
-        }
-    }
+
+    
 
     public void MoveParentToLastSafeZone()
     {
-        transform.parent.gameObject.transform.position = lastSafeZone;
+        transform.parent.gameObject.transform.position = respawnCheckpoint;
+
+        /*if (camToLoad != null)
+        {
+            camToLoad.Priority = 10;
+        }
+
+        if (camToUnload != null)
+        {
+            camToUnload.Priority = 0;
+        }*/
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("UnsafeZone"))
+        if (collision.CompareTag("RespawnCheckpoint"))
         {
-            inSafeZone = false;
+            respawnCheckpoint = transform.parent.gameObject.transform.position;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("UnsafeZone"))
+        if (collision.CompareTag("RespawnCheckpoint"))
         {
-            inSafeZone = true;
+            respawnCheckpoint = transform.parent.gameObject.transform.position;
         }
     }
 }

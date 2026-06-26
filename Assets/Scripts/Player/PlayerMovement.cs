@@ -781,7 +781,6 @@ public class PlayerMovement : MonoBehaviour
         if (groundedThisFrame)
         {
             groundedRememberTimer = groundedRememberTime;
-            SafeZoneTracker.instance.UpdateLastSafeZone();
             ResetAbilities();
         }
         else
