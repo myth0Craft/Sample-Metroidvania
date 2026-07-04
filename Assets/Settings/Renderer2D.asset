@@ -17,17 +17,17 @@ MonoBehaviour:
     passName: BloomRenderFeature
     rendererIndex: 1
     renderingOrder: 500
-    tex: {fileID: 8600000, guid: 89239779196f99f4d84060b1af20235d, type: 2}
+    renderTexture: {fileID: 8600000, guid: 89239779196f99f4d84060b1af20235d, type: 2}
     materials:
     - {fileID: 2100000, guid: 26af727e00176b34c8f9d25d21bd6d81, type: 2}
     captureLayers:
       serializedVersion: 2
       m_Bits: 0
-    hiddenLayers:
-      serializedVersion: 2
-      m_Bits: 0
     downscaling: 1
     renderInSceneView: 0
+    colorBufferFormat: 0
+    filterMode: 1
+    cameraTag: MainCamera
 --- !u!114 &-5175326485259581987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,18 +144,18 @@ MonoBehaviour:
     passName: NewForegroundBlur
     rendererIndex: 1
     renderingOrder: 500
-    tex: {fileID: 0}
+    renderTexture: {fileID: 0}
     materials:
     - {fileID: 2100000, guid: 6729ced3af4078940817644fd1f34c54, type: 2}
     - {fileID: 2100000, guid: db2c1306610b0e74b93125965677eee3, type: 2}
     captureLayers:
       serializedVersion: 2
       m_Bits: 18432
-    hiddenLayers:
-      serializedVersion: 2
-      m_Bits: 18432
     downscaling: 2
     renderInSceneView: 0
+    colorBufferFormat: 0
+    filterMode: 1
+    cameraTag: MainCamera
 --- !u!114 &2669276714532398708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,18 +191,18 @@ MonoBehaviour:
     passName: NewBackgroundBlur
     rendererIndex: 1
     renderingOrder: 250
-    tex: {fileID: 0}
+    renderTexture: {fileID: 0}
     materials:
     - {fileID: 2100000, guid: ed4f4c2808b45d045858ec616e012d2c, type: 2}
     - {fileID: 2100000, guid: 84774fd17d895e4499b699bbc0563f7e, type: 2}
     captureLayers:
       serializedVersion: 2
       m_Bits: 16896
-    hiddenLayers:
-      serializedVersion: 2
-      m_Bits: 16896
     downscaling: 2
     renderInSceneView: 0
+    colorBufferFormat: 0
+    filterMode: 1
+    cameraTag: MainCamera
 --- !u!114 &3463837079115857520
 MonoBehaviour:
   m_ObjectHideFlags: 0

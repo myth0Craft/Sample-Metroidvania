@@ -65,7 +65,7 @@ public class PlayerAnimationManager : MonoBehaviour
             bodyAnim.SetBool("stuckToWall", playerMovement.StuckToWallBuffered());
         }
 
-        legsAnim.SetFloat("jumpTime", playerMovement.jumpTime);
+        //legsAnim.SetFloat("jumpTime", playerMovement.jumpTime);
         legsAnim.SetBool("falling", playerMovement.body.linearVelocity.y < -0.1f && !playerMovement.IsGroundedBuffered() && !playerMovement.StuckToWallBuffered());
         legsAnim.SetBool("grounded", playerMovement.IsGroundedBuffered());
 
