@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BreakableObject : HealthManager
 {
@@ -65,7 +66,8 @@ public class BreakableObject : HealthManager
     {
         foreach(var GO in drops)
         {
-            Instantiate(GO, transform.position, Quaternion.identity);
+            var drop = Instantiate(GO, transform.position, Quaternion.identity);
+            SceneManager.MoveGameObjectToScene(drop, SceneManager.GetSceneByName(gameObject.scene.name));
         }
     }
 
