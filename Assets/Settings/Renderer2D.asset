@@ -46,27 +46,6 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 512
     material: {fileID: 2100000, guid: 59572ffb45abb50408e87536e64ec6eb, type: 2}
---- !u!114 &-329711981106645954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e52e6cb03d9f4a4ab35bcb6c0c62af6, type: 3}
-  m_Name: ShockwaveRenderFeature
-  m_EditorClassIdentifier: Assembly-CSharp::ShockwaveRenderFeature
-  m_Active: 1
-  settings:
-    material: {fileID: 2100000, guid: 7c57dc639ba3ef1489df802c266963bc, type: 2}
-    layers:
-      serializedVersion: 2
-      m_Bits: 62967
-    downscaling: 1
-    renderBehindScene: 0
-    rendererIndex: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,11 +71,11 @@ MonoBehaviour:
     probeSamplingDebugTexture: {fileID: 2800000, guid: 24ec0e140fb444a44ab96ee80844e18e, type: 3}
     probeVolumeBlendStatesCS: {fileID: 0}
   m_RendererFeatures:
-  - {fileID: -329711981106645954}
-  - {fileID: 3024546607955135292}
-  - {fileID: 946665036061007976}
-  - {fileID: -6474134315028845756}
-  m_RendererFeatureMap: 3eb4f237b3a06cfb3c4bc77d1d59f92968e0b2abd53a230d44eb8954244127a6
+  - {fileID: 3846044306744589001}
+  - {fileID: 8110906161701715235}
+  - {fileID: 5351326385996896182}
+  - {fileID: 55669118611635326}
+  m_RendererFeatureMap: c9baec75ebe45f3523fdc13e2eba8f70b61785dafeba434a7e3cceb7c4c6c500
   m_UseNativeRenderPass: 0
   m_LayerMask:
     serializedVersion: 2
@@ -127,6 +106,35 @@ MonoBehaviour:
   m_PostProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   m_DefaultMaterialType: 0
   m_DefaultCustomMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+--- !u!114 &55669118611635326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc69db74f732dbd46862deaf05cbc77b, type: 3}
+  m_Name: BloomPass
+  m_EditorClassIdentifier: Assembly-CSharp::Myth0Games.LayerFX.LayerFXRenderFeature
+  m_Active: 1
+  settings:
+    renderMode: 2
+    passName: BloomPass
+    rendererIndex: 0
+    renderingOrder: 500
+    renderTexture: {fileID: 8600000, guid: 89239779196f99f4d84060b1af20235d, type: 2}
+    materials:
+    - {fileID: 2100000, guid: 26af727e00176b34c8f9d25d21bd6d81, type: 2}
+    captureLayers:
+      serializedVersion: 2
+      m_Bits: 0
+    downscaling: 1
+    renderInSceneView: 0
+    colorBufferFormat: 1
+    filterMode: 1
+    cameraTag: MainCamera
 --- !u!114 &946665036061007976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +234,95 @@ MonoBehaviour:
     downscaling: 1
     renderBehindScene: 0
     rendererIndex: 1
+--- !u!114 &3846044306744589001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc69db74f732dbd46862deaf05cbc77b, type: 3}
+  m_Name: ShockwavePass
+  m_EditorClassIdentifier: Assembly-CSharp::Myth0Games.LayerFX.LayerFXRenderFeature
+  m_Active: 1
+  settings:
+    renderMode: 0
+    passName: ShockwavePass
+    rendererIndex: 1
+    renderingOrder: 500
+    renderTexture: {fileID: 0}
+    materials:
+    - {fileID: 2100000, guid: 7c57dc639ba3ef1489df802c266963bc, type: 2}
+    captureLayers:
+      serializedVersion: 2
+      m_Bits: 325111
+    downscaling: 1
+    renderInSceneView: 0
+    colorBufferFormat: 0
+    filterMode: 1
+    cameraTag: MainCamera
+--- !u!114 &5351326385996896182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc69db74f732dbd46862deaf05cbc77b, type: 3}
+  m_Name: ForegroundPass
+  m_EditorClassIdentifier: Assembly-CSharp::Myth0Games.LayerFX.LayerFXRenderFeature
+  m_Active: 1
+  settings:
+    renderMode: 0
+    passName: ForegroundPass
+    rendererIndex: 1
+    renderingOrder: 500
+    renderTexture: {fileID: 0}
+    materials:
+    - {fileID: 2100000, guid: 6729ced3af4078940817644fd1f34c54, type: 2}
+    - {fileID: 2100000, guid: db2c1306610b0e74b93125965677eee3, type: 2}
+    captureLayers:
+      serializedVersion: 2
+      m_Bits: 18432
+    downscaling: 1
+    renderInSceneView: 0
+    colorBufferFormat: 0
+    filterMode: 1
+    cameraTag: MainCamera
+--- !u!114 &8110906161701715235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc69db74f732dbd46862deaf05cbc77b, type: 3}
+  m_Name: BackgroundPass
+  m_EditorClassIdentifier: Assembly-CSharp::Myth0Games.LayerFX.LayerFXRenderFeature
+  m_Active: 1
+  settings:
+    renderMode: 0
+    passName: BackgroundPass
+    rendererIndex: 1
+    renderingOrder: 250
+    renderTexture: {fileID: 0}
+    materials:
+    - {fileID: 2100000, guid: ed4f4c2808b45d045858ec616e012d2c, type: 2}
+    - {fileID: 2100000, guid: 84774fd17d895e4499b699bbc0563f7e, type: 2}
+    captureLayers:
+      serializedVersion: 2
+      m_Bits: 16896
+    downscaling: 1
+    renderInSceneView: 0
+    colorBufferFormat: 0
+    filterMode: 1
+    cameraTag: MainCamera
 --- !u!114 &8389911850138563732
 MonoBehaviour:
   m_ObjectHideFlags: 0

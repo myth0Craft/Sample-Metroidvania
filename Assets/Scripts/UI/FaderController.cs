@@ -18,7 +18,7 @@ public class FaderController : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            //DontDestroyOnLoad(this.gameObject);
         }
     }
 
