@@ -29,7 +29,8 @@ public class PlayerMovement : MonoBehaviour
     public VerticalState currentVerticalState;
     public Rigidbody2D body;
     private LayerMask groundLayer;
-    private BoxCollider2D boxCollider;
+    //private BoxCollider2D boxCollider;
+    private CompositeCollider2D boxCollider;
 
     [SerializeField] private GameObject visual;
 
@@ -38,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerMeleeAttack playerMeleeAttack;
 
     private bool groundedThisFrame;
-
+    private bool wasGrounded = true;
     public float horizontalInput { get ; private set; }
 
     public float verticalInput { get; private set; }
@@ -116,7 +117,8 @@ public class PlayerMovement : MonoBehaviour
         instance = this;
 
         body = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        //boxCollider = GetComponent<BoxCollider2D>();
+        boxCollider = GetComponent<CompositeCollider2D>();
         controls = PlayerData.getControls();
         groundLayer = LayerMask.GetMask("Ground");
         sprintParticles = GetComponentInChildren<ParticleSystem>();
@@ -404,7 +406,7 @@ public class PlayerMovement : MonoBehaviour
         } else if (currentVerticalState == VerticalState.StuckToWall)
         {
             body.linearVelocity = new Vector2(body.linearVelocity.x, Mathf.Max(body.linearVelocity.y, -1.5f));
-            return;   
+            return;
         }
 
         body.linearVelocity = new Vector2(body.linearVelocity.x, Mathf.Max(body.linearVelocity.y, -15f));
@@ -576,6 +578,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         //Debug.Log(currentHorizontalState);
         groundedThisFrame = IsGrounded();
 
@@ -584,8 +587,22 @@ public class PlayerMovement : MonoBehaviour
         ApplyHorizontalMovement();
 
         ApplyVerticalMovement();
+
+
+
+        wasGrounded = groundedThisFrame;
     }
 
+    private void ClampLedgeBump()
+    {
+        if (wasGrounded &&
+            !groundedThisFrame &&
+            body.linearVelocity.y > 0f &&
+            body.linearVelocity.y < 0.3f)
+        {
+            body.linearVelocity = new Vector2(body.linearVelocity.x, 0f);
+        }
+    }
 
     public float getDashFrames()
     {
@@ -637,7 +654,17 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsGrounded()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(
+        Vector2 origin = new Vector2(
+            boxCollider.bounds.center.x,
+            boxCollider.bounds.min.y + 0.02f);
+
+        Vector2 size = new Vector2(
+            boxCollider.bounds.size.x - 0.1f,
+            0.05f);
+
+        RaycastHit2D hit = Physics2D.BoxCast(origin, size, 0, Vector2.down, 0.05f, groundLayer);
+
+        /*RaycastHit2D hit = Physics2D.BoxCast(
         boxCollider.bounds.center,
         boxCollider.bounds.size,
         0f,
@@ -648,7 +675,7 @@ public class PlayerMovement : MonoBehaviour
         if (hit.collider != null)
         {
             Debug.DrawRay(hit.point, hit.normal, Color.green);
-        }
+        }*/
 
 
         return hit.collider != null;
