@@ -13,6 +13,7 @@ public class PatrollerPathfinding : MonoBehaviour
     private Rigidbody2D body;
 
     [SerializeField] private Transform wallCheck;
+    [SerializeField] private Transform groundCheck;
 
     public float speed;
 
@@ -31,37 +32,64 @@ public class PatrollerPathfinding : MonoBehaviour
     public float maxTimeBeforeStopping;
 
     private Coroutine stopCoroutine;
-    private Coroutine walkCoroutine;
 
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         enemyMovementState = EnemyMovementState.Walk;
+        if (stopDelay)
+        {
+            StartCoroutine(StopCoroutineController());
+        }
+        
 
-        //walkCoroutine = StartCoroutine(WalkCoroutine());
     }
 
     private void FixedUpdate()
     {
-        body.linearVelocity = new Vector2(directionModifier * speed, body.linearVelocity.y);
+        if (stopCoroutine != null) return;
 
+        //Dont turn if falling
+        if (body.linearVelocityY < -0.1f)
+        {
+            return;
+        }
+
+
+        body.linearVelocity = new Vector2(directionModifier * speed, body.linearVelocity.y);
+        
+
+        //check for wall in front
         if (Physics2D.Raycast(
             wallCheck.position,
             Vector2.right * directionModifier,
             0.2f,
             LayerMask.GetMask("Ground")))
         {
-            float xScale = gameObject.transform.localScale.x;
-            gameObject.transform.localScale = new Vector3(xScale *= -1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
-            directionModifier *= -1;
+            Turn();
         }
 
-        
+        //check for ledges
+        if (!(Physics2D.Raycast(
+            groundCheck.position,
+            Vector2.down,
+            0.2f,
+            LayerMask.GetMask("Ground")))) 
+        {
+            Turn();
+        }
     }
 
-    private IEnumerator WalkCoroutine()
+    private void Turn()
     {
-        yield return null;
+        float xScale = gameObject.transform.localScale.x;
+        gameObject.transform.localScale = new Vector3(xScale *= -1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+        directionModifier *= -1;
+    }
+
+    private void Stop()
+    {
+        stopCoroutine = StartCoroutine(StopCoroutine());
     }
 
     private IEnumerator StopCoroutine()
@@ -69,6 +97,28 @@ public class PatrollerPathfinding : MonoBehaviour
         body.linearVelocity = new Vector2(0, body.linearVelocity.y);
 
         yield return new WaitForSeconds(Random.Range(stopDelayMin, stopDelayMax));
+
+        EndStopCoroutine();
+    }
+
+    private void EndStopCoroutine()
+    {
+        StopCoroutine(stopCoroutine);
+        stopCoroutine = null;
+
+        if (UnityEngine.Random.value > 0.5f)
+        {
+            Turn();
+        }
+    }
+
+    private IEnumerator StopCoroutineController()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(Random.Range(minTimeBeforeStopping, maxTimeBeforeStopping));
+            Stop();
+        }
     }
     
 }
