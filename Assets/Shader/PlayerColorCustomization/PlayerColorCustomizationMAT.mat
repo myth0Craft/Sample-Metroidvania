@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7435238183414857493
+--- !u!114 &-4512978615450931345
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StaminaMeterMAT
-  m_Shader: {fileID: -6465566751694194690, guid: 02660af8b355ea041b32408c64ae2703, type: 3}
+  m_Name: PlayerColorCustomizationMAT
+  m_Shader: {fileID: -6465566751694194690, guid: 137f45a995ff8eb42a1d085cd5341094, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -37,7 +37,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 504b8d5c10a06a64db3ad2fbeeb25f3f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -54,9 +54,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Stamina: 1
-    - _TimeSpeed: 0
+    - _Distance: 0.03
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.14901961, g: 0.011764706, b: 0.036182333, a: 1}
+    - _TargetColor: {r: 0.050980397, g: 0.09411766, b: 0.14117648, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
