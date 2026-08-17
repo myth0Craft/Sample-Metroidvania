@@ -7525,7 +7525,7 @@ PrefabInstance:
     - target: {fileID: 3263363217401237753, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: eb9575b0ac191c645a8a7834525810dd, type: 2}
+      objectReference: {fileID: 2100000, guid: 0d91ac4a7ba2cfa469e124b8c395defb, type: 2}
     - target: {fileID: 4053718000735523451, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -8640,7 +8640,7 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.707
-  m_Color: {r: 0, g: 0.44094515, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.0806483, b: 0, a: 1}
   m_Intensity: 1.5
   m_LightVolumeIntensity: 0.2
   m_LightVolumeEnabled: 1
@@ -10845,6 +10845,10 @@ PrefabInstance:
     - target: {fileID: 4415436546542659301, guid: 0c2b8b9eb50023a4b94285dcc71c1b2b, type: 3}
       propertyPath: m_Name
       value: Spot Light 2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415436546542659301, guid: 0c2b8b9eb50023a4b94285dcc71c1b2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

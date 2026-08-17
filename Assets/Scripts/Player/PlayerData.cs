@@ -19,6 +19,8 @@ public static class PlayerData
 
     public static bool inWater = false;
 
+    public static PlayerColorScheme colorScheme = PlayerColorScheme.Default;
+
     //ABILITIES
 
     public static bool dashUnlocked = false;
@@ -93,6 +95,7 @@ public static class PlayerData
         data.maxHealth = maxHealth;
         data.currentScene = currentScene;
 
+        data.colorScheme = colorScheme;
 
         //ABILITIES
         data.dashUnlocked = dashUnlocked;
@@ -105,9 +108,6 @@ public static class PlayerData
 
         //NPC DATA
         data.talkedToNPCs = new List<string>(talkedToNPCs);
-
-
-
     }
 
     public static void Load(PlayerSaveData data)
@@ -117,6 +117,8 @@ public static class PlayerData
         maxHealth = data.maxHealth;
         currentScene = data.currentScene;
         currentHealth = data.maxHealth;
+
+        colorScheme = data.colorScheme;
 
         //ABILITIES
         dashUnlocked = data.dashUnlocked;
@@ -143,6 +145,8 @@ public static class PlayerData
         currentScene = "1_Ancient_Springs";
         maxHealth = 5;
         currentHealth = 5;
+
+        colorScheme = PlayerColorScheme.Default;
 
         //ABILITIES
 
@@ -185,6 +189,8 @@ public struct PlayerSaveData
     public float posY;
     public int maxHealth;
     public string currentScene;
+
+    public PlayerColorScheme colorScheme;
 
     //ABILITIES
     public bool dashUnlocked;
