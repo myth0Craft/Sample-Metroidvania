@@ -30,7 +30,7 @@ public struct ColorData
     public ColorPalette grey;
 }
 
-public class PlayerCustomization : MonoBehaviour
+public class PlayerCustomizationController : MonoBehaviour
 {
     public Light2D spotlight;
 
@@ -40,8 +40,18 @@ public class PlayerCustomization : MonoBehaviour
 
     public ColorData data;
 
+    public static PlayerCustomizationController instance;
+
     public void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        } else
+        {
+            Destroy(this);
+        }
+
         SetPlayerColorScheme(PlayerData.colorScheme);
     }
 
@@ -74,7 +84,8 @@ public class PlayerCustomization : MonoBehaviour
 
     private void UpdateColors(Color lightColor, Color capeColor, Color bodyColor)
     {
-        this.spotlight.color = lightColor;
+        spotlight.color = new Color(lightColor.r, lightColor.g, lightColor.b, 1);
+        
         capeMat.SetColor("_Color", capeColor);
         bodyMat.SetColor("_Color", bodyColor);
     }

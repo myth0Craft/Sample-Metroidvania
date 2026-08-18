@@ -13,6 +13,7 @@ public class PauseGame : MonoBehaviour
     private GameObject[] childObjects;
     public GameObject[] UIToHide;
     private bool _inOptionsMenu = false;
+    private bool inCustomizationMenu = false;
     public Button backButton;
 
     private void Awake()
@@ -80,6 +81,11 @@ public class PauseGame : MonoBehaviour
     public void SetInOptionsMenu(bool inOptionsMenu)
     {
         _inOptionsMenu = inOptionsMenu;
+    }
+
+    public void SetInCustomizationMenu(bool inCustomizationMenu)
+    {
+
     }
 
     public void OnGamePause()
