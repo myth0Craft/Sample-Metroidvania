@@ -8,13 +8,13 @@ public class CanvasGroupFaderController : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (instance != null && instance != this)
         {
-            instance = this;
-        } else
-        {
-            Destroy(this);
+            Destroy(gameObject);
+            return;
         }
+
+        instance = this;
     }
 
 
@@ -44,10 +44,12 @@ public class CanvasGroupFaderController : MonoBehaviour
 
     public IEnumerator FadeInCoroutine(List<CanvasGroup> canvasGroupsToFadeIn, float duration)
     {
-        for (int i = 0; i < canvasGroupsToFadeIn.Count; i++)
+        foreach (CanvasGroup group in canvasGroupsToFadeIn)
         {
-            canvasGroupsToFadeIn[i].gameObject.SetActive(true);
-            canvasGroupsToFadeIn[i].alpha = 0f;
+            group.gameObject.SetActive(true);
+            group.alpha = 0f;
+            group.interactable = false;
+            group.blocksRaycasts = false;
         }
 
 
@@ -72,14 +74,23 @@ public class CanvasGroupFaderController : MonoBehaviour
 
         }
 
-        for (int i = 0; i < canvasGroupsToFadeIn.Count; i++)
+        foreach (CanvasGroup group in canvasGroupsToFadeIn)
         {
-            canvasGroupsToFadeIn[i].alpha = 1f;
+            group.alpha = 1f;
+            group.interactable = true;
+            group.blocksRaycasts = true;
         }
     }
 
     public IEnumerator FadeOutCoroutine(List<CanvasGroup> canvasGroupsToFadeOut, float duration)
     {
+
+        foreach (CanvasGroup group in canvasGroupsToFadeOut)
+        {
+            group.interactable = false;
+            group.blocksRaycasts = false;
+        }
+
 
         float startAlpha = 1f;
         float endAlpha = 0f;
@@ -102,10 +113,10 @@ public class CanvasGroupFaderController : MonoBehaviour
 
         }
 
-        for (int i = 0; i < canvasGroupsToFadeOut.Count; i++)
+        foreach (CanvasGroup group in canvasGroupsToFadeOut)
         {
-            canvasGroupsToFadeOut[i].gameObject.SetActive(false);
-            canvasGroupsToFadeOut[i].alpha = 0f;
+            group.alpha = 0f;
+            group.gameObject.SetActive(false);
         }
     }
 }

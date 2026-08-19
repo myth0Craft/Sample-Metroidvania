@@ -92,6 +92,9 @@ public class PauseGame : MonoBehaviour
     {
         Time.timeScale = 0;
         PlayerData.gamePaused = true;
+
+        MenuOverlayController.instance.EnableMenuOverlay();
+
         for (int i = 0; i < childObjects.Length; i++)
         {
             childObjects[i].SetActive(true);
@@ -126,7 +129,7 @@ public class PauseGame : MonoBehaviour
 
     public void OnGameUnpause()
     {
-        
+        MenuOverlayController.instance.DisableMenuOverlay();
         PlayerData.gamePaused = false;
         Time.timeScale = 1;
         for (int i = 0; i < childObjects.Length; i++)
