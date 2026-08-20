@@ -57,7 +57,7 @@ Material:
     - _Distance: 0.95
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.49019608, g: 0.08627451, b: 0.06666667, a: 0}
+    - _Color: {r: 0, g: 0, b: 0, a: 0}
     - _TargetColor: {r: 0.0455233, g: 0.12873778, b: 0.31132078, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

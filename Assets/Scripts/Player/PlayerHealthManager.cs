@@ -6,7 +6,8 @@ public class PlayerHealthManager : HealthManager
 
     private SpriteRenderer[] spriteRenderers;
     public Material defaultMat;
-    public Material shinyMat;
+    public Material bodyMat;
+    public Material capeMat;
     public Material hurtMat;
     public ParticleSystem hitParticle;
 
@@ -109,7 +110,7 @@ public class PlayerHealthManager : HealthManager
             StopAllCoroutines();
             for (int x = 0; x < spriteRenderers.Length; x++)
             {
-                spriteRenderers[x].material = defaultMat;
+                spriteRenderers[x].material = bodyMat;
             }
             hitParticle.enableEmission = false;
 
@@ -169,6 +170,7 @@ public class PlayerHealthManager : HealthManager
             {
                 spriteRenderers[x].material = defaultMat;
             }
+            ResetColoredMaterials();
             yield return new WaitForSecondsRealtime(0.15f);
         }
         for (int i = 0; i < 4; i++)
@@ -183,14 +185,29 @@ public class PlayerHealthManager : HealthManager
             {
                 spriteRenderers[x].material = defaultMat;
             }
+            ResetColoredMaterials();
+
             yield return new WaitForSecondsRealtime(0.075f);
         }
 
+        ResetColoredMaterials();
+    }
+
+    private void ResetColoredMaterials()
+    {
         for (int i = 0; i < spriteRenderers.Length; i++)
         {
             if (spriteRenderers[i].gameObject.name == "Body" || spriteRenderers[i].gameObject.name == "Sword")
             {
-                spriteRenderers[i].material = shinyMat;
+                spriteRenderers[i].material = bodyMat;
+            }
+        }
+
+        for (int i = 0; i < spriteRenderers.Length; i++)
+        {
+            if (spriteRenderers[i].gameObject.name == "Cape")
+            {
+                spriteRenderers[i].material = capeMat;
             }
         }
     }

@@ -8391,7 +8391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6827771851370424541, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21.970675
+      value: 49.746918
       objectReference: {fileID: 0}
     - target: {fileID: 6827771851370424541, guid: 0836dac0b91edc845a07d4dc9c553974, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9695,6 +9695,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0d91ac4a7ba2cfa469e124b8c395defb, type: 2}
+    - target: {fileID: 3769163592664139720, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2915034706872494343, guid: ab6528935f70db24fa8a29e1b11845d4, type: 3}
+    - target: {fileID: 4053718000735523451, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b3f77da9a8879274c8c50cf764cbfc72, type: 3}
     - target: {fileID: 4053718000735523451, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -9730,11 +9738,19 @@ PrefabInstance:
     - target: {fileID: 4645579845114001996, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f6a2cfb51cf9430499923ddffa38d594, type: 3}
+      objectReference: {fileID: 21300000, guid: 617efb5c9aa104f4a9621e101f881983, type: 3}
     - target: {fileID: 4645579845114001996, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0d91ac4a7ba2cfa469e124b8c395defb, type: 2}
+    - target: {fileID: 4839901651880856055, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
+      propertyPath: bodyMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 0d91ac4a7ba2cfa469e124b8c395defb, type: 2}
+    - target: {fileID: 4839901651880856055, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
+      propertyPath: capeMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 7524b4316da813c4a96b40873205eff0, type: 2}
     - target: {fileID: 4839901651880856055, guid: 15b0f025f66c4c54a89769fc06f5a0a3, type: 3}
       propertyPath: shinyMat
       value: 
