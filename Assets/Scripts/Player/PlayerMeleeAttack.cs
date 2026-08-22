@@ -16,7 +16,7 @@ public class PlayerMeleeAttack : MonoBehaviour
 {
 
     public CombatState currentCombatState { get; private set; }
-
+    public bool swordDrawn = false;
 
     public static PlayerMeleeAttack instance;
     private PlayerControls controls;
@@ -120,7 +120,6 @@ public class PlayerMeleeAttack : MonoBehaviour
             ResetCombatState();
         }
 
-
         successfullyParried = false;
         PlayerAnimationManager.instance.Block();
         currentCombatState = CombatState.Blocking;
@@ -145,7 +144,7 @@ public class PlayerMeleeAttack : MonoBehaviour
         StaminaManager.instance.RestoreStamina(amountOfStaminaRestoredOnParry);
         Instantiate(blockParticle, transform.position, Quaternion.identity);
         Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
-        //GlobalHitstopManager.DoHitstop(0.05f);
+
         GlobalHitstopManager.DoHitStopThenHitSlow(0.05f, 0.15f, 0.25f);
         CamShakeSource.instance.AddScreenShake(0.2f);
 
@@ -155,8 +154,6 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private void OnAttackPressed(InputAction.CallbackContext context)
     {
-
-
         if ((PlayerData.swordUnlocked || attackDebugActive) && !PlayerData.gamePaused)
         {
             if (!StaminaManager.instance.CanAffordStaminaCost(combatStaminaCost))
@@ -164,13 +161,6 @@ public class PlayerMeleeAttack : MonoBehaviour
                 return;
             }
 
-            if (comboNum >= 2)
-            {
-                return;
-            }
-
-
-            //Debug.Log("Clicked with combat state " + currentCombatState + " at combo stage " + comboNum);
             if (playerMovement.currentHorizontalState == HorizontalState.Dashing && playerMovement.IsGroundedBuffered()
                 )
             {
@@ -180,31 +170,54 @@ public class PlayerMeleeAttack : MonoBehaviour
                 return;
             }
 
-            if (!StaminaManager.instance.CanAffordStaminaCost(combatStaminaCost)) return;
-
-            
-
-            if (currentCombatState == CombatState.Idle)
+            if (controls.Player.Move.ReadValue<Vector2>().y > 0.1f)
             {
-                currentCombatState = CombatState.Startup;
-                comboNum = 0;
-                StartAttack();
+                PerformUpwardSlash();
                 return;
             }
 
-            if (currentCombatState == CombatState.Startup || currentCombatState == CombatState.Cooldown || currentCombatState == CombatState.Active)
+            if (controls.Player.Move.ReadValue<Vector2>().y < -0.1f)
             {
-                if (!attackQueued)
-                {
-                    comboNum++;
-                }
-                attackQueued = true;
+                PerformDownwardSlash();
                 return;
             }
+
+            PerformBasicAttack();
         }
     }
 
+    private void PerformBasicAttack()
+    {
+        if (currentCombatState == CombatState.Idle)
+        {
+            currentCombatState = CombatState.Startup;
+            comboNum = 0;
+            StartAttack();
+            return;
+        }
 
+        if (currentCombatState == CombatState.Startup || currentCombatState == CombatState.Cooldown || currentCombatState == CombatState.Active)
+        {
+            if (!attackQueued)
+            {
+                comboNum++;
+            }
+            attackQueued = true;
+            return;
+        }
+    }
+
+    private void PerformUpwardSlash()
+    {
+        StaminaManager.instance.DecrementStamina(combatStaminaCost);
+        PlayerAnimationManager.instance.UpwardSlash();
+    }
+
+    private void PerformDownwardSlash()
+    {
+        StaminaManager.instance.DecrementStamina(combatStaminaCost);
+        PlayerAnimationManager.instance.DownwardSlash();
+    }
 
     private void PerformDashAttack()
     {

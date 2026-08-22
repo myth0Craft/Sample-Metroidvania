@@ -104,9 +104,19 @@ public class PlayerAnimationManager : MonoBehaviour
 
     public void LungeAttack()
     {
-        armsAnim.SetTrigger("LungeAttack");
+        armsAnim.Play("LungeAttack");
         bodyAnim.SetTrigger("LungeAttack");
         legsAnim.SetTrigger("LungeAttack");
+    }
+
+    public void UpwardSlash()
+    {
+        armsAnim.Play("UpwardSlash");
+    }
+
+    public void DownwardSlash()
+    {
+        armsAnim.Play("DownwardSlash");
     }
 
     public void ShieldBounce() {
@@ -197,5 +207,10 @@ public class PlayerAnimationManager : MonoBehaviour
         swordAnim.SetBool("ShieldSliding", isShieldSliding);
         shieldAnim.SetBool("ShieldSliding", isShieldSliding);
         legsAnim.SetBool("ShieldSliding", isShieldSliding);
+    }
+
+    public void PlaySwordSheath()
+    {
+        armsAnim.Play("SheathSword");
     }
 }

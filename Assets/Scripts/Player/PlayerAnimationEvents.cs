@@ -22,6 +22,11 @@ public class PlayerAnimationEvent : MonoBehaviour
         impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
+    public void EndAttack()
+    {
+        //end attack functionality here
+    }
+
     public void disableAttackQueued()
     {
        /* if (PlayerAnimationManager.instance != null)
@@ -34,6 +39,16 @@ public class PlayerAnimationEvent : MonoBehaviour
     {
         PlayerMovement.instance.OnSprintCanceled();
         PlayerMeleeAttack.instance.ExitDashAttack();
+    }
+
+    public void SetSwordDrawn()
+    {
+        PlayerMeleeAttack.instance.swordDrawn = true;
+    }
+
+    public void SetSwordSheathed()
+    {
+        PlayerMeleeAttack.instance.swordDrawn = false;
     }
 
     public void PlayFootstepSound()
@@ -61,7 +76,7 @@ public class PlayerAnimationEvent : MonoBehaviour
     }
 
     //called from 2nd sword swing animation to set player to mid attack state, preventing dashing during the sword swing
-    public void startAttack()
+    public void PlayAttackSound()
     {
         //playerAttack.isMidAttack = true;
         AudioSource.PlayClipAtPoint(swordSwingSoundClip, PlayerMovement.instance.transform.position);
@@ -89,7 +104,7 @@ public class PlayerAnimationEvent : MonoBehaviour
         //playerAttack.ApplyDamage();
     }
 
-    public void triggerDashAttackScreenShake()
+    public void StartDashAttack()
     {
         float xForce = PlayerMovement.instance.getFacingDirection() ? -0.1f : 0.1f;
         Vector3 force = new Vector3(xForce, 0.02f, 0);
@@ -99,10 +114,4 @@ public class PlayerAnimationEvent : MonoBehaviour
         
         playerAttack.ApplyDashAttackDamage();
     }
-
-    public void SetIdle()
-    {
-        
-    }
-
 }
