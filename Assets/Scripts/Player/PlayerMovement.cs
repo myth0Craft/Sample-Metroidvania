@@ -193,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator DashCoroutine()
     {
-        while (PlayerMeleeAttack.instance.currentCombatState == CombatState.Active || PlayerMeleeAttack.instance.currentCombatState == CombatState.Startup)
+        while (PlayerMeleeAttack.instance.currentCombatState == CombatState.Active)
         {
             yield return null;
         }

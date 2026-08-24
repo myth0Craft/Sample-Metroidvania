@@ -1,22 +1,34 @@
-using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
 
 public enum CombatState
 {
     Idle,
-    Startup,
     Active,
     Cooldown,
+    Drawing,
     Blocking
+}
+
+public enum AttackType
+{
+    None,
+    Basic,
+    Upward,
+    Downward,
+    Lunge
 }
 
 public class PlayerMeleeAttack : MonoBehaviour
 {
 
     public CombatState currentCombatState { get; private set; }
+
     public bool swordDrawn = false;
+    private AttackType pendingAttack = AttackType.None;
+
+    private Coroutine hitboxCoroutine;
 
     public static PlayerMeleeAttack instance;
     private PlayerControls controls;
@@ -24,20 +36,14 @@ public class PlayerMeleeAttack : MonoBehaviour
     private float attackHitboxActiveDurationSeconds = 0.12f;
     public bool attackHitboxActive { get; private set; } = false;
 
-    private float attackCooldownDurationSeconds = 0.8f;
-    [SerializeField] private GameObject attackHitbox;
+    [SerializeField] private BoxCollider2D basicAttackHitbox;
+    [SerializeField] private BoxCollider2D upwardAttackHitbox;
+    [SerializeField] private BoxCollider2D downwardAttackHitbox;
 
     [SerializeField] private bool attackDebug;
     public bool attackDebugActive { get; private set; } = false;
-    private BoxCollider2D attackCollider;
 
     public int comboNum = 0;
-
-    private float attackStartupSeconds = 0.28f;
-
-    private bool attackQueued = false;
-
-    private Coroutine currentCombatCoroutine;
 
     public int combatStaminaCost = 15;
     public int dashAttackStaminaCost = 30;
@@ -61,10 +67,11 @@ public class PlayerMeleeAttack : MonoBehaviour
 
 
         playerMovement = GetComponentInParent<PlayerMovement>();
-        attackCollider = attackHitbox.GetComponent<BoxCollider2D>();
         controls = PlayerData.getControls();
         controls.Player.Attack.performed += OnAttackPressed;
-        attackHitbox.SetActive(false);
+
+        disableAllHitboxes();
+
         attackDebugActive = attackDebug;
 
         currentCombatState = CombatState.Idle;
@@ -72,15 +79,11 @@ public class PlayerMeleeAttack : MonoBehaviour
     }
     public void ResetCombatState()
     {
-        if (currentCombatCoroutine != null)
-        {
-            StopCoroutine(currentCombatCoroutine);
-        }
-        
-        currentCombatCoroutine = null;
         currentCombatState = CombatState.Idle;
         comboNum = 0;
-        attackHitbox.SetActive(false);
+
+        disableAllHitboxes();
+
         attackHitboxActive = false;
         PlayerAnimationManager.instance.enableSword();
     }
@@ -110,12 +113,12 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     public void OnBlock()
     {
-        if (currentCombatState == CombatState.Startup || currentCombatState == CombatState.Active || currentCombatState == CombatState.Blocking) return;
+        if (!(currentCombatState == CombatState.Idle || currentCombatState == CombatState.Cooldown)) return;
 
         if (!StaminaManager.instance.CanAffordStaminaCost(staminaRequiredToBlock)) return;
 
 
-        if (currentCombatState == CombatState.Cooldown || currentCombatState == CombatState.Active)
+        if (currentCombatState == CombatState.Cooldown)
         {
             ResetCombatState();
         }
@@ -153,7 +156,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     }
 
     private void OnAttackPressed(InputAction.CallbackContext context)
-    {
+    { 
         if ((PlayerData.swordUnlocked || attackDebugActive) && !PlayerData.gamePaused)
         {
             if (!StaminaManager.instance.CanAffordStaminaCost(combatStaminaCost))
@@ -161,133 +164,135 @@ public class PlayerMeleeAttack : MonoBehaviour
                 return;
             }
 
-            if (playerMovement.currentHorizontalState == HorizontalState.Dashing && playerMovement.IsGroundedBuffered()
-                )
+            if (!(currentCombatState == CombatState.Idle || currentCombatState == CombatState.Cooldown)) return;
+
+
+            AttackType requestedAttack;
+
+            if (playerMovement.currentHorizontalState == HorizontalState.Dashing && playerMovement.IsGroundedBuffered())
             {
                 if (!StaminaManager.instance.CanAffordStaminaCost(dashAttackStaminaCost)) return;
 
-                PerformDashAttack();
-                return;
-            }
+                requestedAttack = AttackType.Lunge;
 
-            if (controls.Player.Move.ReadValue<Vector2>().y > 0.1f)
+            } else if (controls.Player.Move.ReadValue<Vector2>().y > 0.1f)
             {
-                PerformUpwardSlash();
-                return;
-            }
+                requestedAttack = AttackType.Upward;
 
-            if (controls.Player.Move.ReadValue<Vector2>().y < -0.1f)
+            } else if (controls.Player.Move.ReadValue<Vector2>().y < -0.1f)
             {
-                PerformDownwardSlash();
+                requestedAttack = AttackType.Downward;
+            } else
+            {
+                requestedAttack = AttackType.Basic;
+            }
+
+            if (!swordDrawn)
+            {
+                pendingAttack = requestedAttack;
+                currentCombatState = CombatState.Drawing;
+                PlayerAnimationManager.instance.PlaySwordDraw();
                 return;
             }
 
-            PerformBasicAttack();
+            ExecuteAttack(requestedAttack);
         }
+    }
+
+    private void ExecuteAttack(AttackType requestedAttack)
+    {
+        pendingAttack = AttackType.None;
+
+
+        switch (requestedAttack)
+        {
+            case AttackType.Basic:
+                PerformBasicAttack();
+                break;
+
+            case AttackType.Upward:
+                PerformUpwardSlash();
+                break;
+
+            case AttackType.Downward:
+                PerformDownwardSlash();
+                break;
+
+            case AttackType.Lunge:
+                PerformDashAttack();
+                break;
+        }
+    }
+
+    public void SwordDrawFinished()
+    {
+        swordDrawn = true;
+
+        if (pendingAttack != AttackType.None)
+        {
+            AttackType attack = pendingAttack;
+            pendingAttack = AttackType.None;
+
+
+            ExecuteAttack(attack);
+        }
+        else
+        {
+            currentCombatState = CombatState.Idle;
+        }
+    }
+
+    public void SetCombatState(CombatState combatState)
+    {
+        this.currentCombatState = combatState;
     }
 
     private void PerformBasicAttack()
     {
         if (currentCombatState == CombatState.Idle)
         {
-            currentCombatState = CombatState.Startup;
+            currentCombatState = CombatState.Active;
             comboNum = 0;
-            StartAttack();
-            return;
         }
-
-        if (currentCombatState == CombatState.Startup || currentCombatState == CombatState.Cooldown || currentCombatState == CombatState.Active)
+        else if (currentCombatState == CombatState.Cooldown)
         {
-            if (!attackQueued)
+            currentCombatState = CombatState.Active;
+
+            comboNum++;
+
+            if (comboNum > 2)
             {
-                comboNum++;
+                comboNum = 0;
             }
-            attackQueued = true;
-            return;
         }
+        PlayerAnimationManager.instance.PlayBasicAttack(comboNum);
     }
 
     private void PerformUpwardSlash()
     {
+        comboNum = 0;
+        currentCombatState = CombatState.Active;
         StaminaManager.instance.DecrementStamina(combatStaminaCost);
         PlayerAnimationManager.instance.UpwardSlash();
     }
 
     private void PerformDownwardSlash()
     {
+        comboNum = 0;
+        currentCombatState = CombatState.Active;
         StaminaManager.instance.DecrementStamina(combatStaminaCost);
         PlayerAnimationManager.instance.DownwardSlash();
     }
 
     private void PerformDashAttack()
     {
+        currentCombatState = CombatState.Active;
         StaminaManager.instance.DecrementStamina(dashAttackStaminaCost);
         PlayerAnimationManager.instance.LungeAttack();
         PlayerAnimationManager.instance.disableSword();
         PlayerMovement.instance.currentHorizontalState = HorizontalState.Dashing;
         PlayerMovement.instance.OnDashAttack();
     }
-
-
-    private IEnumerator AttackCoroutine()
-    {
-        comboNum = 0;
-        do
-        {
-            StaminaManager.instance.DecrementStamina(combatStaminaCost);
-            attackQueued = false;
-
-            currentCombatState = CombatState.Startup;
-            yield return new WaitForSeconds(attackStartupSeconds);
-
-            UpdateFacingDirection();
-
-            currentCombatState = CombatState.Active;
-            attackHitbox.SetActive(true);
-            attackHitboxActive = true;
-            yield return new WaitForSeconds(attackHitboxActiveDurationSeconds);
-            attackHitbox.SetActive(false);
-            attackHitboxActive = false;
-
-            currentCombatState = CombatState.Cooldown;
-
-            float cooldownTimer = 0f;
-
-            while (cooldownTimer < attackCooldownDurationSeconds)
-            {
-                cooldownTimer += Time.deltaTime;
-                if (attackQueued && cooldownTimer > 0.1f)
-                {
-                    PlayerAnimationManager.instance.SetComboAttackTrigger();
-                    break;
-                }
-                yield return null;
-            }
-
-            if (comboNum > 2)
-            {
-                currentCombatState = CombatState.Idle;
-                comboNum = 0;
-                currentCombatCoroutine = null;
-                break;
-                
-            }
-        } while (attackQueued);
-
-        comboNum = 0;
-        currentCombatState = CombatState.Idle;
-        currentCombatCoroutine = null;
-    }
-
-    /*public void CancelAttack()
-    {
-        StopCoroutine(currentCombatCoroutine);
-        currentCombatCoroutine = null;
-        attackHitboxActive = false;
-        attackHitbox.SetActive(false);
-        PlayerAnimationManager.instance.enableSword();
-        currentCombatState = CombatState.Idle;
-    }*/
 
     //updates attack damage hitbox position to be in front of the player
     private void UpdateFacingDirection()
@@ -304,37 +309,70 @@ public class PlayerMeleeAttack : MonoBehaviour
             multiplier = 1f;
         }
 
-        Vector3 offsetVector = playerMovement.getFacingDirection() ? new Vector3(0.5f * multiplier, 0, 0) : new Vector3(-0.5f * multiplier, 0, 0);
-        attackHitbox.transform.position = playerPos += offsetVector;
-    }
+        Vector3 offsetMultiplier = new Vector3((playerMovement.getFacingDirection() ? 1 : -1) * multiplier, 1, 1);
 
-    //called when the attack animation starts, begins execution of attack anim
-    public void StartAttack()
-    {
-        if (currentCombatCoroutine != null)
-        {
-            return;
-        }
-
-        
-
-        PlayerAnimationManager.instance.disableSword();
-        PlayerAnimationManager.instance.SetSwingSwordTrigger();
-        currentCombatCoroutine = StartCoroutine(AttackCoroutine());
+        //Vector3 offsetVector = playerMovement.getFacingDirection() ? new Vector3(0.5f * multiplier, 0, 0) : new Vector3(-0.5f * multiplier, 0, 0);
+        basicAttackHitbox.gameObject.transform.parent.gameObject.transform.localScale = offsetMultiplier;
     }
 
     public void ApplyDashAttackDamage()
     {
         UpdateFacingDirection();
-        attackHitbox.SetActive(true);
+        basicAttackHitbox.gameObject.SetActive(true);
         PlayerHealthManager.instance.ShouldApplyDamage(false);
-        
     }
 
     public void ExitDashAttack()
     {
-        attackHitbox.SetActive(false);
+        basicAttackHitbox.gameObject.SetActive(false);
         attackHitboxActive = false;
         PlayerHealthManager.instance.ShouldApplyDamage(true);
+    }
+
+    private void disableAllHitboxes()
+    {
+        basicAttackHitbox.gameObject.SetActive(false);
+        upwardAttackHitbox.gameObject.SetActive(false);
+        downwardAttackHitbox.gameObject.SetActive(false);
+    }
+
+    public IEnumerator HitboxCoroutine(BoxCollider2D hitbox)
+    {
+        UpdateFacingDirection();
+        hitbox.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(attackHitboxActiveDurationSeconds);
+
+        hitbox.gameObject.SetActive(false);
+    }
+
+    public void ActivateBasicAttackHitbox()
+    {
+        disableAllHitboxes();
+        if (hitboxCoroutine != null)
+        {
+            StopCoroutine(hitboxCoroutine);
+        }
+        hitboxCoroutine = StartCoroutine(HitboxCoroutine(basicAttackHitbox));
+    }
+
+    public void ActivateUpwardSlashHitbox()
+    {
+        disableAllHitboxes();
+        if (hitboxCoroutine != null)
+        {
+            StopCoroutine(hitboxCoroutine);
+        }
+        hitboxCoroutine = StartCoroutine(HitboxCoroutine(upwardAttackHitbox));
+    }
+
+    public void ActivateDownwardSlashHitbox()
+    {
+        disableAllHitboxes();
+        if (hitboxCoroutine != null)
+        {
+            StopCoroutine(hitboxCoroutine);
+        }
+        hitboxCoroutine = StartCoroutine(HitboxCoroutine(downwardAttackHitbox));
     }
 }

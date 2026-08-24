@@ -111,11 +111,13 @@ public class PlayerAnimationManager : MonoBehaviour
 
     public void UpwardSlash()
     {
+        disableSword();
         armsAnim.Play("UpwardSlash");
     }
 
     public void DownwardSlash()
     {
+        disableSword();
         armsAnim.Play("DownwardSlash");
     }
 
@@ -195,8 +197,7 @@ public class PlayerAnimationManager : MonoBehaviour
 
     public void Block()
     {
-        armsAnim.SetTrigger("Block");
-
+        armsAnim.Play("Block");
     }
 
     public void SetShieldSlide(bool isShieldSliding)
@@ -212,5 +213,22 @@ public class PlayerAnimationManager : MonoBehaviour
     public void PlaySwordSheath()
     {
         armsAnim.Play("SheathSword");
+    }
+
+    public void PlaySwordDraw()
+    {
+        armsAnim.Play("DrawSword");
+    }
+
+    public void PlayBasicAttack(int comboNum)
+    {
+        disableSword();
+        if (comboNum > 2)
+        {
+            Debug.Log("Invalid combo number!");
+            return;
+        }
+        armsAnim.Play("BasicAttack" + (comboNum + 1));
+        //armsAnim.Play("DownwardSlash");
     }
 }
