@@ -14,6 +14,14 @@ public class PatrollerPathfinding : MonoBehaviour
 
     [SerializeField] private Transform wallCheck;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private PlayerDetector playerDetector;
+    [SerializeField] private PlayerDetector playerAttackDetector;
+
+    [SerializeField] private Animator animator;
+
+    public bool isAttacking = false;
+
+    private Coroutine attackCoroutine;
 
     public float speed;
 
@@ -33,6 +41,12 @@ public class PatrollerPathfinding : MonoBehaviour
 
     private Coroutine stopCoroutine;
 
+    private bool attackAllowed = true;
+
+    public float attackCooldown = 1.0f;
+
+    private Coroutine attackCooldownCoroutine;
+
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
@@ -41,13 +55,23 @@ public class PatrollerPathfinding : MonoBehaviour
         {
             StartCoroutine(StopCoroutineController());
         }
-        
-
     }
 
+    private void Update()
+    {
+        if (Mathf.Abs(body.linearVelocity.x) > 0.1f)
+        {
+            animator.SetBool("Walking", true);
+        } else
+        {
+            animator.SetBool("Walking", false);
+        }
+    }
     private void FixedUpdate()
     {
         if (stopCoroutine != null) return;
+
+        if (attackCoroutine != null) return;
 
         //Dont turn if falling
         if (body.linearVelocityY < -0.1f)
@@ -55,9 +79,45 @@ public class PatrollerPathfinding : MonoBehaviour
             return;
         }
 
+        if (PlayerInAttackRange())
+        {
+            Attack();
+            return;
+        }
 
-        body.linearVelocity = new Vector2(directionModifier * speed, body.linearVelocity.y);
+        if (Mathf.Abs(PlayerMovement.instance.transform.position.x - transform.position.x) < 0.5f)
+        {
+            return;
+        }
+
         
+
+        float finalSpeedModifier = PlayerInRange() ? speedModifier : 1;
+
+        body.linearVelocity = new Vector2(directionModifier * speed * finalSpeedModifier, body.linearVelocity.y);
+        
+        if (PlayerInRange())
+        {
+            if (PlayerMovement.instance.gameObject.transform.position.x < transform.position.x)
+            {
+                if (!FacingRight())
+                {
+                    Turn();
+                }
+            }
+            else if (PlayerMovement.instance.gameObject.transform.position.x > transform.position.x)
+            {
+                if (FacingRight())
+                {
+                    Turn();
+                }
+            }
+
+            return;
+        }
+
+        
+
 
         //check for wall in front
         if (Physics2D.Raycast(
@@ -99,13 +159,13 @@ public class PatrollerPathfinding : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(stopDelayMin, stopDelayMax));
 
         EndStopCoroutine();
+
     }
 
     private void EndStopCoroutine()
     {
         StopCoroutine(stopCoroutine);
         stopCoroutine = null;
-
         if (UnityEngine.Random.value > 0.5f)
         {
             Turn();
@@ -117,8 +177,63 @@ public class PatrollerPathfinding : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(Random.Range(minTimeBeforeStopping, maxTimeBeforeStopping));
+            while (PlayerInRange())
+            {
+                yield return null;
+            }
             Stop();
         }
     }
-    
+
+    public IEnumerator AttackCooldownCoroutine()
+    {
+        yield return new WaitForSeconds(attackCooldown);
+        attackAllowed = true;
+        attackCooldownCoroutine = null;
+    }
+
+    //ghost knight capabilities
+
+    private void Attack()
+    {
+        if (attackCooldownCoroutine != null) return;
+        if (attackCoroutine != null) return;
+
+        animator.SetTrigger("Attack");
+        isAttacking = true;
+
+        if (attackAllowed)
+        {
+            attackCoroutine = StartCoroutine(AttackCoroutine());
+        } else
+        {
+            attackCooldownCoroutine = StartCoroutine(AttackCooldownCoroutine());
+        }
+    }
+
+    private IEnumerator AttackCoroutine()
+    {
+        while (isAttacking == true)
+        {
+            yield return null;
+        }
+
+        attackCoroutine = null;
+        attackCooldownCoroutine = StartCoroutine(AttackCooldownCoroutine());
+    }
+
+    private bool PlayerInRange()
+    {
+        return playerDetector.playerInRange;
+    }
+
+    private bool PlayerInAttackRange()
+    {
+        return playerAttackDetector.playerInRange;
+    }
+
+    private bool FacingRight()
+    {
+        return directionModifier == 1;
+    }
 }
