@@ -6,7 +6,7 @@ public class ArenaGate : MonoBehaviour
     public Vector2 startPosition;
     public Vector2 endPosition;
 
-    
+    public bool startClosed = false;
 
     /*//Only move the sprite gameObject to prevent weird collision issues from moving the collider game object.
     public SpriteRenderer[] spriteRenderers;*/
@@ -20,10 +20,21 @@ public class ArenaGate : MonoBehaviour
             spriteRenderers[i].gameObject.transform.position = startPosition;
         }*/
 
-        gameObject.transform.localPosition = startPosition;
+        if (startClosed)
+        {
+            gameObject.SetActive(true);
 
-        
-        gameObject.SetActive(false);
+            gameObject.transform.localPosition = endPosition;
+
+        } else
+        {
+            gameObject.transform.localPosition = startPosition;
+
+
+            gameObject.SetActive(false);
+        }
+
+            
     }
 
     public void BeginArenaBattle()

@@ -115,7 +115,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     {
         if (!(currentCombatState == CombatState.Idle || currentCombatState == CombatState.Cooldown)) return;
 
-        if (!StaminaManager.instance.CanAffordStaminaCost(staminaRequiredToBlock)) return;
+        //if (!StaminaManager.instance.CanAffordStaminaCost(staminaRequiredToBlock)) return;
 
 
         if (currentCombatState == CombatState.Cooldown)
@@ -249,6 +249,8 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private void PerformBasicAttack()
     {
+        StaminaManager.instance.DecrementStamina(combatStaminaCost);
+
         if (currentCombatState == CombatState.Idle)
         {
             currentCombatState = CombatState.Active;

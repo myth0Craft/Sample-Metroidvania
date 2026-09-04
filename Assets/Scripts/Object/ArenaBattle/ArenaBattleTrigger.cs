@@ -66,9 +66,17 @@ public class ArenaBattleTrigger : MonoBehaviour
         arenaBattleActive = true;
         for (int i = 0; i < arenaGates.Length; i++)
         {
-            arenaGates[i].BeginArenaBattle();
+            if (arenaGates[i] != null)
+            {
+                arenaGates[i].BeginArenaBattle();
+            }
+            
         }
-        arenaCam.Priority = 20;
+        if (arenaCam != null)
+        {
+            arenaCam.Priority = 20;
+        }
+        
         AudioSource.PlayClipAtPoint(gateSound, transform.position, 10.0f);
         StartCoroutine(ArenaFightCoroutine());
 
@@ -84,9 +92,18 @@ public class ArenaBattleTrigger : MonoBehaviour
         arenaBattleComplete = true;
         for (int i = 0; i < arenaGates.Length;i++)
         {
-            arenaGates[i].EndArenaBattle();
+            if (arenaGates[i] != null)
+            {
+                arenaGates[i].EndArenaBattle();
+
+            }
+            
         }
-        arenaCam.Priority = 0;
+        if (arenaCam != null)
+        {
+            arenaCam.Priority = 0;
+        }
+        
         arenaBattleActive = false;
 
         if (id == null)

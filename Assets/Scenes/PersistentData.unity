@@ -14055,8 +14055,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   abilityIconSprites:
   - {fileID: 21300000, guid: 5347308a26d793841a24f9e91299cfc4, type: 3}
+  - {fileID: 21300000, guid: 902dd9d5e7fcdcf46bf099228246e4bd, type: 3}
   inputIconSprites:
   - {fileID: 21300000, guid: 93fbef1c581a0d94aba187bb16095b6c, type: 3}
+  - {fileID: 21300000, guid: edd15ef9a9c92b2408003c7d560b2405, type: 3}
 --- !u!1 &1848572742
 GameObject:
   m_ObjectHideFlags: 0
