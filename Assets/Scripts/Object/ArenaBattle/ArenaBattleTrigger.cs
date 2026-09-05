@@ -11,7 +11,7 @@ public class ArenaBattleTrigger : MonoBehaviour
     public float secondsBetweenWaves = 1.0f;
     public float startDelay = 0.0f;
 
-
+    public bool closeGatesOnStart = true;
 
     
 
@@ -64,14 +64,20 @@ public class ArenaBattleTrigger : MonoBehaviour
     public void StartArenaBattle()
     {
         arenaBattleActive = true;
-        for (int i = 0; i < arenaGates.Length; i++)
+
+        if (closeGatesOnStart)
         {
-            if (arenaGates[i] != null)
+            for (int i = 0; i < arenaGates.Length; i++)
             {
-                arenaGates[i].BeginArenaBattle();
+                if (arenaGates[i] != null)
+                {
+                    arenaGates[i].BeginArenaBattle();
+                }
+
             }
-            
         }
+
+        
         if (arenaCam != null)
         {
             arenaCam.Priority = 20;

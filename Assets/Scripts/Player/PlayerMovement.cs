@@ -140,6 +140,7 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Dash.canceled += OnSprintCanceled;
 
         controls.Player.Block.performed += OnBlockPressed;
+        
 
         #if !UNITY_EDITOR
             gameObject.transform.position = new Vector2(PlayerData.posX, PlayerData.posY);
@@ -151,6 +152,7 @@ public class PlayerMovement : MonoBehaviour
         //currentCombatState = CombatState.Idle;
         sprintParticles.Stop();
 
+        OnBetaFeaturesToggled();
     }
 
     private void OnDestroy()
@@ -174,17 +176,19 @@ public class PlayerMovement : MonoBehaviour
     void OnEnable()
     {
         controls.Player.Enable();
+        BetaFeaturesToggleButton.onBetaFeaturesToggled += OnBetaFeaturesToggled;
     }
 
     void OnDisable()
     {
         controls.Player.Disable();
+        BetaFeaturesToggleButton.onBetaFeaturesToggled -= OnBetaFeaturesToggled;
     }
 
 
     private void OnDashPressed(InputAction.CallbackContext context)
     {
-        if (!dashUsed)
+        if (!dashUsed && (PlayerData.dashUnlocked || abilityDebug))
         {
             StartCoroutine(DashCoroutine());
             
@@ -243,13 +247,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnSprintCanceled(InputAction.CallbackContext context)
     {
-        if (PlayerData.sprintUnlocked || abilityDebug)
-        {
-            sprintParticles.Stop();
-            currentHorizontalState = HorizontalState.Walking;
-            sprintPressed = false;
-        }
-        
+        OnSprintCanceled();
     }
 
     public void OnSprintCanceled()
@@ -448,7 +446,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Mathf.Abs(horizontalInput) > 0.1f)
         {
-            if (sprintPressed)
+            if (sprintPressed && (PlayerData.sprintUnlocked || abilityDebug))
             {
                 currentHorizontalState = HorizontalState.Sprinting;
             } else
@@ -570,9 +568,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnBetaFeaturesToggled()
+    {
+        
 
-
-    
+        if (!Application.isEditor)
+        {
+            abilityDebug = PlayerData.betaFeaturesEnabled;
+            currentHorizontalState = HorizontalState.Idle;
+            currentVerticalState = VerticalState.Idle;
+        }
+    }
 
 
 

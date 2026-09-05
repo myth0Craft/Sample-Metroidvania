@@ -76,6 +76,8 @@ public class PlayerMeleeAttack : MonoBehaviour
 
         currentCombatState = CombatState.Idle;
 
+        OnBetaFeaturesToggled();
+
     }
     public void ResetCombatState()
     {
@@ -100,6 +102,8 @@ public class PlayerMeleeAttack : MonoBehaviour
         {
             controls.Player.Enable();
         }
+
+        BetaFeaturesToggleButton.onBetaFeaturesToggled += OnBetaFeaturesToggled;
     }
 
     void OnDisable()
@@ -109,6 +113,8 @@ public class PlayerMeleeAttack : MonoBehaviour
             controls.Player.Disable();
         }
         controls.Player.Attack.performed -= OnAttackPressed;
+
+        BetaFeaturesToggleButton.onBetaFeaturesToggled -= OnBetaFeaturesToggled;
     }
 
     public void OnBlock()
@@ -376,5 +382,16 @@ public class PlayerMeleeAttack : MonoBehaviour
             StopCoroutine(hitboxCoroutine);
         }
         hitboxCoroutine = StartCoroutine(HitboxCoroutine(downwardAttackHitbox));
+    }
+
+    private void OnBetaFeaturesToggled()
+    {
+
+        if (!Application.isEditor)
+        {
+            attackDebug = PlayerData.betaFeaturesEnabled;
+            attackDebugActive = PlayerData.betaFeaturesEnabled;
+        }
+
     }
 }

@@ -7,6 +7,8 @@ public static class PlayerData
     public static int saveIndex = 0;
     private static PlayerControls globalControls = new PlayerControls();
 
+    public static bool betaFeaturesEnabled = false;
+
     public static int maxHealth = 5;
     public static int currentHealth = 5;
     public static bool gamePaused = false;
